@@ -1,0 +1,228 @@
+{% extends 'base.html' %} {% load static %} {% block styles %}
+<link rel='stylesheet' href="{% static 'styles/register_style.css' %}" type='text/css' media='all' /> {% endblock %} {% block title%}
+<title>Registracija</title>
+{% endblock %} {% block content %}
+<!--
+<br>
+<h3 style="text-align: center;">Registracija</h3>
+<form class="registrationForm" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>
+                Ime:
+            </td>
+            <td>
+                {{u_form.first_name}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Prezime:
+            </td>
+            <td>
+                {{u_form.last_name}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Username:
+            </td>
+            <td>
+                {{u_form.username}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                E-mail:
+            </td>
+            <td>
+                {{u_form.email}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Lozinka:
+            </td>
+            <td>
+                {{u_form.password1}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Potvrdi lozinku:
+            </td>
+            <td>
+                {{u_form.password2}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Gender:
+            </td>
+            <td>
+                {{p_form.gender}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Profilna slika:
+            </td>
+            <td>
+                {{p_form.avatar}}
+            </td>
+        </tr>
+    </table>
+
+    {% for field in u_form %}
+        <p>
+            {{field.label_tag}}
+            {{field}}
+
+            {% for error in field.errors %}
+                <small style="color: red;">{{error}}</small>
+            {% endfor %}
+        
+
+            {% endfor %}
+                {% csrf_token %}
+                    {% for field in p_form %} 
+                    <p>
+                        {{field.label_tag}}
+                     {{field}}
+                    </p>
+            {% endfor %} 
+
+    <div style="text-align: center;">
+        <br><input type="submit" value="Registriraj se">
+    </div>
+</form>-->
+
+
+
+<!--
+<form class="registrationForm" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+       
+
+        
+       
+    </table>
+
+     {% for field in u_form %}
+        <p>
+            {{field.label_tag}}
+            {{field}}
+
+            {% for error in field.errors %}
+                <small style="color: red;">{{error}}</small>
+            {% endfor %}
+        
+            {% endfor %}
+                {% csrf_token %}
+                    {% for field in p_form %} 
+                    <p>
+                        {{field.label_tag}}
+                     {{field}}
+                    </p>
+            {% endfor %} 
+    <div style="text-align: center;">
+        <br><input type="submit" value="Registriraj se">
+    </div>
+</form>-->
+
+<div class="body-register">
+
+    <div id="container">
+
+        <div id="secureRegistration">
+            <form class="registrationForm" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="rbroundbox">
+                            <h2>New Customer</h2>
+                    <div class="rbcontent">
+                        <div class="msg-box msg-neutral">
+                            <p>All fields marked with a <span class="req">*</span> are mandatory.</p>
+                        </div>
+                        <table id="register1" class="address">
+                        <tr>
+                                    <td><label for="{{ u_form.username.id_for_label }}">Username <em>*</em></label></td>
+                                    <td>{{u_form.username}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="{{ u_form.email.id_for_label }}">Email Address <em>*</em></label></td>
+                                    <td>{{u_form.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="password">Password <em>*</em></label></td>
+                                    <td>{{u_form.password1}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="passwordrepeat">Retype Password <em>*</em></label></td>
+                                    <td>{{u_form.password2}}</td>
+                                </tr>
+                            
+                        </table>
+                        <div class="messagebox-neutral">
+                            <h4>Why do we need your details?</h4>
+                            <p>We need your email address to send confirmation of orders placed, orders shipped and updates on the status of orders.</p>
+                            <p>We respect your privacy.</p>
+                        </div>
+                        <table id="register2" class="address">
+                                <tr>
+                                    <td><label for="paymenttitle">Gender</label></td>
+                                    
+                                    <td class="select-options">
+                                    {{p_form.gender}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="paymentfirstname">First name <em>*</em></label></td>
+                                    <td>{{u_form.first_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="paymentsurname">Last name <em>*</em></label></td>
+                                    <td>{{u_form.last_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="avatar">Avatar</label></td>
+                                    <td>{{p_form.avatar}}</td>
+                                </tr>
+                               <!-- <tr>
+                                    <td><label for="paymentaddress1">Address Line1 <em>*</em></label></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="paymentaddress2">Address Line2</label></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="paymenttown">Town/City <em>*</em></label></td>
+                                    <td></td>
+                                </tr>
+                                
+                                <tr id="paymentzipRow">
+                                    <td><label for="paymentzip">Postcode/Zip <em>*</em></label></td>
+                                    <td></td>
+                                </tr>
+                                <tr id="paymentCountry">
+                                    <td><label for="paymentzip">Country <em>*</em></label></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="paymentmobilephone">Mobile Phone</label></td>
+                                    <td></td>
+                                </tr>-->
+                        </table>
+                    </div>
+                </div>
+                <button type="submit" class="register">Register</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+

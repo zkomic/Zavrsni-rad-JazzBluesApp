@@ -1,0 +1,247 @@
+.amazing-reviews blockquote {
+    background: white;
+    margin: 10px 0 0 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 15px 15px 10px 15px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, .025) 0 3px 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+    width: 75%;
+    margin: 30px 15px 0 15px;
+}
+
+.amazing-reviews blockquote:before {
+    content: '';
+    display: block;
+    border: 20px solid transparent;
+    border-top-color: #ccc;
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    z-index: 250;
+    background: transparent;
+    height: 0;
+    opacity: 1;
+}
+
+.amazing-reviews blockquote:nth-of-type(even) {
+    margin-left: calc(25% - 15px);
+}
+
+.amazing-reviews blockquote:nth-of-type(even):before {
+    left: auto;
+    right: 20px;
+}
+
+.amazing-reviews blockquote:after {
+    content: '';
+    display: block;
+    border: 19px solid transparent;
+    border-top-color: white;
+    position: absolute;
+    top: 100%;
+    left: 21px;
+    z-index: 500;
+}
+
+.amazing-reviews blockquote:nth-of-type(even):after {
+    left: auto;
+    right: 21px;
+}
+
+.amazing-reviews blockquote:last-of-type {
+    margin-bottom: 45px;
+}
+
+.amazing-reviews blockquote header span i {
+    color: white;
+    text-shadow: #aaa 1px 0 0, #aaa 0 1px 0, #aaa -1px 0 0, #aaa 0 -1px 0;
+}
+
+.amazing-reviews blockquote strong {
+    color: black;
+    display: inline;
+}
+
+.amazing-reviews strong+span {
+    margin-left: -3px;
+}
+
+.amazing-reviews blockquote strong+span+span {
+    display: block;
+    margin: 5px 0;
+}
+
+.amazing-reviews blockquote span em {
+    font-style: italic;
+    font-weight: bold;
+    color: black;
+    text-decoration: italic;
+}
+
+.amazing-reviews blockquote span:last-of-type {
+    font-size: 10pt;
+    font-weight: bold;
+    display: block;
+}
+
+.amazing-reviews blockquote p {
+    font-size: 10pt;
+    font-style: normal;
+    margin: 5px 0 0 0;
+    color: black;
+}
+
+.amazing-reviews h2:last-of-type {
+    background: #eee;
+    text-align: center;
+    font-weight: 400;
+    padding: 15px;
+    margin: 0;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.amazing-reviews h2 q,
+.amazing-reviews h2 strong {
+    font-weight: 600;
+}
+
+.jazzblues-breadcrumb {
+    margin: 0 0 1em;
+    padding: 0;
+    font-size: .92em;
+    color: #777;
+    padding-top: 20px;
+}
+
+.jazzblues .jazzblues-breadcrumb a:hover {
+    color: #ccc;
+    transition: all 0.2s ease-in-out;
+}
+
+.jazzblues .jazzblues-breadcrumb:after,
+.jazzblues .jazzblues-breadcrumb:before {
+    content: " ";
+    display: table
+}
+
+.jazzblues .jazzblues-breadcrumb a {
+    color: #777
+}
+
+
+/*summary*/
+
+.jazzblues div.summary {
+    margin-bottom: 2em;
+    float: right;
+    width: 48%;
+}
+
+.jazzblues .container .single-product img {
+    width: 49%;
+    height: auto;
+    box-shadow: none
+}
+
+.entry-summary {
+    margin: 1em 0;
+}
+
+
+/*album_title entry-title*/
+
+.jazzblues .single-product {
+    color: #777
+}
+
+.jazzblues .album_title {
+    clear: none;
+    margin-top: 0;
+    padding: 0;
+}
+
+.jazzblues span.artist-name {
+    margin-top: 10px;
+}
+
+.entry-title,
+.entry-title a {
+    color: #222222;
+}
+
+.entry-title {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: left;
+    text-transform: uppercase;
+    font-family: 'Oswald';
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+h1 .album_title {
+    display: block;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.jazzblues div.album p.price,
+.jazzblues div.single-product span.price {
+    font-size: 14px;
+}
+
+.jazzblues div.single-product button {
+    vertical-align: middle;
+    float: left;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 11px;
+    min-height: 31px;
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: visible;
+    padding: .618em 1em;
+    font-weight: 700;
+}
+
+.jazzblues div.single-product .disabled {
+    background-color: #777;
+    color: #fff;
+    cursor: default;
+}
+
+
+/*related albums*/
+
+.jazzblues .related-albums .albums {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 10px;
+    margin-left: -40px
+}
+
+.jazzblues .related-albums h2 {
+    font-family: 'Oswald';
+    letter-spacing: 0px;
+    text-align: left;
+    float: left;
+    font-weight: 400;
+    font-size: 17px;
+    margin-top: 0;
+}

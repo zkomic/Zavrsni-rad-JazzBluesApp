@@ -1,0 +1,68 @@
+{% extends 'base.html' %} {% load static %} {% load poll_extras %} {% block title %}
+Orders |{% endblock %} {% block content %}
+
+<fieldset>
+        <form class="search-form">
+
+            <div class="multiselect">
+                <div class="selectBox" onclick="showCheckboxes()">
+                    <select>
+                  <option>Select user...</option>
+                </select>
+                    <div class="overSelect"></div>
+                </div>
+                <ul id="checkboxes">
+                    {% for object in orderFilter.form.user_id %}
+                    <li>{{object}}</li>{% endfor %}
+                </ul>
+            </div>
+            <div>{{orderFilter.form.order_status}}</div>
+            <div><button type="submit">Search</button></div>
+        </form>
+
+    </fieldset>
+
+ 
+<div class="container">
+    <h2>My Orders <br><small>Album orders</small></h2>
+    <div class="order">
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1">Username</div>
+                <div class="col col-2">Order date</div>
+                <div class="col col-3">Order status</div>
+                <div class="col col-4"></div>
+            </li>
+            {% for order in orders %}
+            <li class="table-row">
+                <div class="col col-1" data-label="order-date">{{order.0.user_id_id|get_username}}</div>
+
+                <div class="col col-2" data-label="order-status">{{order.0.order_date|date:"d.m.Y"}}</div>
+                <div class="col col-3" data-label="price">{{order.0.order_status|capital}}</div>
+                <div class="col col-4" data-label="details">
+                    <a href="{% url 'JazzBluesApp:staffOrderDetail' albumorder_id=order.0.id %}" class="button">Details</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+</div>
+
+<script>
+    var expanded = false;
+
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
+</script>
+
+
+{% endblock %}

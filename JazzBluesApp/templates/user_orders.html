@@ -1,0 +1,162 @@
+{% extends 'base.html' %} {% load static %} {% load poll_extras %} 
+{% block styles %}<link rel="stylesheet" href="{% static 'styles/tickets.css' %}" />{% endblock %}
+{% block title %} {{request.user.first_name}}'s Orders |{% endblock %} {% block content %} {% if not albumOrders and not eventOrders %}
+<p>Nemate narudžbi...</p>
+{% else %}
+
+<div class="container">
+    <h2>My Orders <br><small>Album orders</small></h2>
+    <div class="order">
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1">Date</div>
+                <div class="col col-2">Status</div>
+                <div class="col col-3">Total</div>
+                <div class="col col-4"></div>
+            </li>
+            {% for album in albumOrders %}
+            <li class="table-row">
+                <div class="col col-1" data-label="order-date">{{album.order_date|date:"d.m.Y"}}</div>
+
+                <div class="col col-2" data-label="order-status">{{album.order_status|capital}}</div>
+                <div class="col col-3" data-label="price">${{album.id|album_total}}</div>
+                <div class="col col-4" data-label="details">
+                    <td><a href="{% url 'JazzBluesApp:userOrderDetail' albumorder_id=album.id %}" class="button">Details</a></td>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+</div>
+
+{% for event in eventOrders %}
+<div class="festivalticketWrap {{event.id}}">
+    <div class="ticket ticketLeft">
+        <h1>FESTIVAL <span>TICKET</span></h1>
+        <div class="title">
+            <h2>{{event.event_id.all.0.event_name}}</h2>
+            <span>festival</span>
+        </div>
+        <div class="name">
+            <h2>{{event.event_id.all.0.artist_id}}</h2>
+            <span>artist name</span>
+        </div>
+        <div class="seat">
+            <h2>{{event.event_id.all.0.event_start_datetime|date:"d.m.Y"}}</h2>
+            <span> date</span>
+        </div>
+        <div class="time">
+            <h2>{{event.event_id.all.0.event_start_datetime|date:"H:m"}}</h2>
+            <span> time</span>
+        </div>
+        <div class="time">
+            <h2>${{event.event_id.all.0.ticket_price}}</h2>
+            <span>price</span>
+        </div>
+        
+
+    </div>
+    <div class="ticket ticketRight">
+       
+        <div class="number">
+            <h3><br></h3>
+            <span><br></span>
+        </div>
+        <div class="barcode"></div>
+    </div>
+</div>
+<br>
+<button onclick="FestivalTicket({{forloop.counter}})">Download ticket</button>
+<br>
+{% endfor %} 
+
+
+{% for ticket in tickets %}
+<div class="concertticketWrap {{ticket.id}}">
+    <div class="ticket ticketLeft">
+        <h1>CONCERT <span>TICKET</span></h1>
+        <div class="title">
+            <h2>{{ticket.event_id.event_name}}</h2>
+            <span>concert</span>
+        </div>
+        <div class="name">
+            <h2>{{ticket.event_id.artist_id}}</h2>
+            <span>artist name</span>
+        </div>
+        <div class="seat">
+            <h2>{{ticket.event_id.event_start_datetime|date:"d.m.Y"}}</h2>
+            <span>date</span>
+        </div>
+        <div class="time">
+            <h2>{{ticket.event_id.event_start_datetime|date:"H:m"}}</h2>
+            <span>time</span>
+        </div>
+        <div class="time">
+            <h2>${{ticket.event_id.ticket_price}}</h2>
+            <span>price</span>
+        </div>
+
+    </div>
+    <div class="ticket ticketRight">
+        <div class="number">
+            <h3>{{ticket.seat_number}}</h3>
+            <span>seat</span>
+        </div>
+        <div class="barcode"></div>
+    </div>
+</div>
+<br>
+<button onclick="ConcertTicket({{forloop.counter}})">Download ticket</button>
+<br>
+{% endfor %} 
+
+
+{% endif %} <!-- div to pdf -->
+    
+    <script>
+        function ConcertTicket(x) {
+            var HTML_Width = $(".concertticketWrap").width();
+            var HTML_Height = $(".concertticketWrap").height();
+            var top_left_margin = 15;
+            var PDF_Width = HTML_Width + (top_left_margin * 2);
+            var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+            var canvas_image_width = HTML_Width;
+            var canvas_image_height = HTML_Height;
+
+            var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+            html2canvas($(".concertticketWrap")[x-1]).then(function(canvas) {
+                var imgData = canvas.toDataURL("image/jpeg", 1.0);
+                var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+                pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+                for (var i = 1; i <= totalPDFPages; i++) {
+                    pdf.addPage(PDF_Width, PDF_Height);
+                    pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
+                }
+                pdf.save("concert_ticket.pdf");
+            });
+        }
+        function FestivalTicket(x) {
+            var HTML_Width = $(".festivalticketWrap").width();
+            var HTML_Height = $(".festivalticketWrap").height();
+            var top_left_margin = 15;
+            var PDF_Width = HTML_Width + (top_left_margin * 2);
+            var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+            var canvas_image_width = HTML_Width;
+            var canvas_image_height = HTML_Height;
+
+            var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+            html2canvas($(".festivalticketWrap")[x-1]).then(function(canvas) {
+                var imgData = canvas.toDataURL("image/jpeg", 1.0);
+                var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+                pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+                for (var i = 1; i <= totalPDFPages; i++) {
+                    pdf.addPage(PDF_Width, PDF_Height);
+                    pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
+                }
+                pdf.save("festival_ticket.pdf");
+            });
+        }
+    </script>{% endblock %}

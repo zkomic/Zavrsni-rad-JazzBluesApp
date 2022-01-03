@@ -1,0 +1,987 @@
+[{
+        "model": "JazzBluesApp.album",
+        "pk": 1,
+        "fields": {
+            "artist_id": "1",
+            "genre_id": "1",
+            "album_name": "Saxophone Colossus",
+            "date_released": "2013-06-22",
+            "album_format": "vinyl",
+            "album_price": "14.99",
+            "in_stock": "0",
+            "number_of_tracks": "5",
+            "number_of_discs": "1",
+            "recordLabel_id": "1",
+            "album_cover": "albums/Sonny_Rollins_Saxophone_Colossus.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 2,
+        "fields": {
+            "artist_id": "2",
+            "genre_id": "1",
+            "album_name": "The Blues and the Abstract Truth",
+            "date_released": "2015-08-10",
+            "album_format": "vinyl",
+            "album_price": "14.99",
+            "in_stock": "0",
+            "number_of_tracks": "6",
+            "number_of_discs": "1",
+            "recordLabel_id": "1",
+            "album_cover": "albums/Oliver_Nelson_The_Blues_and_the_Abstract_Truth.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 3,
+        "fields": {
+            "artist_id": "3",
+            "genre_id": "1",
+            "album_name": "At the Village Gate",
+            "date_released": "2020-01-15",
+            "album_format": "vinyl",
+            "album_price": "14.99",
+            "in_stock": "7",
+            "number_of_tracks": "9",
+            "number_of_discs": "1",
+            "recordLabel_id": "1",
+            "album_cover": "albums/Nina_Simone_At_the_Village_Gate.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 4,
+        "fields": {
+            "artist_id": "4",
+            "genre_id": "1",
+            "album_name": "Pithecanthropus Erectus",
+            "date_released": "2003-08-02",
+            "album_format": "vinyl",
+            "album_price": "14.99",
+            "in_stock": "25",
+            "number_of_tracks": "4",
+            "number_of_discs": "1",
+            "recordLabel_id": "1",
+            "album_cover": "albums/Charles_Mingus_Pithecanthropus_Erectus.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 5,
+        "fields": {
+            "artist_id": "8",
+            "genre_id": "1",
+            "album_name": "Dark Matter",
+            "date_released": "2020-02-14",
+            "album_format": "cd_album",
+            "album_price": "11.99",
+            "in_stock": "6",
+            "number_of_tracks": "10",
+            "number_of_discs": "1",
+            "recordLabel_id": "2",
+            "album_cover": "albums/Moses_Boyd_Dark_Matter.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 6,
+        "fields": {
+            "artist_id": "7",
+            "genre_id": "1",
+            "album_name": "Blue Train",
+            "date_released": "2001-09-15",
+            "album_format": "vinyl",
+            "album_price": "27.99",
+            "in_stock": "12",
+            "number_of_tracks": "5",
+            "number_of_discs": "1",
+            "recordLabel_id": "3",
+            "album_cover": "albums/John_Coltrane_Blue_Train.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 7,
+        "fields": {
+            "artist_id": "6",
+            "genre_id": "1",
+            "album_name": "Love for Sale",
+            "date_released": "2018-10-26",
+            "album_format": "vinyl",
+            "album_price": "14.99",
+            "in_stock": "40",
+            "number_of_tracks": "13",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Ella_Fitzgerald_Love_for_Sale.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 8,
+        "fields": {
+            "artist_id": "18",
+            "genre_id": "1",
+            "album_name": "Echoes of France",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "2",
+            "number_of_tracks": "13",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Django_Reinhardt_Echoes_of_France.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 9,
+        "fields": {
+            "artist_id": "9",
+            "genre_id": "1",
+            "album_name": "Lullaby of Birdland",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "4",
+            "number_of_tracks": "21",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Stan_Getz_Lullaby_of_Birdland.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 10,
+        "fields": {
+            "artist_id": "58",
+            "genre_id": "1",
+            "album_name": "Lullaby of Birdland",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "22",
+            "number_of_tracks": "20",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Sarah_Vaughan_Lullaby_of_Birdland.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 11,
+        "fields": {
+            "artist_id": "64",
+            "genre_id": "1",
+            "album_name": "Soft Shoe",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "7",
+            "number_of_tracks": "20",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/The_Gerry_Mulligan_Quartet_with_Chet_Baker_Soft_Shoe.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 12,
+        "fields": {
+            "artist_id": "18",
+            "genre_id": "1",
+            "album_name": "Echoes of France",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "6",
+            "number_of_tracks": "18",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Django_Reinhardt_Echoes_of_France.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 13,
+        "fields": {
+            "artist_id": "58",
+            "genre_id": "1",
+            "album_name": "Lullaby of Birdland",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "0",
+            "number_of_tracks": "11",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Sarah_Vaughan_Lullaby_of_Birdland.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 14,
+        "fields": {
+            "artist_id": "65",
+            "genre_id": "1",
+            "album_name": "Trane's Blues",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "1",
+            "number_of_tracks": "10",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Miles_Davis_and_John_Coltrane_Trane's_Blues.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 15,
+        "fields": {
+            "artist_id": "65",
+            "genre_id": "1",
+            "album_name": "Trane's Blues",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "5",
+            "number_of_tracks": "7",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Miles_Davis_and_John_Coltrane_Trane's_Blues.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 16,
+        "fields": {
+            "artist_id": "9",
+            "genre_id": "1",
+            "album_name": "Lullaby of Birdland",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "8",
+            "number_of_tracks": "14",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Stan_Getz_Lullaby_of_Birdland.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 17,
+        "fields": {
+            "artist_id": "11",
+            "genre_id": "1",
+            "album_name": "C'est Si Bon",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "14.99",
+            "in_stock": "0",
+            "number_of_tracks": "13",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Louis_Armstrong_C'est_Si_Bon.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 18,
+        "fields": {
+            "artist_id": "12",
+            "genre_id": "1",
+            "album_name": "You Go to My Head",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "14.99",
+            "in_stock": "4",
+            "number_of_tracks": "15",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Billie_Holiday_You_Go_to_My_Head.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 19,
+        "fields": {
+            "artist_id": "22",
+            "genre_id": "1",
+            "album_name": "Now's the Time",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "0",
+            "number_of_tracks": "14",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Charlie_Parker_Now's_the_Time.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 20,
+        "fields": {
+            "artist_id": "46",
+            "genre_id": "1",
+            "album_name": "Cubana Be, Cubana Bop",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "2",
+            "number_of_tracks": "13",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Dizzy_Gillespie_Cubana_Be_Cubana_Bop.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 21,
+        "fields": {
+            "artist_id": "11",
+            "genre_id": "1",
+            "album_name": "C'est Si Bon",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "9",
+            "number_of_tracks": "20",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Louis_Armstrong_C'est_Si_Bon.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 22,
+        "fields": {
+            "artist_id": "61",
+            "genre_id": "1",
+            "album_name": "Route 66",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "9",
+            "number_of_tracks": "9",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Nat_King_Cole_Route_66.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 23,
+        "fields": {
+            "artist_id": "6",
+            "genre_id": "1",
+            "album_name": "Love for Sale",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "4",
+            "number_of_tracks": "17",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Ella_Fitzgerald_Love_for_Sale.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 24,
+        "fields": {
+            "artist_id": "60",
+            "genre_id": "1",
+            "album_name": "Ko-ko",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "2",
+            "number_of_tracks": "14",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Duke_Ellington_Ko-ko.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 25,
+        "fields": {
+            "artist_id": "63",
+            "genre_id": "1",
+            "album_name": "Just You, Just Me",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "0",
+            "number_of_tracks": "7",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Lester_Young_Just_You_Just_Me.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 26,
+        "fields": {
+            "artist_id": "46",
+            "genre_id": "1",
+            "album_name": "Cubana Be, Cubana Bop",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "1",
+            "number_of_tracks": "19",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Dizzy_Gillespie_Cubana_Be_Cubana_Bop.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 27,
+        "fields": {
+            "artist_id": "62",
+            "genre_id": "1",
+            "album_name": "Trio",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "3",
+            "number_of_tracks": "18",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Erroll_Garner_Trio.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 28,
+        "fields": {
+            "artist_id": "63",
+            "genre_id": "1",
+            "album_name": "Just You, Just Me",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "6",
+            "number_of_tracks": "16",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Lester_Young_Just_You_Just_Me.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 29,
+        "fields": {
+            "artist_id": "60",
+            "genre_id": "1",
+            "album_name": "Ko-ko",
+            "date_released": "2018-10-19",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "2",
+            "number_of_tracks": "19",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Duke_Ellington_Ko-ko.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 30,
+        "fields": {
+            "artist_id": "62",
+            "genre_id": "1",
+            "album_name": "Trio",
+            "date_released": "2018-10-19",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "0",
+            "number_of_tracks": "9",
+            "number_of_discs": "1",
+            "recordLabel_id": "4",
+            "album_cover": "albums/Erroll_Garner_Trio.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 31,
+        "fields": {
+            "artist_id": "5",
+            "genre_id": "1",
+            "album_name": "Classic Jazz",
+            "date_released": "2019-10-25",
+            "album_format": "cd_album",
+            "album_price": "4.99",
+            "in_stock": "4",
+            "number_of_tracks": "60",
+            "number_of_discs": "3",
+            "recordLabel_id": "5",
+            "album_cover": "albums/Various_Artists_Classic_Jazz.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 32,
+        "fields": {
+            "artist_id": "5",
+            "genre_id": "1",
+            "album_name": "Blue Note Re:imagined",
+            "date_released": "2020-10-16",
+            "album_format": "vinyl",
+            "album_price": "37.99",
+            "in_stock": "3",
+            "number_of_tracks": "16",
+            "number_of_discs": "2",
+            "recordLabel_id": "6",
+            "album_cover": "albums/Various_Artists_Blue_Note_Re_imagined.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 33,
+        "fields": {
+            "artist_id": "7",
+            "genre_id": "1",
+            "album_name": "Giant Steps",
+            "date_released": "2005-02-07",
+            "album_format": "vinyl",
+            "album_price": "9.99",
+            "in_stock": "2",
+            "number_of_tracks": "7",
+            "number_of_discs": "1",
+            "recordLabel_id": "7",
+            "album_cover": "albums/John_Coltrane_Giant_Steps.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 34,
+        "fields": {
+            "artist_id": "66",
+            "genre_id": "1",
+            "album_name": "Getz/Gilberto",
+            "date_released": "2014-10-20",
+            "album_format": "vinyl",
+            "album_price": "27.99",
+            "in_stock": "0",
+            "number_of_tracks": "8",
+            "number_of_discs": "1",
+            "recordLabel_id": "3",
+            "album_cover": "albums/Stan_Getz_and_Joao_Gilberto_Getz_Gilberto.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 35,
+        "fields": {
+            "artist_id": "13",
+            "genre_id": "1",
+            "album_name": "Sunset in the Blue",
+            "date_released": "2020-10-23",
+            "album_format": "cd_album",
+            "album_price": "6.99",
+            "in_stock": "9",
+            "number_of_tracks": "13",
+            "number_of_discs": "1",
+            "recordLabel_id": "3",
+            "album_cover": "albums/Melody_Gardot_Sunset_in_the_Blue.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 36,
+        "fields": {
+            "artist_id": "7",
+            "genre_id": "1",
+            "album_name": "My Favorite Things",
+            "date_released": "2005-02-15",
+            "album_format": "vinyl",
+            "album_price": "17.99",
+            "in_stock": "11",
+            "number_of_tracks": "4",
+            "number_of_discs": "1",
+            "recordLabel_id": "7",
+            "album_cover": "albums/John_Coltrane_My_Favorite_Things.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 37,
+        "fields": {
+            "artist_id": "14",
+            "genre_id": "1",
+            "album_name": "Bitches Brew: Directions in Music By Miles Davis",
+            "date_released": "2015-10-16",
+            "album_format": "vinyl",
+            "album_price": "29.99",
+            "in_stock": "2",
+            "number_of_tracks": "7",
+            "number_of_discs": "2",
+            "recordLabel_id": "8",
+            "album_cover": "albums/Miles_Davis_Bitches Brew_Directions_in_Music_By_Miles_Davis.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 38,
+        "fields": {
+            "artist_id": "3",
+            "genre_id": "1",
+            "album_name": "Pastel Blues",
+            "date_released": "1965-10-01",
+            "album_format": "vinyl",
+            "album_price": "24.99",
+            "in_stock": "1",
+            "number_of_tracks": "9",
+            "number_of_discs": "1",
+            "recordLabel_id": "3",
+            "album_cover": "albums/Nina_Simone_Pastel_Blues.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 39,
+        "fields": {
+            "artist_id": "14",
+            "genre_id": "1",
+            "album_name": "Sketches of Spain",
+            "date_released": "2017-03-31",
+            "album_format": "vinyl",
+            "album_price": "22.99",
+            "in_stock": "1",
+            "number_of_tracks": "5",
+            "number_of_discs": "1",
+            "recordLabel_id": "8",
+            "album_cover": "albums/Miles_Davis_Sketches_of_Spain.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 40,
+        "fields": {
+            "artist_id": "3",
+            "genre_id": "1",
+            "album_name": "I Put a Spell On You",
+            "date_released": "2016-06-15",
+            "album_format": "vinyl",
+            "album_price": "24.99",
+            "in_stock": "10",
+            "number_of_tracks": "12",
+            "number_of_discs": "1",
+            "recordLabel_id": "3",
+            "album_cover": "albums/Nina_Simone_I_Put_a_Spell_On_You.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 41,
+        "fields": {
+            "artist_id": "67",
+            "genre_id": "1",
+            "album_name": "Ella and Louis",
+            "date_released": "2016-03-25",
+            "album_format": "vinyl",
+            "album_price": "24.99",
+            "in_stock": "3",
+            "number_of_tracks": "11",
+            "number_of_discs": "1",
+            "recordLabel_id": "9",
+            "album_cover": "albums/Ella_Fitzgerald_Louis_Armstrong_Ella_and_Louis.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 42,
+        "fields": {
+            "artist_id": "14",
+            "genre_id": "2",
+            "album_name": "Kind of Blue",
+            "date_released": "2009-02-09",
+            "album_format": "cd_album",
+            "album_price": "4.99",
+            "in_stock": "43",
+            "number_of_tracks": "6",
+            "number_of_discs": "1",
+            "recordLabel_id": "8",
+            "album_cover": "albums/Miles_Davis_Kind_of_Blue.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 43,
+        "fields": {
+            "artist_id": "14",
+            "genre_id": "1",
+            "album_name": "Greatest Hits",
+            "date_released": "2018-05-11",
+            "album_format": "vinyl",
+            "album_price": "20.99",
+            "in_stock": "0",
+            "number_of_tracks": "8",
+            "number_of_discs": "1",
+            "recordLabel_id": "10",
+            "album_cover": "albums/Miles_Davis_Greatest_Hits.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 44,
+        "fields": {
+            "artist_id": "3",
+            "genre_id": "1",
+            "album_name": "Mood Indigo: The Complete Bethlehem Singles",
+            "date_released": "2018-02-9",
+            "album_format": "vinyl",
+            "album_price": "21.99",
+            "in_stock": "3",
+            "number_of_tracks": "14",
+            "number_of_discs": "2",
+            "recordLabel_id": "11",
+            "album_cover": "albums/Nina_Simone_Mood_Indigo_The_Complete_Bethlehem_Singles.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 45,
+        "fields": {
+            "artist_id": "12",
+            "genre_id": "1",
+            "album_name": "Lady in Satin",
+            "date_released": "2015-08-14",
+            "album_format": "vinyl",
+            "album_price": "22.99",
+            "in_stock": "0",
+            "number_of_tracks": "11",
+            "number_of_discs": "1",
+            "recordLabel_id": "8",
+            "album_cover": "albums/Billie_Holiday_Lady_in_Satin.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 46,
+        "fields": {
+            "artist_id": "12",
+            "genre_id": "1",
+            "album_name": "Lady in Satin",
+            "date_released": "2015-08-14",
+            "album_format": "cd_album",
+            "album_price": "4.99",
+            "in_stock": "15",
+            "number_of_tracks": "11",
+            "number_of_discs": "1",
+            "recordLabel_id": "8",
+            "album_cover": "albums/Billie_Holiday_Lady_in_Satin.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 47,
+        "fields": {
+            "artist_id": "12",
+            "genre_id": "1",
+            "album_name": "The Real Billie Holiday",
+            "date_released": "2015-08-14",
+            "album_format": "cd_album",
+            "album_price": "4.99",
+            "in_stock": "21",
+            "number_of_tracks": "78",
+            "number_of_discs": "3",
+            "recordLabel_id": "12",
+            "album_cover": "albums/Billie_Holiday_The_Real_Billie_Holiday.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 48,
+        "fields": {
+            "artist_id": "4",
+            "genre_id": "1",
+            "album_name": "Mingus Ah Um",
+            "date_released": "1999-02-08",
+            "album_format": "cd_album",
+            "album_price": "4.99",
+            "in_stock": "12",
+            "number_of_tracks": "12",
+            "number_of_discs": "1",
+            "recordLabel_id": "8",
+            "album_cover": "albums/Charles_Mingus_Mingus_Ah_Um.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 48,
+        "fields": {
+            "artist_id": "4",
+            "genre_id": "1",
+            "album_name": "Mingus Ah Um",
+            "date_released": "2017-01-30",
+            "album_format": "vinyl",
+            "album_price": "14.99",
+            "in_stock": "0",
+            "number_of_tracks": "9",
+            "number_of_discs": "1",
+            "recordLabel_id": "13",
+            "album_cover": "albums/Charles_Mingus_Mingus_Ah_Um.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 49,
+        "fields": {
+            "artist_id": "22",
+            "genre_id": "1",
+            "album_name": "Volume 1",
+            "date_released": "2017-11-17",
+            "album_format": "vinyl",
+            "album_price": "15.99",
+            "in_stock": "2",
+            "number_of_tracks": "8",
+            "number_of_discs": "1",
+            "recordLabel_id": "8",
+            "album_cover": "albums/Charlie_Parker_Volume_1.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 50,
+        "fields": {
+            "artist_id": "33",
+            "genre_id": "1",
+            "album_name": "Lullabies",
+            "date_released": "2020-11-06",
+            "album_format": "cd_album",
+            "album_price": "13.99",
+            "in_stock": "32",
+            "number_of_tracks": "15",
+            "number_of_discs": "1",
+            "recordLabel_id": "14",
+            "album_cover": "albums/Dave_Brubeck_Lullabies.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 51,
+        "fields": {
+            "artist_id": "33",
+            "genre_id": "1",
+            "album_name": "Lullabies",
+            "date_released": "2020-11-06",
+            "album_format": "vinyl",
+            "album_price": "29.99",
+            "in_stock": "7",
+            "number_of_tracks": "15",
+            "number_of_discs": "1",
+            "recordLabel_id": "14",
+            "album_cover": "albums/Dave_Brubeck_Lullabies.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 52,
+        "fields": {
+            "artist_id": "6",
+            "genre_id": "1",
+            "album_name": "Gold - All Her Greatest Hits",
+            "date_released": "2003-02-03",
+            "album_format": "cd_album",
+            "album_price": "7.99",
+            "in_stock": "11",
+            "number_of_tracks": "39",
+            "number_of_discs": "2",
+            "recordLabel_id": "14",
+            "album_cover": "albums/Ella_Fitzgerald_Gold_All_Her_Greatest_Hits.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 53,
+        "fields": {
+            "artist_id": "25",
+            "genre_id": "1",
+            "album_name": "Time Changes",
+            "date_released": "2011-02-07",
+            "album_format": "cd_album",
+            "album_price": "4.99",
+            "in_stock": "32",
+            "number_of_tracks": "7",
+            "number_of_discs": "1",
+            "recordLabel_id": "12",
+            "album_cover": "albums/The_Dave_Brubeck_Quartet_Time_Changes.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 54,
+        "fields": {
+            "artist_id": "16",
+            "genre_id": "1",
+            "album_name": "Source",
+            "date_released": "2020-08-21",
+            "album_format": "cd_album",
+            "album_price": "11.99",
+            "in_stock": "15",
+            "number_of_tracks": "9",
+            "number_of_discs": "1",
+            "recordLabel_id": "3",
+            "album_cover": "albums/Nubya_Garcia_Source.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 55,
+        "fields": {
+            "artist_id": "16",
+            "genre_id": "1",
+            "album_name": "Source",
+            "date_released": "2020-08-21",
+            "album_format": "vinyl",
+            "album_price": "29.99",
+            "in_stock": "3",
+            "number_of_tracks": "9",
+            "number_of_discs": "1",
+            "recordLabel_id": "3",
+            "album_cover": "albums/Nubya_Garcia_Source.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 56,
+        "fields": {
+            "artist_id": "13",
+            "genre_id": "1",
+            "album_name": "Currency of Man",
+            "date_released": "2015-06-01",
+            "album_format": "cd_album",
+            "album_price": "7.99",
+            "in_stock": "28",
+            "number_of_tracks": "10",
+            "number_of_discs": "1",
+            "recordLabel_id": "3",
+            "album_cover": "albums/Melody_Gardot_Currency_of_Man.png"
+        }
+    },
+    {
+        "model": "JazzBluesApp.album",
+        "pk": 57,
+        "fields": {
+            "artist_id": "13",
+            "genre_id": "1",
+            "album_name": "Currency of Man",
+            "date_released": "2015-06-01",
+            "album_format": "vinyl",
+            "album_price": "34.99",
+            "in_stock": "0",
+            "number_of_tracks": "15",
+            "number_of_discs": "2",
+            "recordLabel_id": "3",
+            "album_cover": "albums/Melody_Gardot_Currency_of_Man.png"
+        }
+    }
+]

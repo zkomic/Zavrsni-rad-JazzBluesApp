@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% block title %}
+New Venue |
+{% endblock %} {% load static %} {% block content %}
+
+{% if 'newConcert' in prev_url %}
+<form method="POST">
+    {% csrf_token %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+                <tr>
+            <td>Venue name:</td>
+            <td>{{form.venue_name}}</td>
+        </tr>
+            <td>Location:</td>
+            <td>{{form.location}}</td>
+        </tr>
+        </tr>
+            <td>Number of rows:</td>
+            <td>{{form.row_number}}</td>
+        </tr>
+        </tr>
+            <td>Number of seats in a row:</td>
+            <td>{{form.row_seat_count}}</td>
+        </tr>
+
+    </table>
+
+    <div style="text-align: center;">
+    <input type="hidden" name="next_url" id="next_url" value="{{prev_url}}">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+{% elif 'newFestival' in prev_url %}
+<form method="POST">
+    {% csrf_token %}
+
+        <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+                <tr>
+            <td>Venue name:</td>
+            <td>{{form.venue_name}}</td>
+        </tr>
+            <td>Location:</td>
+            <td>{{form.location}}</td>
+        </tr>
+    </table>
+    <input type="hidden" name="row_number" value="0">
+    <input type="hidden" name="row_seat_count" value="0">
+    <div style="text-align: center;">
+    <input type="hidden" name="next_url" id="next_url" value="{{prev_url}}">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+{% endif %}
+
+
+<br> {% if messages %}
+<div style="text-align: center;">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

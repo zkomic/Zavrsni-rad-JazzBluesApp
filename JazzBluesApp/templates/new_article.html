@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block title %}
+New Article | 
+{% endblock %} {% load static %} {% block content %}
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>Subject:</td>
+            <td>{{form.subject}}</td>
+        </tr>
+        <tr>
+            <td>Text:</td>
+            <td>{{form.text}}</td>
+        </tr>
+        <tr>
+            <td>Image:</td>
+            <td>{{form.image}}</td>
+        </tr>
+    </table>
+
+    <div style="text-align: center;">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+
+
+<br> {% if messages %}
+<div style="text-align: center;">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+{% endblock %}

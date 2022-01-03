@@ -1,0 +1,176 @@
+.body-login .rbroundbox,
+.register .messagebox-neutral,
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=password],
+button,
+.next {
+    box-sizing: border-box
+}
+
+.body-login {
+    height: 100%;
+    max-width: 70em;
+    margin: 0 auto;
+    font: 100%/1.4 sans-serif;
+    color: #444;
+    background: #fff;
+    min-width: 730px;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0
+}
+
+h2 {
+    clear: both;
+    margin-bottom: .5em;
+    font-size: 1.8em
+}
+
+h4 {
+    margin-bottom: .4em
+}
+
+.forgot {
+    text-decoration: underline
+}
+
+.forgot :hover {
+    text-decoration: none
+}
+
+button,
+.next {
+    min-width: 8em;
+    line-height: 1.4;
+    border-radius: .2em;
+    border: 1px solid #006b97;
+    padding: .3em 1em;
+    margin: .3em 0;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    text-decoration: none;
+    background-color: #00b3fd;
+}
+
+.next {
+    display: block;
+    text-align: center;
+    margin: .3em auto;
+    max-width: 8em
+}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=password] {
+    width: 100%;
+    max-width: 25em;
+    font-size: 1em;
+    line-height: 1.6
+}
+
+#loginNewCustomer {
+    margin: auto
+}
+
+.body-login h2 {
+    clear: both;
+    margin-bottom: .5em;
+    font-size: 1.8em;
+    margin-top: 0;
+    text-transform: capitalize
+}
+
+.body-login .rbroundbox {
+    display: block;
+    width: 50%;
+    padding: 5%;
+    float: left;
+    position: relative;
+    border-right: 1px solid #e7e7e7
+}
+
+.body-login .rbroundbox:first-child {
+    border-right: 0;
+    float: right;
+    text-align: center
+}
+
+.body-login form ul {
+    list-style: none;
+    padding: 0
+}
+
+.resend {
+    margin: 0;
+    background: none;
+    padding: 0
+}
+
+.forgot {
+    float: right;
+    line-height: 2.5em;
+    display: inline-block
+}
+
+h2,
+h3 {
+    font-family: input-sans, sans-serif;
+    font-weight: 300
+}
+
+#container {
+    font-size: 1.1em
+}
+
+a {
+    color: #333
+}
+
+.next,
+button {
+    background: #333;
+    font-family: input-sans, sans-serif;
+    color: #fff;
+    padding: .7em 1.2em;
+    border: 0;
+    border-radius: 5em;
+    font-weight: 300;
+    margin-top: 1em;
+    transition: all .4s;
+}
+
+.next:hover,
+button:hover {
+    background: #e34f17;
+    transition: all .4s;
+}
+
+input[type=email],
+input[type=password],
+input[type=tel],
+input[type=text] {
+    padding: .2em;
+    border: 1px solid #333;
+    background: #fdfcfc;
+    margin: .1em 0;
+    color: #333;
+    border-radius: 0;
+    background-clip: padding-box
+}
+
+.forgot {
+    font-size: .8em;
+    margin-top: 2em
+}
+
+.msg-error {
+    display: block;
+    color: #d4021f;
+    background: #fff;
+    font-size: .9em;
+    border: 1px solid;
+    text-align: center
+}

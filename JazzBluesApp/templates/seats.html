@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load static %} 
+{% block title %}
+Seat Reservation | 
+{% endblock %} 
+{% block styles %}<link rel="stylesheet" href="{% static 'styles/seats.css' %}" />{% endblock %}
+{% block content %}
+
+
+<div class="movie-container">
+        <span>{{event.event_name}}</span><br>
+        <span>{{venue.venue_name}}, {{venue.address_id.city}}</span>
+        <hidden id="event_id">
+            </select>
+    </div>
+
+    <ul class="showcase">
+        <li>
+            <img src="{{MEDIA_ROOT}}/media/seats/seat.png" alt="">
+            <small>&nbsp;&nbsp;Available</small>
+        </li>
+        <li>
+            <img src="{{MEDIA_ROOT}}/media/seats/seat_selected.png" alt="">
+            <small>&nbsp;&nbsp;Selected</small>
+        </li>
+        <li>
+            <img src="{{MEDIA_ROOT}}/media/seats/seat_taken.png" alt="">
+            <small>&nbsp;&nbsp;Occupied</small>
+        </li>
+    </ul>
+
+    <div class="seats-container">
+        <form action="{% url 'JazzBluesApp:seatReservation' event_id=event.id %}" method="POST"> {% csrf_token %}
+            <input type="hidden" name="event_id" value="{{event_id}}">
+            <div class="row">
+                {% for seat in range %} {% if forloop.counter in occupied %}
+                <input type="checkbox" class="seat taken" name="seat_number" value="{{forloop.counter}}" disabled="disabled">{% else %}
+                <input type="checkbox" class="seat available" name="seat_number" value="{{forloop.counter}}">{% endif %}{% if forloop.counter|divisibleby:rows %}
+            </div>
+            <div class="row ">
+                {% endif %} {% endfor %}
+            </div>
+            <div class="purchase-button">
+                <input type="submit" value="Odaberi"></div>
+        </form>
+    </div>
+
+{% endblock %}

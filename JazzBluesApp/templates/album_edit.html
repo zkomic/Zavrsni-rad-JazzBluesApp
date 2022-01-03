@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% block title %}
+Edit Album |
+{% endblock %} {% load static %} {% block content %}
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <input type="hidden" name="album_id" value="{album.0.id}">
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>Artist</td>
+            <td>
+                {{albumForm.artist_id}}
+                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button">
+                    +
+               </a></td>
+        </tr>
+        <tr>
+            <td>Record label</td>
+            <td>
+                {{albumForm.recordLabel_id}}
+                <a href="{% url 'JazzBluesApp:newRecordLabel' %}" class="button">+</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Genre</td>
+            <td>{{albumForm.genre_id}}</td>
+        </tr>
+        <tr>
+            <td>Album name</td>
+            <td>{{albumForm.album_name}}</td>
+        </tr>
+        <tr>
+            <td>Date released</td>
+            <td>{{albumForm.date_released}}</td>
+        </tr>
+        <tr>
+            <td>Format</td>
+            <td>{{albumForm.album_format}}</td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td>{{albumForm.album_price}}</td>
+        </tr>
+        <tr>
+            <td>In stock: </td>
+            <td>{{albumForm.in_stock}}</td>
+        </tr>
+        <tr>
+            <td>Number of tracks</td>
+            <td>{{albumForm.number_of_tracks}}</td>
+        </tr>
+        <tr>
+            <td>Number of discs</td>
+            <td>{{albumForm.number_of_discs}}</td>
+        </tr>
+        <tr>
+            <td>Album cover</td>
+            <td>{{albumForm.album_cover}}</td>
+        </tr>
+    </table>
+
+    <div style="text-align: center;">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+<div style="text-align: center;"><br>
+    <a href="{% url 'JazzBluesApp:albumDelete' album_id=album.0.id %}" class="button">Izbriši</a><br><br>
+</div>
+
+
+<br> {% if messages %}
+<div style="text-align: center; ">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endblock %}

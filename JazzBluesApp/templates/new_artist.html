@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block title %}
+New Artist |
+{% endblock %} {% load static %} {% block content %}
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>Name:</td>
+            <td>{{form.artist_name}}</td>
+        </tr>
+        <tr>
+            <td>Photo:</td>
+            <td>{{form.artist_photo}}</td>
+        </tr>
+    </table>
+    <input type="hidden" name="next_url" id="next_url" value="{{prev_url}}">
+    <div style="text-align: center;">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+
+
+<br> {% if messages %}
+<div style="text-align: center;">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+{% endblock %}

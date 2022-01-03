@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% load static %} {% block title %} {{current_user.first_name}}'s Profile |{% endblock %} {% block content %} {{current_user.user.first_name}} {{current_user.user.last_name}}
+<br> {{current_user.user.username}}
+<br> {{current_user.user.email}} <br> {% if current_user.avatar %}
+<img src="{{current_user.avatar.url}}" width="200px" /> {% else %}
+<img src="{{MEDIA_ROOT}}/media/users/user_default.png" width="200px" /> {% endif %} 
+
+{% endblock %}

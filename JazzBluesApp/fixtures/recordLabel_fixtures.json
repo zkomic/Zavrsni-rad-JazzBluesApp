@@ -1,0 +1,99 @@
+[{
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 1,
+        "fields": {
+            "recordLabel_name": "Lasgo"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 2,
+        "fields": {
+            "recordLabel_name": "Exodus Records"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 3,
+        "fields": {
+            "recordLabel_name": "Decca Records"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 4,
+        "fields": {
+            "recordLabel_name": "Dreyfus Jazz"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 5,
+        "fields": {
+            "recordLabel_name": "Big 3 (Sony BMG, Universal Music Group, Warner Music Group)"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 6,
+        "fields": {
+            "recordLabel_name": "Blue Note"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 7,
+        "fields": {
+            "recordLabel_name": "Rhino"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 8,
+        "fields": {
+            "recordLabel_name": "Sony Music CMG"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 9,
+        "fields": {
+            "recordLabel_name": "Universal Music"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 10,
+        "fields": {
+            "recordLabel_name": "We Are Vinyl"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 11,
+        "fields": {
+            "recordLabel_name": "Bethlehem Records"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 12,
+        "fields": {
+            "recordLabel_name": "Sony Music Entertainment"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 13,
+        "fields": {
+            "recordLabel_name": "DOL"
+        }
+    },
+    {
+        "model": "JazzBluesApp.recordLabel",
+        "pk": 14,
+        "fields": {
+            "recordLabel_name": "Verve"
+        }
+    }
+]

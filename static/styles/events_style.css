@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+.events {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 15px;
+    row-gap: 20px;
+}
+
+.event {
+    position: relative;
+    padding-top: 20px;
+    display: inline-block;
+}
+
+.event {
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.event h3,
+.event .artist-name,
+.event .price {
+    float: left;
+}
+
+.event-category {
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    background: #ACE096;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color: white;
+    padding: 10px 10px;
+    font-size: .8em;
+    font-weight: 600;
+}

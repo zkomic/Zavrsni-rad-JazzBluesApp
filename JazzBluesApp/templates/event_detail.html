@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+{{event.0.event_name}} - Details | 
+{% endblock %} {% block content %}
+
+
+
+<div class="container">
+    <nav class="jazzblues-breadcrumb" itemprop="breadcrumb"><a href="/">Home</a> / <a href="{% url 'JazzBluesApp:events' %}">Events</a> / {{event.0.event_name}}</nav>
+    {% if event.0.event_poster %}
+    <img src="{{event.0.event_poster.url}}" width="200px" /> {% else %}
+    <img src="{{MEDIA_ROOT}}/media/event_default.jpg" width="200px" /> {% endif %}
+    </a>
+    <h1 itemprop="name" class="album_title entry-title">{{event.0.event_name}}</h1>
+    {{event.0.artist_id}}
+    <br><span class="amount">$ {{event.0.ticket_price}}</span>
+    <br> {% if user.is_staff %}
+    <a href="{% url 'JazzBluesApp:eventEdit' event_id=event.0.id %}" class="button">Edit event</a>
+    <a href="{% url 'JazzBluesApp:eventDelete' event_id=event.0.id %}" class="button">Delete event</a> {% else %}
+    {% if event.0.available_tickets == 0 %}
+    <a class="disabled">Sold out</a>
+    {% else %}
+    <a href="{% url 'JazzBluesApp:addEventToCart' event_id=event.0.id %}" class="button">Add to cart</a> {% endif %}
+    
+     {% endif %}
+
+    <div class="details">
+        <h2>{{event.0.event_name}} Description</h2>
+        <p>
+        {% if event.0.category == 'concert' %}
+        Date: {{event.0.event_start_datetime}}
+        {% else %}
+        Start date: {{event.0.event_start_datetime}}<br>
+        End date: {{event.0.event_end_datetime}}
+        {% endif %}  
+        <br>Event description: {{event.0.event_details}}
+        </p>
+    </div><br>
+
+
+</div>
+
+
+<br> {% if messages %}
+<div>
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endblock %}

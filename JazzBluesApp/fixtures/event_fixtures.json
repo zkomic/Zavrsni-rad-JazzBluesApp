@@ -1,0 +1,76 @@
+[{
+        "model": "JazzBluesApp.event",
+        "pk": 1,
+        "fields": {
+            "category": "",
+            "artist_id": "",
+            "venue_id": "",
+            "event_name": "",
+            "event_start_datetime": "",
+            "event_end_datetime": "",
+            "tickets_sale_start_date": "",
+            "event_details": "",
+            "event_poster": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.event",
+        "pk": 2,
+        "fields": {
+            "category": "",
+            "artist_id": "",
+            "venue_id": "",
+            "event_name": "",
+            "event_start_datetime": "",
+            "event_end_datetime": "",
+            "tickets_sale_start_date": "",
+            "event_details": "",
+            "event_poster": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.event",
+        "pk": 3,
+        "fields": {
+            "category": "",
+            "artist_id": "",
+            "venue_id": "",
+            "event_name": "",
+            "event_start_datetime": "",
+            "event_end_datetime": "",
+            "tickets_sale_start_date": "",
+            "event_details": "",
+            "event_poster": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.event",
+        "pk": 4,
+        "fields": {
+            "category": "",
+            "artist_id": "",
+            "venue_id": "",
+            "event_name": "",
+            "event_start_datetime": "",
+            "event_end_datetime": "",
+            "tickets_sale_start_date": "",
+            "event_details": "",
+            "event_poster": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.event",
+        "pk": 5,
+        "fields": {
+            "category": "",
+            "artist_id": "",
+            "venue_id": "",
+            "event_name": "",
+            "event_start_datetime": "",
+            "event_end_datetime": "",
+            "tickets_sale_start_date": "",
+            "event_details": "",
+            "event_poster": ""
+        }
+    }
+]

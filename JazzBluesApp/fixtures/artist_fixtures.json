@@ -1,0 +1,561 @@
+[{
+        "model": "JazzBluesApp.artist",
+        "pk": 1,
+        "fields": {
+            "artist_name": "Sonny Rollins",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 2,
+        "fields": {
+            "artist_name": "Oliver Nelson",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 3,
+        "fields": {
+            "artist_name": "Nina Simone",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 4,
+        "fields": {
+            "artist_name": "Charles Mingus",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 5,
+        "fields": {
+            "artist_name": "Various Artists",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 6,
+        "fields": {
+            "artist_name": "Ella Fitzgerald",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 7,
+        "fields": {
+            "artist_name": "John Coltrane",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 8,
+        "fields": {
+            "artist_name": "Moses Boyd",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 9,
+        "fields": {
+            "artist_name": "Stan Getz",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 10,
+        "fields": {
+            "artist_name": "Joao Gilberto",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 11,
+        "fields": {
+            "artist_name": "Louis Armstrong",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 12,
+        "fields": {
+            "artist_name": "Billie Holiday",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 13,
+        "fields": {
+            "artist_name": "Melody Gardot",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 14,
+        "fields": {
+            "artist_name": "Miles Davis",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 15,
+        "fields": {
+            "artist_name": "Kamasi Washington",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 16,
+        "fields": {
+            "artist_name": "Nubya Garcia",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 17,
+        "fields": {
+            "artist_name": "Jacob Collier",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 18,
+        "fields": {
+            "artist_name": "Django Reinhardt",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 19,
+        "fields": {
+            "artist_name": "Kenny Ball",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 20,
+        "fields": {
+            "artist_name": "Ezra Collective",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 21,
+        "fields": {
+            "artist_name": "Chris Barber",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 21,
+        "fields": {
+            "artist_name": "Kamaal Williams",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 22,
+        "fields": {
+            "artist_name": "Charlie Parker",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 23,
+        "fields": {
+            "artist_name": "Diana Krall",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 24,
+        "fields": {
+            "artist_name": "The Comet Is Coming",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 25,
+        "fields": {
+            "artist_name": "The Crusaders",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 24,
+        "fields": {
+            "artist_name": "Hasaan Ibn Ali",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 25,
+        "fields": {
+            "artist_name": "The Dave Brubeck Quartet",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 26,
+        "fields": {
+            "artist_name": "Pat Metheny",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 27,
+        "fields": {
+            "artist_name": "Alice Coltrane",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 28,
+        "fields": {
+            "artist_name": "George Benson",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 29,
+        "fields": {
+            "artist_name": "Art Blakey and the Jazz Messengers",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 30,
+        "fields": {
+            "artist_name": "Paul Desmond",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 31,
+        "fields": {
+            "artist_name": "Keith Jarrett",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 32,
+        "fields": {
+            "artist_name": "Roy Ayers",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 33,
+        "fields": {
+            "artist_name": "Dave Brubeck",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 34,
+        "fields": {
+            "artist_name": "Trombone Shorty",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 35,
+        "fields": {
+            "artist_name": "Snarky Puppy",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 36,
+        "fields": {
+            "artist_name": "Wayne Shorter",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 37,
+        "fields": {
+            "artist_name": "Robert Glasper",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 38,
+        "fields": {
+            "artist_name": "Gregory Porter",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 39,
+        "fields": {
+            "artist_name": "Horace Silver",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 40,
+        "fields": {
+            "artist_name": "Wes Montgomery",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 41,
+        "fields": {
+            "artist_name": "Herbie Hancock",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 42,
+        "fields": {
+            "artist_name": "Jacques Loussier",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 43,
+        "fields": {
+            "artist_name": "Grant Green",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 44,
+        "fields": {
+            "artist_name": "Kenny G",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 45,
+        "fields": {
+            "artist_name": "Cannonball Adderley",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 46,
+        "fields": {
+            "artist_name": "Dizzy Gillespie",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 47,
+        "fields": {
+            "artist_name": "Miles Davis Quintet",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 48,
+        "fields": {
+            "artist_name": "Thelonious Monk Septet",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 49,
+        "fields": {
+            "artist_name": "Dinosaur",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 50,
+        "fields": {
+            "artist_name": "Kenny Burrell",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 51,
+        "fields": {
+            "artist_name": "Charlie Christian",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 52,
+        "fields": {
+            "artist_name": "Badbadnotgood",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 53,
+        "fields": {
+            "artist_name": "Chet Baker",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 54,
+        "fields": {
+            "artist_name": "GoGo Penguin",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 55,
+        "fields": {
+            "artist_name": "Hank Mobley",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 56,
+        "fields": {
+            "artist_name": "Count Basie and His Orchestra",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 57,
+        "fields": {
+            "artist_name": "Seba Kaapstad",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 58,
+        "fields": {
+            "artist_name": "Sarah Vaughan",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 59,
+        "fields": {
+            "artist_name": "The Gerry Mulligan Quartet",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 60,
+        "fields": {
+            "artist_name": "Duke Ellington",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 61,
+        "fields": {
+            "artist_name": "Nat King Cole",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 62,
+        "fields": {
+            "artist_name": "Erroll Garner",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 63,
+        "fields": {
+            "artist_name": "Lester Young",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 64,
+        "fields": {
+            "artist_name": "The Gerry Mulligan Quartet with Chet Baker",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 65,
+        "fields": {
+            "artist_name": "Miles Davis and John Coltrane",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 66,
+        "fields": {
+            "artist_name": "Stan Getz and Joao Gilberto",
+            "artist_photo": ""
+        }
+    },
+    {
+        "model": "JazzBluesApp.artist",
+        "pk": 67,
+        "fields": {
+            "artist_name": "Ella Fitzgerald & Louis Armstrong",
+            "artist_photo": ""
+        }
+    }
+]

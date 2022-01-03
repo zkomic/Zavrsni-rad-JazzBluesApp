@@ -1,0 +1,254 @@
+{% extends 'base.html' %} {% load static %} {% block styles %}
+<link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' /> {% endblock %} {% load poll_extras %} {% block title %} {{request.user.first_name}}'s Cart |{% endblock %} {% block content %}
+<div class="cart">
+    {% if not userAlbumCart and not userEventCart %}
+    <p>Nemate ništa u košarici...</p>
+    {% else %}
+
+    <div id="main" class="main">
+        <div id="col2" class="clearfix col-mid" role="main">
+            <a name="main-content"></a>
+            <h2>Cart</h2>
+            <table id="basketContent">
+                {% for album in albums %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="image">
+                              <a href="#">
+                              {% if album.album_cover %}
+                                <img src="{{album.album_cover.url}}" width="50" loading="lazy" alt="">
+                              {% else %}
+                              <img src="{{MEDIA_ROOT}}/media/albums/album_default.png" width="50" loading="lazy" alt="">
+                              {% endif %}
+                              </a>
+                          </dt>
+                            <dt class="title">
+                            <a href="#">{{album.artist_id.artist_name}}: {{album.album_name}}</a>
+                          </dt>
+                            <dd class="code">(M4782UKLPX.SIG)&nbsp;Vinyl LP</dd>
+                            <dd class="dispatch">Release Date 18 February 2022</dd>
+                        </dl>
+                    </td>
+                    {% for cart in userAlbumCart.album_id.all %} {% if cart|stringformat:"s" == album.album_name|stringformat:"s" %}
+                    <td>{{current_user.id|get_albumCart_quantity:cart}} × £{{album.album_price}}</td>
+                    <td>
+                        <a href="{% url 'JazzBluesApp:cartAlbumDecrement' album_id=cart.id %}"><button class="remove" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="0">-</button></a>
+                        <a href="{% url 'JazzBluesApp:cartAlbumIncrement' album_id=cart.id %}"><button class="add" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="2">+</button></a>
+                    </td>
+                    {% endif %} {% endfor %}
+                </tr>
+                {% endfor %} {% for event in events %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="image">
+                              <a href="#">
+                              {% if event.event_poster %}
+                                <img src="{{event.event_poster.url}}" width="50" loading="lazy" alt="">
+                              {% else %}
+                              <img src="{{MEDIA_ROOT}}/media/events/event_default.jpg" width="50" loading="lazy" alt="">
+                              {% endif %}
+                              </a>
+                          </dt>
+                            <dt class="title">
+                            <a href="#">{{event.artist_id.artist_name}}:  {{event.event_name}}</a>
+                          </dt>
+                            <dd class="code">(M4782UKLPX.SIG)&nbsp;Vinyl LP</dd>
+                            <dd class="dispatch">Release Date 18 February 2022</dd>
+                        </dl>
+                    </td>
+                    {% for cart in userEventCart.event_id.all %} {% if cart|stringformat:"s" == event.event_name|stringformat:"s" %}
+                    <td>{{current_user.id|get_event_quantity:cart}} × £{{event.ticket_price}}</td>
+                    <td>
+                        <a href="{% url 'JazzBluesApp:cartEventDecrement' event_id=cart.id %}"><button class="remove" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="0">-</button></a>
+                        <a href="{% url 'JazzBluesApp:cartEventIncrement' event_id=cart.id %}"><button class="add" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="2">+</button></a>
+                    </td>
+                    {% endif %} {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr class="total">
+                    <td colspan="4">Total <span>£{{total}}</span></td>
+                </tr>
+            </table>
+            <form id="basketForm" action="https://www.recordstore.co.uk/cart.html" method="post">
+                <a href="{% url 'JazzBluesApp:checkout' username=current_user.username %}" class="button"><button class="btn-checkout" type="submit" name="review-order">Checkout</button></a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endif %} {% endblock %}
+
+
+<!--<div class="cart">
+{% if not userAlbumCart and not userEventCart %}
+<p>Nemate ništa u košarici...</p>
+{% else %}
+
+<div class="container">
+    {% if userAlbumCart %}
+
+    <h2>Cart <br><small>Albums</small></h2>
+    <div class="cart">
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1"></div>
+                <div class="col col-2">Album</div>
+                <div class="col col-3">Price</div>
+                <div class="col col-4">Quantity</div>
+                <div class="col col-5">Total</div>
+            </li>
+            {% for album in albums %}
+            <li class="table-row">
+                <div class="col col-1"><img src="{{album.album_cover.url}}" width="60px" /></div>
+                <div class="col col-2">{{album.album_name}}</div>
+                <div class="col col-3">${{album.album_price}}</div>
+                {% for cart in userAlbumCart.album_id.all %} {% if cart|stringformat:"s" == album.album_name|stringformat:"s" %}
+                <div class="col col-4">&nbsp;<a href="{% url 'JazzBluesApp:cartAlbumDecrement' album_id=cart.id %}" class="button"> - </a>&nbsp;&nbsp;{{current_user.id|get_albumCart_quantity:cart}}&nbsp;&nbsp;<a href="{% url 'JazzBluesApp:cartAlbumIncrement' album_id=cart.id %}"
+                        class="button"> + </a>&nbsp;</div>
+                <div class="col col-5">${{current_user.id|get_albumCart_quantity:cart|mult:album.album_price}}</div>
+                {% endif %} {% endfor %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %} {% if userEventCart %}
+
+    <h2><small>Tickets</small></h2>
+    <div class="cart">
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1"></div>
+                <div class="col col-2">Event</div>
+                <div class="col col-3">Price</div>
+                <div class="col col-4">Quantity</div>
+                <div class="col col-5">Total</div>
+            </li>
+            {% for event in events %}
+            <li class="table-row">
+                {% if event.event_poster %}
+                <div class="col col-1"><img src="{{event.event_poster.url}}" width="100px" /></div>
+                {% else %}
+                <div class="col col-1"><img src="{{MEDIA_ROOT}}/media/events/event_default.jpg" width="60px" /></div>
+                {% endif %}
+                <div class="col col-2">{{event.event_name}}</div>
+                <div class="col col-3">${{event.ticket_price}}</div>
+                {% for cart in userEventCart.event_id.all %} {% if cart|stringformat:"s" == event.event_name|stringformat:"s" %}
+                <div class="col col-4">&nbsp;<a href="{% url 'JazzBluesApp:cartEventDecrement' event_id=cart.id %}" class="button"> - </a>&nbsp;&nbsp;{{current_user.id|get_event_quantity:cart}}&nbsp;&nbsp;<a href="{% url 'JazzBluesApp:cartEventIncrement' event_id=cart.id %}"
+                        class="button"> + </a>&nbsp;</div>
+                <div class="col col-5">${{current_user.id|get_event_quantity:cart|mult:event.ticket_price}}</div>
+                {% endif %} {% endfor %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <div class="cart">
+        <ul class="responsive-table">
+            <li class="table-row">
+                <div class="col col-1"><b>TOTAL</b></div>
+                <div class="col col-2"></div>
+                <div class="col col-3"></div>
+                <div class="col col-4"></div>
+                <div class="col col-5"><b>${{total}}</b></div>
+            </li>
+        </ul>
+    </div>
+
+    <a href="{% url 'JazzBluesApp:checkout' username=current_user.username %}" class="button">Checkout</a><br>
+
+
+</div> -->
+
+
+    <!--<div id="main" class="main">
+        <div id="col2" class="clearfix col-mid" role="main">
+            <a name="main-content"></a>
+            <h2>Cart</h2>
+            <table id="basketContent">
+                {% for album in albums %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="image">
+                        <a href="#">
+                        {% if album.album_cover %}
+                          <img src="{{album.album_cover.url}}" width="50" loading="lazy" alt="">
+                        {% else %}
+                        <img src="{{MEDIA_ROOT}}/media/albums/album_default.png" width="50" loading="lazy" alt="">
+                        {% endif %}
+                        </a>
+                    </dt>
+                            <dt class="title">
+                      <a href="#">{{album.artist_id.artist_name}}: {{album.album_name}}</a>
+                    </dt>
+                            <dd class="dispatch">Release Date 18 February 2022</dd>
+                        </dl>
+                    </td>
+                    {% for cart in userAlbumCart.album_id.all %} {% if cart|stringformat:"s" == album.album_name|stringformat:"s" %}
+                    <td>{{current_user.id|get_albumCart_quantity:cart}} × £{{album.album_price}}</td>
+                    <td>
+                        <a href="{% url 'JazzBluesApp:cartAlbumDecrement' album_id=cart.id %}"><button class="remove" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="0">-</button></a>
+                        <a href="{% url 'JazzBluesApp:cartAlbumIncrement' album_id=cart.id %}"><button class="add" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="2">+</button></a>
+                    </td>
+                    {% endif %} {% endfor %}
+                </tr>
+                {% endfor %} {% for event in events %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="image">
+                        <a href="#">
+                        {% if event.event_poster %}
+                          <img src="{{event.event_poster.url}}" width="50" loading="lazy" alt="">
+                        {% else %}
+                        <img src="{{MEDIA_ROOT}}/media/events/event_default.jpg" width="50" loading="lazy" alt="">
+                        {% endif %}
+                        </a>
+                    </dt>
+                            <dt class="title">
+                      <a href="#">{{event.artist_id.artist_name}}:  {{event.event_name}}</a>
+                    </dt>
+                            <dd class="dispatch">Release Date 18 February 2022</dd>
+                        </dl>
+                    </td>
+                    {% for cart in userEventCart.event_id.all %} {% if cart|stringformat:"s" == event.event_name|stringformat:"s" %}
+                    <td>{{current_user.id|get_event_quantity:cart}} × £{{event.ticket_price}}</td>
+                    <td>
+                        <a href="{% url 'JazzBluesApp:cartEventDecrement' event_id=cart.id %}"><button class="remove" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="0">-</button></a>
+                        <a href="{% url 'JazzBluesApp:cartEventIncrement' event_id=cart.id %}"><button class="add" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="2">+</button></a>
+                    </td>
+                    {% endif %} {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr class="total">
+                    <td colspan="4">Total <span>£{{total}}</span></td>
+                </tr>
+            </table>
+            <form id="basketForm" action="https://www.recordstore.co.uk/cart.html" method="post">
+                <a href="{% url 'JazzBluesApp:checkout' username=current_user.username %}" class="cart-button"><button class="btn-checkout" type="submit" name="review-order">Checkout</button></a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+<br> {% if messages %}
+<div>
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} -->

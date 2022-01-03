@@ -1,0 +1,15 @@
+[{
+        "model": "JazzBluesApp.genre",
+        "pk": 1,
+        "fields": {
+            "genre_name": "Jazz"
+        }
+    },
+    {
+        "model": "JazzBluesApp.genre",
+        "pk": 2,
+        "fields": {
+            "genre_name": "Blues"
+        }
+    }
+]

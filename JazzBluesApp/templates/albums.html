@@ -1,0 +1,164 @@
+{% extends 'base.html' %} {% load static %} 
+
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/albums_events_style.css' %}" type='text/css' media='all' /> {% endblock %}
+
+{% block title %} Albums | {% endblock %} {% block content %}
+
+
+<div class="container">
+    <!--<h2 class="album-event-title">Albums</h2>-->
+    <!--<fieldset class="search-fieldset">
+        <form class="search-form search-style">
+            <div class="multiselect">
+                <div class="selectBox" onclick="showCheckboxes()">
+                    <select>
+                  <option value="">Select artist...</option>
+                </select>
+                    <div class="overSelect"></div>
+                </div>
+                <ul id="checkboxes">
+                    {% for object in albumFilter.form.artist_id %}
+                    <li>{{object}}</li>{% endfor %}
+                </ul>
+            </div>
+            <div>
+                {{albumFilter.form.album_format}}
+            </div>
+            <div>{{albumFilter.form.album_price__gt}} - {{albumFilter.form.album_price__lt}}</div>
+            <div>
+                {{albumFilter.form.genre_id}}
+            </div>
+            <div>
+                {{albumFilter.form.album_name}}
+            </div>
+            <div><button type="submit">Search</button></div>
+        </form>
+    </fieldset>-->
+
+
+    <!--<div class="site-content">
+
+        <div id="primary" class="content-area column full">
+
+            <main id="main" role="main">
+                
+                
+                    <div class="new-album">
+                        {% if user.is_staff %}
+                        <a href="{% url 'JazzBluesApp:newAlbum'%}" class="button">New album</a> {% endif %}
+                    </div>
+                
+                <ul class="albums">
+                    {% for album in albums %}
+                    <li class="album">
+                         {% if user.is_staff %}
+                        <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.id %}" class="button">Edit album</a> {% else %} {% if album.in_stock == 0 %}
+                        <a class="disabled">Sold out</a> {% else %}
+                        <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a> {% endif %} {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </main>
+
+        </div>
+
+    </div>-->
+
+    <div class="bg-modal-filters">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <fieldset class="search-fieldset">
+                <form class="search-form search-style">
+                    <div class="multiselect">
+                        <div class="selectBox" onclick="showCheckboxes()">
+                            <select>
+                          <option value="">Select artist...</option>
+                        </select>
+                            <div class="overSelect"></div>
+                        </div>
+                        <ul id="checkboxes">
+                            {% for object in albumFilter.form.artist_id %}
+                            <li>{{object}}</li>{% endfor %}
+                        </ul>
+                    </div>
+                    <div>
+                        {{albumFilter.form.album_format}}
+                    </div>
+                    <div>{{albumFilter.form.album_price__gt}} - {{albumFilter.form.album_price__lt}}</div>
+                    <div>
+                        {{albumFilter.form.genre_id}}
+                    </div>
+                    <div>
+                        {{albumFilter.form.album_name}}
+                    </div>
+                    <div><button type="submit">Search</button></div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+    <!--<p class="result-count">
+        Showing all {{albums.count}} results</p>-->
+    <a href="#" id="filters-button" class="filters">Filters</a>
+    <form class="ordering" method="get">
+        <select name="orderby" class="orderby" aria-label="Shop order">
+					<option value="menu_order" selected="selected">Default sorting</option>
+					<option value="popularity">Sort by popularity</option>
+					<option value="rating">Sort by average rating</option>
+					<option value="date">Sort by latest</option>
+					<option value="price">Sort by price: low to high</option>
+					<option value="price-desc">Sort by price: high to low</option>
+			</select>
+        <input type="hidden" name="paged" value="1">
+    </form>
+    <p class="result-count">
+        Showing all {{albums.count}} results</p>
+    <ul class="products">
+        {% for album in albums %}
+        <li class="product">
+            <a href="{% url 'JazzBluesApp:albumDetail' album_id=album.id %}">
+                {% if album.album_cover %}
+                <img src="{{album.album_cover.url}}">
+                <img width="200px" /> {% else %}
+                <img width="300" height="300" src="{{MEDIA_ROOT}}/media/albums/album_default.png" /> {% endif %}
+                {% if album.album_format == "vinyl" %}
+                    <div class="format">Vinyl</div> 
+                {% elif album.album_format == "cd_album" %}
+                    <div class="format">CD Album</div> 
+                {% else %}
+                    <div class="format">CD Box Set</div> 
+                {% endif %}
+                
+                <div class="info">
+                    <p class="product-title">{{album.album_name}}</p><br>
+                    <p class="artist-name">{{album.artist_id.artist_name}}</p><br>
+                    <p class="price">${{album.album_price}}</p><br>
+                </div>
+            </a> {% if user.is_staff %}
+            <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.id %}" class="button">Edit album</a> {% else %} {% if album.in_stock == 0 %}
+            <a class="disabled">Sold out</a> {% else %}
+            <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a> {% endif %} {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+<script src="{% static 'scripts/filters.js' %}"></script>
+<script>
+    var expanded = false;
+
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
+</script>
+
+
+{% endblock %}

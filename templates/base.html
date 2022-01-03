@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel='stylesheet' href="{% static 'styles/base_style.css' %}" type='text/css' media='all' /> {% block styles %} {% endblock %}
+    <!--<link rel='stylesheet' href="{% static 'styles/font-awesome.min.css' %} " type='text/css' media='all' />
+    <link rel="stylesheet" href="{% static 'styles/user_cart_orders_style.css' %}" />
+    
+    -->
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />-->
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all' />
+    <!-- autocomplete search -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
+    <title>
+    
+    
+    {% block title %} {% endblock %} Jazz & Blues | The World of Music... </title>
+
+
+
+</head>
+
+<body class="jazzblues">
+    <div class="container">
+        <header class="site-header">
+            <div class="site-branding ">
+                <h1 class="site-title"><a href="{% url 'base' %}">Jazz & Blues</a></h1>
+                <h2 class="site-description ">... the world of music ... </h2>
+            </div>
+            <nav class="main-navigation">
+                <div>
+                    <ul class="menu">
+                        <li><a href="{% url 'base' %}">Home</a></li>
+                        <li><a href="{% url 'JazzBluesApp:albums' %} ">Albums</a></li>
+                        <li><a href="{% url 'JazzBluesApp:events' %} ">Events</a></li>
+                        
+                        <!-- user logged in -->
+                        {% if user.is_authenticated %}
+                        <li><a href="#">Hi, {{user.first_name}}</a> {% if user.is_staff %}
+                            <ul class="sub-menu ">
+                                <li><a href="{% url 'JazzBluesApp:staffOrders' %}">Orders</a></li>
+                                <li><a href="#">Users</a></li>
+                                <li><a href="{% url 'accounts:logout' %} ">Logout</a></li>
+                            </ul>
+                            {% else %}
+                            <ul class="sub-menu ">
+                                <li><a href="{% url 'JazzBluesApp:userProfile' username=user.username %}">My Profile</a></li>
+                                <li><a href="{% url 'JazzBluesApp:userOrders' username=user.username %}">My Orders</a></li>
+                                <li><a href="{% url 'accounts:logout' %} ">Logout</a></li>
+                            </ul>
+                            {% endif %}
+                        </li>
+                        {% if not user.is_staff %}
+                        <li>
+                            <a href="{% url 'JazzBluesApp:cart' username=user.username %}">
+                                <img id="cart-icon" src="{% static 'images/cart.png' %}">
+                            </a>
+                        </li>
+                        {% endif %} {% else %}
+                        <li><a>Login or Register</a>
+                            <ul class="sub-menu ">
+                                <li><a href="{% url 'accounts:login' %} ">Login</a></li>
+                                <li><a href="{% url 'accounts:register' %} ">Register</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+
+
+    {% block content %} {% endblock %}
+
+    <!-- autocomplete search -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#search").autocomplete({
+                source: '{% url '
+                JazzBluesApp: autocomplete ' %}',
+                minLength: 2,
+            });
+        });
+    </script>
+</body>
+
+</html>

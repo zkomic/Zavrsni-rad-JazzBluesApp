@@ -1,0 +1,182 @@
+{% extends 'base.html' %} {% load static %} 
+{% block styles %}<link rel="stylesheet" href="{% static 'styles/album_detail_style.css' %}" />
+<link rel="stylesheet" href="{% static 'styles/rating.css' %}" />{% endblock %}
+{% block title %} {{album.0.album_name}} - Details | {% endblock %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" /> {% block content %}
+
+<div class="container">
+    <div class="single-product">
+        <nav class="jazzblues-breadcrumb" itemprop="breadcrumb"><a href="#">Home</a> / <a href="{% url 'JazzBluesApp:albums' %}">Albums</a> / {{album.0.album_name}}</nav>
+        {% if album.0.album_cover %}
+        <img src="{{album.0.album_cover.url}}" alt="cover"></img>
+        {% else %}
+        <img src="{{MEDIA_ROOT}}/media/albums/album_default.png" alt="cover"></img>
+        {% endif %}
+        </a>
+        <div class="summary entry-summary">
+            <h1 itemprop="name" class="album_title entry-title">{{album.0.album_name}}</h1>
+            <span class="artist-name">{{album.0.artist_id}}</span>
+            <p class="price">
+                <br><span class="amount">$ {{album.0.album_price}}</span></p>
+            <br>
+            <div class="details">
+
+                <p>Date released: {{album.0.date_released|date:"d.m.Y"}} </p>
+                {% if album.0.album_format == "vinyl" %}
+
+                <p>Format: Vinyl 12" Album</p>
+                {% elif album.0.album_format == "cd_album" %}
+                <br>
+                <p>Format: CD Album</p>
+                {% else %}
+
+                <p>Format: CD Box Set</p>
+                {% endif %}
+                <p>In stock: {{album.0.in_stock}}</p>
+                <p>Number of discs: {{album.0.number_of_discs}}</p>
+                <p>Number of tracks: {{album.0.number_of_tracks}}</p>
+                <p>Record label: {{album.0.recordLabel_id}}</p>
+
+            </div><br><br> {% if user.is_staff %}
+            <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.0.id %}" class="button">Edit album</a>
+            <a href="{% url 'JazzBluesApp:albumDelete' album_id=album.0.id %}" class="button">Delete album</a> {% else %} {% if album.0.in_stock == 0 %}
+            <button type="submit" class="disabled">Sold out</button> {% else %}
+            <button type="submit"><a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.0.id %}">Add to cart</a></button> {% endif %} {% endif %}<br><br><br>
+            <span>Genre: #{{album.0.genre_id}}</span>
+        </div>
+    </div>
+
+
+
+
+
+    {% if comments %}
+    <div class=amazing-reviews>
+        {% for comment in comments %}
+        <blockquote>
+            <header>
+                <img src="{{comment.user_id.avatar.url}}" alt="cover" width="50px" />
+                <div class="review-rating">
+                    <i class="fa fa-star{% if comment.rating < 1 %}-o empty{% endif %}"></i>
+                    <i class="fa fa-star{% if comment.rating < 2 %}-o empty{% endif %}"></i>
+                    <i class="fa fa-star{% if comment.rating < 3 %}-o empty{% endif %}"></i>
+                    <i class="fa fa-star{% if comment.rating < 4 %}-o empty{% endif %}"></i>
+                    <i class="fa fa-star{% if comment.rating < 5 %}-o empty{% endif %}"></i>
+                </div>
+                <strong>{{comment.subject}}</strong>
+                <span>, {{comment.create_at}}</span>
+                <span>by <em>{{comment.user_id.user.username}}</em></span>
+            </header>
+            <p>{{comment.comment}}</p>
+        </blockquote>
+        {% endfor %}
+
+    </div>
+    {% else %} Nema komentara... {% endif %} {% if related_albums %}
+    <br><br>
+    <div class="related-albums">
+        <h2>More from {{album.0.artist_id}} </h2><br><br>
+        <div class="albums">
+            {% for related in related_albums %}
+            <ul class="related-artist-albums">
+                <a href="#"><img src="{{related.album_cover.url}}" alt="cover" width="100px"></img>
+                </a>
+                <h3>{{related.album_name}}</h3>
+                <span class="price"><span class="amount">${{related.album_price}}</span></span>
+                </a><br>
+                <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=related.id %}" class="button">Add to cart</a>
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %} {% if not user.is_staff %}
+    <br>
+    <div class="comment-rating">
+        <form action={% url 'JazzBluesApp:addComment' album_id=album.0.id %} method="post">
+            {% csrf_token %}
+            <strong>Subject: </strong>
+            <div class="form-group">
+
+                <input name="subject" class="input" type="text" placeholder="Your Subject" />
+            </div>
+            <strong>Comment: </strong>
+            <div class="form-group">
+
+                <textarea name="comment" class="input" type="text" placeholder="Your review"></textarea>
+            </div>
+            <div class="form-group">
+                <strong>Your rating: </strong>
+                <div class="input-rating">
+
+
+                    <input type="radio" name="rating" id="star-null" class="rating" />
+                    <input type="radio" name="rating" id="star-1" class="rating" value="1" checked/>
+                    <input type="radio" name="rating" id="star-2" class="rating" value="2" />
+                    <input type="radio" name="rating" id="star-3" class="rating" value="3" />
+                    <input type="radio" name="rating" id="star-4" class="rating" value="4" />
+                    <input type="radio" name="rating" id="star-5" class="rating" value="5" />
+
+
+                    <section>
+                        <label for="star-1">
+                    <svg width="255" height="240" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                    </svg>
+                  </label>
+                        <label for="star-2">
+                    <svg width="255" height="240" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                    </svg>
+                  </label>
+                        <label for="star-3">
+                    <svg width="255" height="240" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                    </svg>
+                  </label>
+                        <label for="star-4">
+                    <svg width="255" height="240" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                    </svg>
+                  </label>
+                        <label for="star-5">
+                    <svg width="255" height="240" viewBox="0 0 51 48">
+                      <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                    </svg>
+                  </label>
+                        <label for="star-null">
+                    &nbsp;&nbsp;   Clear
+                  </label>
+                    </section>
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <button class="primary-btn">Submit</button> {% else %} You must be logged in to post a review
+            <td><button><a href="{% url 'accounts:login' %}" style="text-decoration: none;">Log In</a></button></td>
+
+            {% endif %}
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+
+<br> {% if messages %}
+<div>
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endblock %}
+
+<script>
+    var logID = 'log',
+        log = $('<div id="' + logID + '"></div>');
+    $('body').append(log);
+    $('[type*="radio"]').change(function() {
+        var me = $(this);
+        log.html(me.attr('value'));
+    });
+</script>

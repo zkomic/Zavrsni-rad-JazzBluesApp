@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block title %}
+Edit Article | 
+{% endblock %} {% load static %} {% block content %}
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>Subject:</td>
+            <td>{{articleForm.subject}}</td>
+        </tr>
+        <tr>
+            <td>Text:</td>
+            <td>{{articleForm.text}}</td>
+        </tr>
+        <tr>
+            <td>Image:</td>
+            <td>{{articleForm.image}}</td>
+        </tr>
+    </table>
+
+    <div style="text-align: center;">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+
+<div style="text-align: center;"><br>
+    <a href="{% url 'JazzBluesApp:articleDelete' article_id=article.0.id %}" class="button">Delete</a><br><br>
+</div>
+
+<!-- ispisati da je artist spremljen! -->
+<br> {% if messages %}
+<div style="text-align: center;">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- <div style="text-align: center;">
+    <button onclick="window.close()">Zatvori</button>
+</div> -->
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}  {% load static %} {% block title %} New Festival | {% endblock %}
+
+ {% block content %}
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>Artist:</td>
+            <td>{{form.artist_id}}
+                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button">
+                   +
+               </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Location: </td>
+            <td>{{form.venue_id}}
+            <a href="{% url 'JazzBluesApp:newVenue' %}" class="button">
+                    +
+               </a>
+               </td>
+        </tr>
+        <tr>
+            <td>Event name:</td>
+            <td>{{form.event_name}}</td>
+        </tr>
+        <tr>
+            <td>Start:</td>
+            <td>{{form.event_start_datetime}}</td>
+        </tr>
+        <tr>
+            <td>End:</td>
+            <td>{{form.event_end_datetime}}</td>
+        </tr>
+        <tr>
+            <td>Available tickets:</td>
+            <td>{{form.available_tickets}}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{form.ticket_price}} €</td>
+        </tr>
+        <tr>
+            <td>Event details:</td>
+            <td>{{form.event_details}}</td>
+        </tr>
+        <tr>
+            <td>Event poster:</td>
+            <td>{{form.event_poster}}</td>
+        </tr>
+    </table>
+
+    <div style="text-align: center;">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+
+<br> {% if messages %}
+<div style="text-align: center; ">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endblock %}

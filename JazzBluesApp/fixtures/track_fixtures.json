@@ -1,0 +1,46 @@
+[{
+        "model": "JazzBluesApp.track",
+        "pk": 1,
+        "fields": {
+            "album_id": "1",
+            "track_name": "Strode Rode",
+            "duration": "7:18"
+        }
+    },
+    {
+        "model": "JazzBluesApp.track",
+        "pk": 2,
+        "fields": {
+            "album_id": "1",
+            "track_name": "Blue 7",
+            "duration": "6:59"
+        }
+    },
+    {
+        "model": "JazzBluesApp.track",
+        "pk": 3,
+        "fields": {
+            "album_id": "1",
+            "track_name": "Moritat",
+            "duration": "5:39"
+        }
+    },
+    {
+        "model": "JazzBluesApp.track",
+        "pk": 4,
+        "fields": {
+            "album_id": "1",
+            "track_name": "St. Thomas",
+            "duration": "10:49"
+        }
+    },
+    {
+        "model": "JazzBluesApp.track",
+        "pk": 5,
+        "fields": {
+            "album_id": "1",
+            "track_name": "You Don't Know What Love Is",
+            "duration": "12:09"
+        }
+    }
+]

@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% load static %} {% block styles %}
+<link rel='stylesheet' href="{% static 'styles/login_style.css' %}" type='text/css' media='all' /> {% endblock %} {% block title%} Log in | {% endblock %} {% block content %}
+
+
+<!--
+    <form class="login_fun" action="{% url 'accounts:login' %}" method='POST' style="text-align: center;">
+    
+        {% csrf_token %}
+        {% for field in form %}
+        <p>
+            {{field.label_tag}}
+            {{field}}
+
+            {% if field.help_text %}
+                <small style="color: grey;">{{field.help_text}}</small>
+            {% endif %}
+
+            
+            {% for error in field.errors %}
+                <small style="color: red;">{{error}}</small>
+            {% endfor %}
+        </p>
+        {% endfor %}
+        <input type="submit" value="Prijavi se">
+        
+
+    </form>-->
+
+    
+
+<div class="body-login">
+
+    <div id="container">
+
+        <div class="rbroundbox">
+            <div class="rbtop">
+                <div>
+                    <h2>New Customer</h2>
+                </div>
+            </div>
+            <div class="rbcontent">
+
+                <table id="loginNewCustomer">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Click to provide us with your details<br>
+                                <a href="{% url 'accounts:register' %}" class="button next">
+									Register
+								</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="rbroundbox">
+            <h2>Existing customer</h2>
+
+            <form class="login_fun" action="{% url 'accounts:login' %}" method='POST'>
+                {% csrf_token %}
+
+                <label for="{{ form.username.id_for_label }}">Username</label>{{form.username}}
+                <label for="{{ form.password.id_for_label }}">Password</label>{{form.password}}
+
+
+                <button type="submit">Login</button>
+                <a href="#" class="forgot">
+					Forgot your password?
+				</a>
+
+            </form>
+            <!--<form class="toggle resend" action="" method="post">
+                    <h2>Forgot your password?</h2>
+                    Please enter your email address.
+                    <input type="email" name="passwordForgotten.email" placeholder="Email Address">
+                    <button type="submit" name="passwordForgotten.submit">Send</button>
+                </form>-->
+        </div>
+    </div>
+</div>
+<div style="clear:left;"></div>
+<!-- dodala zbog odvajanja inline-block elemenata -->
+
+{% endblock %}

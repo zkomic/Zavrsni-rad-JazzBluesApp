@@ -1,0 +1,132 @@
+{% extends 'base.html' %}  {% load static %}
+<script type="text/javascript" src="{% url 'JazzBluesApp:javascript-catalog' %}"></script>
+<script type="text/javascript" src="{% static '/admin/js/core.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static '/admin/css/widgets.css' %}">
+<style>
+    .calendar>table>caption {
+        caption-side: unset
+    }
+</style>
+{{ form.media }}
+{% block title %} 
+Edit Event | 
+{% endblock %}
+
+{% block content %}
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <input type="hidden" name="event_id" value="{event.0.id}">
+
+{% if event.0.category == 'concert' %}
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        
+        <tr>
+            <td>Artist:</td>
+            <td>
+                {{eventForm.artist_id}}
+                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button">
+                    +
+               </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Venue:</td>
+            <td>{{eventForm.venue_id}}</td>
+        </tr>
+        <tr>
+            <td>Event name:</td>
+            <td>{{eventForm.event_name}}</td>
+        </tr>
+        <tr>
+            <td>Event date and time:</td>
+            <td>{{eventForm.event_start_datetime}}(npr. 2021-07-20 20:06:40)</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{eventForm.ticket_price}}&nbsp;$</td>
+        </tr>
+        <tr>
+            <td>Event details:</td>
+            <td>{{eventForm.event_details}}</td>
+        </tr>
+        <tr>
+            <td>Event poster:</td>
+            <td>{{eventForm.event_poster}}</td>
+        </tr>
+    </table>
+
+{% else %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        
+        <tr>
+            <td>Artist:</td>
+            <td>
+                {{eventForm.artist_id}}
+                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button">
+                    +
+               </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Venue:</td>
+            <td>{{eventForm.venue_id}}</td>
+        </tr>
+        <tr>
+            <td>Event name:</td>
+            <td>{{eventForm.event_name}}</td>
+        </tr>
+        <tr>
+            <td>Event start:</td>
+            <td>{{eventForm.event_start_datetime}}</td>
+        </tr>
+        <tr>
+            <td>Event end:</td>
+            <td>{{eventForm.event_end_datetime}}</td>
+        </tr>
+         <tr>
+            <td>Available tickets:</td>
+            <td>{{eventForm.available_tickets}}</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td>{{eventForm.ticket_price}}&nbsp;$</td>
+        </tr>
+        <tr>
+            <td>Event details:</td>
+            <td>{{eventForm.event_details}}</td>
+        </tr>
+        <tr>
+            <td>Event poster:</td>
+            <td>{{eventForm.event_poster}}</td>
+        </tr>
+    </table>
+
+
+{% endif %}
+
+    <div style="text-align: center;">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+
+
+
+<div style="text-align: center;"><br>
+    <a href="{% url 'JazzBluesApp:eventDelete' event_id=event.0.id %}" class="button">Delete</a><br><br>
+</div>
+
+
+<br> {% if messages %}
+<div style="text-align: center; ">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endblock %}

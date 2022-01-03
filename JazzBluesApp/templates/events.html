@@ -1,0 +1,217 @@
+{% extends 'base.html' %} {% load static %} 
+
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/albums_events_style.css' %}" type='text/css' media='all' /> 
+{% endblock %} 
+
+{% block title %} 
+Events |
+{% endblock %} 
+
+{% block content %}
+
+
+
+<style>
+    .multiselect {
+        width: 300px;
+        position: relative;
+    }
+    
+    .selectBox {
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .selectBox select {
+        width: 100%;
+    }
+    
+    .overSelect {
+        position: absolute;
+    }
+    
+    #checkboxes {
+        display: none;
+        border: 1px solid;
+        max-height: 200px;
+        overflow-x: hidden;
+        background-color: white;
+        position: absolute;
+        left: 0;
+        top: 85%;
+        width: 97%;
+        z-index: 2;
+        cursor: pointer;
+    }
+    
+    #checkboxes li {
+        display: block;
+        padding: 1px;
+        border-bottom: 1px solid;
+        height: 50px;
+    }
+    
+    .search-form {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+    }
+    
+    .search-form div {
+        margin: 5px 10px 5px 0;
+    }
+    
+    .search-style,
+    input[type=number],
+    input[type=text] {
+        font: 100%/1.4 "Open Sans", sans-serif;
+        position: relative;
+        margin: 0 auto;
+        padding: 7px;
+    }
+    
+    input[type=number],
+    input[type=text] {
+        width: 150px;
+        font-size: .8em;
+    }
+    
+    .search-style select {
+        -webkit-appearance: none;
+        display: inline;
+        padding: .35em .5em;
+        font-family: inherit;
+        font-size: .8rem;
+        border-radius: 0;
+        cursor: pointer;
+        min-width: 200px
+    }
+    
+    .search-fieldset {
+        padding: 5px;
+    }
+</style>
+
+<div class="container">
+    <!--<h2 class="album-event-title">Events</h2>-->
+    <fieldset class="search-fieldset">
+        <form class="search-form search-style">
+            <div class="multiselect">
+                <div class="selectBox" onclick="showCheckboxes()">
+                    <select>
+                  <option>Select artist...</option>
+                </select>
+                    <div class="overSelect"></div>
+                </div>
+                <ul id="checkboxes">
+                    {% for object in eventsFilter.form.artist_id %}
+                    <li>{{object}}</li>{% endfor %}
+                </ul>
+            </div>
+            <div>
+                Name: {{eventsFilter.form.event_name}}
+            </div>
+            <div>{{eventsFilter.form.category}}</div>
+            <div><button type="submit">Search</button></div>
+        </form>
+
+    </fieldset>
+
+    <p class="result-count">
+        Showing all {{events.count}} results</p>
+    <form class="ordering" method="get">
+        <select name="orderby" class="orderby" aria-label="Shop order">
+            <option value="menu_order" selected="selected">Default sorting</option>
+            <option value="popularity">Sort by popularity</option>
+            <option value="rating">Sort by average rating</option>
+            <option value="date">Sort by latest</option>
+            <option value="price">Sort by price: low to high</option>
+            <option value="price-desc">Sort by price: high to low</option>
+        </select>
+        <input type="hidden" value="1">
+    </form>
+
+    <ul class="products">
+        {% for event in events %}
+        <li class="product">
+            <a href="{% url 'JazzBluesApp:eventDetail' event_id=event.id %}">
+                {% if event.event_poster %}
+                <img src="{{event.event_poster.url}}">
+                {% else %}
+                <img width="300" height="300" src="{{MEDIA_ROOT}}/media/events/event_default.jpg" /> {% endif %}
+                {% if event.category == "concert" %}
+                    <div class="format">Concert</div> 
+                {% elif event.category == "festival" %}
+                    <div class="format">Festival</div>
+                {% endif %}
+                
+                <div class="info">
+                    <p class="product-title">{{event.event_name}}</p><br>
+                    <p class="artist-name">{{event.artist_id.artist_name}}</p><br>
+                    <p class="price">${{event.ticket_price}}</p><br>
+                </div>
+            </a> 
+            {% if user.is_staff %}
+                <a href="{% url 'JazzBluesApp:eventEdit' event_id=event.id %}" class="button">Edit event</a> 
+                {% else %} 
+                    {% if event.category == "concert" %}
+                        <a href="{% url 'JazzBluesApp:seats' event_id=event.id %}" class="button">Seat reservation</a> 
+                    {% elif event.category == "festival" %} {% if event.available_tickets == 0 %}
+                        <a class="disabled">Sold out</a> 
+                    {% else %}
+                        <a href="{% url 'JazzBluesApp:addEventToCart' event_id=event.id %}" class="button">Add to cart</a> {% endif %} 
+                {% endif %} 
+            {% endif %}
+           
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+<!--<div class="container">
+
+    <div class="site-content">
+        <div class="content-area column full">
+            <main id="main" role="main">
+                <br>
+                <div class="main-top">
+                    <div class="result-count">
+                        {{events.count}} results
+                    </div>
+                    <div class="new-album">
+                        {% if user.is_staff %}
+                        <a href="{% url 'JazzBluesApp:newConcert'%}" class="button">New concert</a>
+                        <a href="{% url 'JazzBluesApp:newFestival'%}" class="button">New festival</a> {% endif %}
+                    </div>
+                </div>
+                
+                        
+                        
+    
+                        </a>
+                    </li>
+                    
+                </ul>
+            </main>
+        </div>
+    </div>
+</div>-->
+
+<script>
+    var expanded = false;
+
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
+</script>
+
+{% endblock %}
