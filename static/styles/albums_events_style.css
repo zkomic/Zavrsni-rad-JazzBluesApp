@@ -4,47 +4,6 @@ fieldset {
     margin-top: -15px;
 }
 
-.multiselect {
-    width: 400px;
-    position: relative;
-}
-
-.selectBox {
-    position: relative;
-}
-
-.selectBox select {
-    width: 100%;
-}
-
-.overSelect {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-
-#checkboxes {
-    display: none;
-    border: 1px #dadada solid;
-    max-height: 100px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: white;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 97%;
-}
-
-#checkboxes li {
-    display: block;
-}
-
-#checkboxes li:hover {
-    background-color: #1e90ff;
-}
 
 .search-form {
     display: flex;
@@ -352,6 +311,7 @@ a:hover.button {
     align-items: center;
     display: none;
     z-index: 2;
+    overflow-y: scroll;
 }
 
 .modal-content {
@@ -370,46 +330,6 @@ a:hover.button {
     font-weight: 100;
     transform: rotate(45deg);
     cursor: pointer;
-}
-
-
-.multiselect {
-    width: 300px;
-    position: relative;
-}
-
-.selectBox {
-    position: relative;
-    cursor: pointer;
-}
-
-.selectBox select {
-    width: 100%;
-}
-
-.overSelect {
-    position: absolute;
-}
-
-#checkboxes {
-    display: none;
-    border: 1px solid;
-    max-height: 200px;
-    overflow-x: hidden;
-    background-color: white;
-    position: absolute;
-    left: 0;
-    top: 85%;
-    width: 97%;
-    /*z-index: 2;*/
-    cursor: pointer;
-}
-
-#checkboxes li {
-    display: block;
-    padding: 1px;
-    border-bottom: 1px solid;
-    height: 50px;
 }
 
 .search-form {
@@ -451,3 +371,34 @@ input[type=text] {
 .search-fieldset {
     padding: 5px;
 }
+
+.artists {
+    width: 300px;
+    height: 110px;
+    overflow: auto;
+}
+
+.moreArtists {
+    display: none;
+  }
+  .read-more-btn {
+    padding: 15px 60px;
+    background-color: rgb(149, 170, 197);
+    color: rgb(53, 49, 49);
+    border: none;
+    outline: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .artists.show-more .moreArtists {
+    display: inline;
+    
+  }
+
+  .ex3 {
+    
+    
+  }
+
+
+  

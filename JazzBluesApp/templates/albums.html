@@ -69,19 +69,36 @@
         <div class="modal-content">
             <div class="close">+</div>
             <fieldset class="search-fieldset">
+                <p>Select artist: </p>
                 <form class="search-form search-style">
-                    <div class="multiselect">
-                        <div class="selectBox" onclick="showCheckboxes()">
-                            <select>
-                          <option value="">Select artist...</option>
-                        </select>
-                            <div class="overSelect"></div>
-                        </div>
-                        <ul id="checkboxes">
-                            {% for object in albumFilter.form.artist_id %}
-                            <li>{{object}}</li>{% endfor %}
+                    
+                    <p class="artists">{% for object in albumFilter.form.artist_id|slice:"0:3" %}
+                        {{object}}<br>
+                        {% endfor %}
+                        <span class="moreArtists">
+                            {% for object in albumFilter.form.artist_id|slice:"3:" %}
+                            {{object}}<br>
+                            {% endfor %}
+                        </span>
+                    </p>
+                <br>
+                <a class="load-more-btn" href="#">Load More</a>
+                    <!--<div class="artists-multiselect">
+                        <p>Select artist: </p>
+                        <ul id="">
+                            {% for object in albumFilter.form.artist_id|slice:"0:3" %}
+                            {{object}}<br>
+                            {% endfor %}
                         </ul>
-                    </div>
+                        <div class="all-artists-multiselect">
+                        <ul id="">
+                            {% for object in albumFilter.form.artist_id|slice:"3:" %}
+                            {{object}}<br>
+                            {% endfor %}
+                        </ul>
+                    
+                        
+                    </div></div><a class="all-artists-multiselect-button" href="#">Show all...</a>-->
                     <div>
                         {{albumFilter.form.album_format}}
                     </div>
