@@ -42,6 +42,59 @@ def albums(request):
 
     return render(request, 'albums.html', context)
 
+def albumsNameAscending(request):
+    albums = Album.objects.all().order_by('album_name')
+
+    albumFilter = AlbumFilter(request.GET, queryset=albums)
+    albums = albumFilter.qs
+
+    context = {
+        'albums' : albums,
+        'albumFilter' : albumFilter,
+    }
+
+    return render(request, 'albums.html', context)
+
+def albumsNameDescending(request):
+    albums = Album.objects.all().order_by('-album_name')
+
+    albumFilter = AlbumFilter(request.GET, queryset=albums)
+    albums = albumFilter.qs
+
+    context = {
+        'albums' : albums,
+        'albumFilter' : albumFilter,
+    }
+
+    return render(request, 'albums.html', context)
+
+def albumsPriceAscending(request):
+    albums = Album.objects.all().order_by('album_price')
+
+    albumFilter = AlbumFilter(request.GET, queryset=albums)
+    albums = albumFilter.qs
+
+    context = {
+        'albums' : albums,
+        'albumFilter' : albumFilter,
+    }
+
+    return render(request, 'albums.html', context)
+
+def albumsPriceDescending(request):
+    albums = Album.objects.all().order_by('-album_price')
+
+    albumFilter = AlbumFilter(request.GET, queryset=albums)
+    albums = albumFilter.qs
+
+    context = {
+        'albums' : albums,
+        'albumFilter' : albumFilter,
+    }
+
+    return render(request, 'albums.html', context)
+
+
 @login_required
 @staff_member_required
 def newAlbum(request):

@@ -8,14 +8,17 @@ function() {
     document.querySelector('.bg-modal-filters').style.display = 'none';
 });
 
+
+/* LOAD MORE ARTISTS  */
+
 const loadMoreBtn = document.querySelector(".load-more-btn");
 const text = document.querySelector(".artists");
 
 loadMoreBtn.addEventListener("click", (e) => {
   text.classList.toggle("show-more");
-  if (loadMoreBtn.innerText === "Read More") {
-    loadMoreBtn.innerText = "Read Less";
+  if (loadMoreBtn.innerText === "+ See more") {
+    loadMoreBtn.innerText = " - See less";
   } else {
-    loadMoreBtn.innerText = "Read More";
+    loadMoreBtn.innerText = "+ See more";
   }
 });

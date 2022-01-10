@@ -64,7 +64,6 @@
         </div>
 
     </div>-->
-
     <div class="bg-modal-filters">
         <div class="modal-content">
             <div class="close">+</div>
@@ -82,23 +81,7 @@
                         </span>
                     </p>
                 <br>
-                <a class="load-more-btn" href="#">Load More</a>
-                    <!--<div class="artists-multiselect">
-                        <p>Select artist: </p>
-                        <ul id="">
-                            {% for object in albumFilter.form.artist_id|slice:"0:3" %}
-                            {{object}}<br>
-                            {% endfor %}
-                        </ul>
-                        <div class="all-artists-multiselect">
-                        <ul id="">
-                            {% for object in albumFilter.form.artist_id|slice:"3:" %}
-                            {{object}}<br>
-                            {% endfor %}
-                        </ul>
-                    
-                        
-                    </div></div><a class="all-artists-multiselect-button" href="#">Show all...</a>-->
+                <div><a class="load-more-btn" href="#">+ See more</a></div>
                     <div>
                         {{albumFilter.form.album_format}}
                     </div>
@@ -109,7 +92,7 @@
                     <div>
                         {{albumFilter.form.album_name}}
                     </div>
-                    <div><button type="submit">Search</button></div>
+                    <button type="submit">Search</button>
                 </form>
             </fieldset>
         </div>
@@ -119,12 +102,31 @@
     <a href="#" id="filters-button" class="filters">Filters</a>
     <form class="ordering" method="get">
         <select name="orderby" class="orderby" aria-label="Shop order">
-					<option value="menu_order" selected="selected">Default sorting</option>
-					<option value="popularity">Sort by popularity</option>
-					<option value="rating">Sort by average rating</option>
-					<option value="date">Sort by latest</option>
-					<option value="price">Sort by price: low to high</option>
-					<option value="price-desc">Sort by price: high to low</option>
+            {% if request.resolver_match.url_name == 'albums' %}
+            <option value="default" selected="selected">Default sorting</option>
+            {% else %}
+            <option value="default">Default sorting</option>
+            {% endif %}
+            {% if request.resolver_match.url_name == 'albumsNameAscending' %}
+            <option value="name" selected="selected">Sort by album name: A - Z</option>
+            {% else %}
+            <option value="name">Sort by album name: A - Z</option>
+            {% endif %}
+            {% if request.resolver_match.url_name == 'albumsNameDescending' %}
+            <option value="name-desc" selected="selected">Sort by album name: Z - A</option>
+            {% else %}
+            <option value="name-desc">Sort by album name: Z - A</option>
+            {% endif %}
+            {% if request.resolver_match.url_name == 'albumsPriceAscending' %}
+            <option value="price" selected="selected">Sort by price: low to high</option>
+            {% else %}
+            <option value="price">Sort by price: low to high</option>
+            {% endif %}
+            {% if request.resolver_match.url_name == 'albumsPriceDescending' %}
+			<option value="price-desc" selected="selected">Sort by price: high to low</option>
+            {% else %}
+            <option value="price-desc">Sort by price: high to low</option>
+            {% endif %}   
 			</select>
         <input type="hidden" name="paged" value="1">
     </form>

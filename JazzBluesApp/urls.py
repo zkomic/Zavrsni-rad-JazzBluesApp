@@ -9,6 +9,10 @@ app_name = 'JazzBluesApp'
 
 urlpatterns = [
     url(r'^albums/$', views.albums, name="albums"),
+    url(r'^albumsNameAscending/$', views.albumsNameAscending, name="albumsNameAscending"),
+    url(r'^albumsNameDescending/$', views.albumsNameDescending, name="albumsNameDescending"),
+    url(r'^albumsPriceAscending/$', views.albumsPriceAscending, name="albumsPriceAscending"),
+    url(r'^albumsPriceDescending/$', views.albumsPriceDescending, name="albumsPriceDescending"),
     url(r'^newAlbum/$', views.newAlbum, name="newAlbum"),
     url(r'^newArticle/$', views.newArticle, name="newArticle"),
     url(r'^editArticle/(?P<article_id>\w+)$', views.editArticle, name="editArticle"),
