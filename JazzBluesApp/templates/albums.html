@@ -5,51 +5,10 @@
 
 {% block title %} Albums | {% endblock %} {% block content %}
 
-
 <div class="container">
-    <!--<h2 class="album-event-title">Albums</h2>-->
-    <!--<fieldset class="search-fieldset">
-        <form class="search-form search-style">
-            <div class="multiselect">
-                <div class="selectBox" onclick="showCheckboxes()">
-                    <select>
-                  <option value="">Select artist...</option>
-                </select>
-                    <div class="overSelect"></div>
-                </div>
-                <ul id="checkboxes">
-                    {% for object in albumFilter.form.artist_id %}
-                    <li>{{object}}</li>{% endfor %}
-                </ul>
-            </div>
-            <div>
-                {{albumFilter.form.album_format}}
-            </div>
-            <div>{{albumFilter.form.album_price__gt}} - {{albumFilter.form.album_price__lt}}</div>
-            <div>
-                {{albumFilter.form.genre_id}}
-            </div>
-            <div>
-                {{albumFilter.form.album_name}}
-            </div>
-            <div><button type="submit">Search</button></div>
-        </form>
-    </fieldset>-->
-
-
-    <!--<div class="site-content">
-
-        <div id="primary" class="content-area column full">
-
-            <main id="main" role="main">
-                
-                
-                    <div class="new-album">
-                        {% if user.is_staff %}
+    <!--{% if user.is_staff %}
                         <a href="{% url 'JazzBluesApp:newAlbum'%}" class="button">New album</a> {% endif %}
-                    </div>
-                
-                <ul class="albums">
+
                     {% for album in albums %}
                     <li class="album">
                          {% if user.is_staff %}
@@ -57,20 +16,13 @@
                         <a class="disabled">Sold out</a> {% else %}
                         <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a> {% endif %} {% endif %}
                     </li>
-                    {% endfor %}
-                </ul>
-            </main>
-
-        </div>
-
-    </div>-->
+                    {% endfor %}-->
     <div class="bg-modal-filters">
         <div class="modal-content">
             <div class="close">+</div>
             <fieldset class="search-fieldset">
                 <p>Select artist: </p>
                 <form class="search-form search-style">
-                    
                     <p class="artists">{% for object in albumFilter.form.artist_id|slice:"0:3" %}
                         {{object}}<br>
                         {% endfor %}
@@ -97,38 +49,38 @@
             </fieldset>
         </div>
     </div>
-    <!--<p class="result-count">
-        Showing all {{albums.count}} results</p>-->
+    
     <a href="#" id="filters-button" class="filters">Filters</a>
-    <form class="ordering" method="get">
-        <select name="orderby" class="orderby" aria-label="Shop order">
-            {% if request.resolver_match.url_name == 'albums' %}
-            <option value="default" selected="selected">Default sorting</option>
+    <form id="ordering" class="ordering" action="{% url 'JazzBluesApp:albums'%}" method="post">
+        {% csrf_token %}
+        
+        <select name="orderby" class="orderby" onchange="$('#ordering').submit()">
+            {% if orderby == 'albums' %}
+            <option value="albums" selected="selected">Default sorting</option>
             {% else %}
-            <option value="default">Default sorting</option>
+            <option value="albums">Default sorting</option>
             {% endif %}
-            {% if request.resolver_match.url_name == 'albumsNameAscending' %}
-            <option value="name" selected="selected">Sort by album name: A - Z</option>
+            {% if orderby == 'albumsNameAscending' %}
+            <option value="albumsNameAscending" selected="selected">Sort by album name: A - Z</option>
             {% else %}
-            <option value="name">Sort by album name: A - Z</option>
+            <option value="albumsNameAscending">Sort by album name: A - Z</option>
             {% endif %}
-            {% if request.resolver_match.url_name == 'albumsNameDescending' %}
-            <option value="name-desc" selected="selected">Sort by album name: Z - A</option>
+            {% if orderby == 'albumsNameDescending' %}
+            <option value="albumsNameDescending" selected="selected">Sort by album name: Z - A</option>
             {% else %}
-            <option value="name-desc">Sort by album name: Z - A</option>
+            <option value="albumsNameDescending">Sort by album name: Z - A</option>
             {% endif %}
-            {% if request.resolver_match.url_name == 'albumsPriceAscending' %}
-            <option value="price" selected="selected">Sort by price: low to high</option>
+            {% if orderby == 'albumsPriceAscending' %}
+            <option value="albumsPriceAscending" selected="selected">Sort by price: low to high</option>
             {% else %}
-            <option value="price">Sort by price: low to high</option>
+            <option value="albumsPriceAscending">Sort by price: low to high</option>
             {% endif %}
-            {% if request.resolver_match.url_name == 'albumsPriceDescending' %}
-			<option value="price-desc" selected="selected">Sort by price: high to low</option>
+            {% if orderby    == 'albumsPriceDescending' %}
+			<option value="albumsPriceDescending" selected="selected">Sort by price: high to low</option>
             {% else %}
-            <option value="price-desc">Sort by price: high to low</option>
+            <option value="albumsPriceDescending">Sort by price: high to low</option>
             {% endif %}   
 			</select>
-        <input type="hidden" name="paged" value="1">
     </form>
     <p class="result-count">
         Showing all {{albums.count}} results</p>
@@ -165,18 +117,7 @@
 
 <script src="{% static 'scripts/filters.js' %}"></script>
 <script>
-    var expanded = false;
 
-    function showCheckboxes() {
-        var checkboxes = document.getElementById("checkboxes");
-        if (!expanded) {
-            checkboxes.style.display = "block";
-            expanded = true;
-        } else {
-            checkboxes.style.display = "none";
-            expanded = false;
-        }
-    }
 </script>
 
 
