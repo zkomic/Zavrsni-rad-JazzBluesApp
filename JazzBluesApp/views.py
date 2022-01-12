@@ -322,6 +322,58 @@ def events(request):
 
     return render(request, 'events.html', context)
 
+def eventsName(request):
+    events = Event.objects.all().order_by('event_name')
+
+    eventsFilter = EventFilter(request.GET, queryset=events)
+    events = eventsFilter.qs
+
+    context = {
+        'events' : events,
+        'eventsFilter' : eventsFilter
+    }
+
+    return render(request, 'events.html', context)
+
+def eventsNameDesc(request):
+    events = Event.objects.all().order_by('-event_name')
+
+    eventsFilter = EventFilter(request.GET, queryset=events)
+    events = eventsFilter.qs
+
+    context = {
+        'events' : events,
+        'eventsFilter' : eventsFilter
+    }
+
+    return render(request, 'events.html', context)
+
+def eventsPrice(request):
+    events = Event.objects.all().order_by('ticket_price')
+
+    eventsFilter = EventFilter(request.GET, queryset=events)
+    events = eventsFilter.qs
+
+    context = {
+        'events' : events,
+        'eventsFilter' : eventsFilter
+    }
+
+    return render(request, 'events.html', context)
+
+def eventsPriceDesc(request):
+    events = Event.objects.all().order_by('-ticket_price')
+
+    eventsFilter = EventFilter(request.GET, queryset=events)
+    events = eventsFilter.qs
+
+    context = {
+        'events' : events,
+        'eventsFilter' : eventsFilter
+    }
+
+    return render(request, 'events.html', context)
+
 concert = 'concert'
 festival = 'festival'
 
