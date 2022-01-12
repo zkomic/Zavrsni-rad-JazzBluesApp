@@ -5,6 +5,7 @@
 
 {% block title %} Albums | {% endblock %} {% block content %}
 
+
 <div class="container">
     <!--{% if user.is_staff %}
                         <a href="{% url 'JazzBluesApp:newAlbum'%}" class="button">New album</a> {% endif %}
@@ -47,39 +48,40 @@
                     <button type="submit">Search</button>
                 </form>
             </fieldset>
+            <a href="{% url 'JazzBluesApp:albums'%}">Clear all filters</a>
         </div>
     </div>
+
     
     <a href="#" id="filters-button" class="filters">Filters</a>
-    <form id="ordering" class="ordering" action="{% url 'JazzBluesApp:albums'%}" method="post">
+    <form class="ordering" id="ordering" method="GET">
         {% csrf_token %}
-        
-        <select name="orderby" class="orderby" onchange="$('#ordering').submit()">
-            {% if orderby == 'albums' %}
-            <option value="albums" selected="selected">Default sorting</option>
+        <select name="orderby" class="orderby" onchange="redirectlink(this.value)"> <!--onchange="$('#ordering').submit()"-->
+            {% if request.resolver_match.url_name == 'albums' %}
+            <option value="{% url 'JazzBluesApp:albums' %}" selected="selected" >Default sorting</option>
             {% else %}
-            <option value="albums">Default sorting</option>
+            <option value="{% url 'JazzBluesApp:albums' %}">Default sorting</option>
             {% endif %}
-            {% if orderby == 'albumsNameAscending' %}
-            <option value="albumsNameAscending" selected="selected">Sort by album name: A - Z</option>
+            {% if request.resolver_match.url_name == 'albumsName' %}
+            <option value="{% url 'JazzBluesApp:albumsName' %}" selected="selected">Sort by album name: A - Z</option>
             {% else %}
-            <option value="albumsNameAscending">Sort by album name: A - Z</option>
+            <option value="{% url 'JazzBluesApp:albumsName' %}">Sort by album name: A - Z</option>
             {% endif %}
-            {% if orderby == 'albumsNameDescending' %}
-            <option value="albumsNameDescending" selected="selected">Sort by album name: Z - A</option>
+            {% if request.resolver_match.url_name == 'albumsNameDesc' %}
+            <option value="{% url 'JazzBluesApp:albumsNameDesc' %}" selected="selected">Sort by album name: Z - A</option>
             {% else %}
-            <option value="albumsNameDescending">Sort by album name: Z - A</option>
+            <option value="{% url 'JazzBluesApp:albumsNameDesc' %}">Sort by album name: Z - A</option>
             {% endif %}
-            {% if orderby == 'albumsPriceAscending' %}
-            <option value="albumsPriceAscending" selected="selected">Sort by price: low to high</option>
+            {% if request.resolver_match.url_name == 'albumsPrice' %}
+            <option value="{% url 'JazzBluesApp:albumsPrice' %}" selected="selected">Sort by price: low to high</option>
             {% else %}
-            <option value="albumsPriceAscending">Sort by price: low to high</option>
+            <option value="{% url 'JazzBluesApp:albumsPrice' %}">Sort by price: low to high</option>
             {% endif %}
-            {% if orderby    == 'albumsPriceDescending' %}
-			<option value="albumsPriceDescending" selected="selected">Sort by price: high to low</option>
+            {% if request.resolver_match.url_name == 'albumsPriceDesc' %}
+            <option value="{% url 'JazzBluesApp:albumsPriceDesc' %}" selected="selected">Sort by price: high to low</option>
             {% else %}
-            <option value="albumsPriceDescending">Sort by price: high to low</option>
-            {% endif %}   
+            <option value="{% url 'JazzBluesApp:albumsPriceDesc' %}">Sort by price: high to low</option>
+            {% endif %}
 			</select>
     </form>
     <p class="result-count">
@@ -117,6 +119,10 @@
 
 <script src="{% static 'scripts/filters.js' %}"></script>
 <script>
+
+function redirectlink(src) {
+    window.location=src;
+}
 
 </script>
 

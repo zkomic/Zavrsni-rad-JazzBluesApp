@@ -31,35 +31,75 @@ def autocomplete(request):
 
 def albums(request):
 
-    context = {'orderby': 'albums'}
-
-    if request.method == 'POST':
-        orderby = request.POST.get('orderby')
-        print(orderby)
-        if orderby == 'albums':
-            albums = Album.objects.all()
-        elif orderby == 'albumsNameAscending':
-            albums = Album.objects.all().order_by('album_name')
-        elif orderby == 'albumsNameDescending':
-            albums = Album.objects.all().order_by('-album_name')
-        elif orderby == 'albumsPriceAscending':
-            albums = Album.objects.all().order_by('album_price')
-        elif orderby == 'albumsPriceDescending':
-            albums = Album.objects.all().order_by('-album_price')
-        context.update({'orderby': orderby})
-
-    else:
-        albums = Album.objects.all()
+    albums = Album.objects.all()
 
     albumFilter = AlbumFilter(request.GET, queryset=albums)
     albums = albumFilter.qs
 
-    context.update({
+    context = {
         'albums' : albums,
         'albumFilter' : albumFilter,
-    })
+    }
 
     return render(request, 'albums.html', context)
+
+def albumsName(request):
+
+    albums = Album.objects.all().order_by('album_name')
+
+    albumFilter = AlbumFilter(request.GET, queryset=albums)
+    albums = albumFilter.qs
+
+    context = {
+        'albums' : albums,
+        'albumFilter' : albumFilter,
+    }
+
+    return render(request, 'albums.html', context)
+
+def albumsNameDesc(request):
+
+    albums = Album.objects.all().order_by('-album_name')
+
+    albumFilter = AlbumFilter(request.GET, queryset=albums)
+    albums = albumFilter.qs
+
+    context = {
+        'albums' : albums,
+        'albumFilter' : albumFilter,
+    }
+
+    return render(request, 'albums.html', context)
+
+
+def albumsPrice(request):
+
+    albums = Album.objects.all().order_by('album_price')
+
+    albumFilter = AlbumFilter(request.GET, queryset=albums)
+    albums = albumFilter.qs
+
+    context = {
+        'albums' : albums,
+        'albumFilter' : albumFilter,
+    }
+
+    return render(request, 'albums.html', context)
+
+def albumsPriceDesc(request):
+
+    albums = Album.objects.all().order_by('-album_price')
+
+    albumFilter = AlbumFilter(request.GET, queryset=albums)
+    albums = albumFilter.qs
+
+    context = {
+        'albums' : albums,
+        'albumFilter' : albumFilter,
+    }
+
+    return render(request, 'albums.html', context)
+
 
 @login_required
 @staff_member_required
