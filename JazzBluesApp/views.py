@@ -8,6 +8,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .filters import AlbumFilter, EventFilter, OrderFilter
 from datetime import datetime
+import urllib
+from urllib.parse import urlparse, parse_qs
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 #za convert u pdf
 from django.http import HttpResponse
@@ -30,6 +34,18 @@ def autocomplete(request):
     return render(request, 'home.html')
 
 def albums(request):
+
+    #print(parse_qs(urlparse(request.META['HTTP_REFERER']).query)['artist_id'][0]) printa broj artista
+
+    #filter_params = parse_qs(urlparse(request.META['HTTP_REFERER']).query)
+    #bla = urlparse(request.META['HTTP_REFERER']).query
+    #return redirect('JazzBluesApp:albumsName' + bla)
+    #print(filter_params)
+
+    #if "artist_id" in filter_params:
+    #    print('tu je')
+    #else:
+    #    print('nema ga')
 
     albums = Album.objects.all()
 
@@ -310,6 +326,13 @@ def seatReservation(request, event_id):
     return redirect ('JazzBluesApp:userOrders', username=username)
 
 def events(request):
+
+    #filter_artist=request.GET.get('artist_id','')
+    #print(filter_artist)
+    #filter_name = request.GET.get('event_name','')
+    #print(filter_name)
+    #filter_category = request.GET.get('category','')
+    #print(filter_category)
     events = Event.objects.all()
 
     eventsFilter = EventFilter(request.GET, queryset=events)
