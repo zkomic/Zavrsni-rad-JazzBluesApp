@@ -44,29 +44,29 @@ Events |
         {% csrf_token %}
         <select name="orderby" class="orderby" onchange="redirectlink(this.value)">
             {% if request.resolver_match.url_name == 'albums' %}
-            <option value="{% url 'JazzBluesApp:events' %}" selected="selected" >Default sorting</option>
+            <option value="{% url 'JazzBluesApp:events' %}?{{ request.GET.urlencode }}" selected="selected" >Default sorting</option>
             {% else %}
-            <option value="{% url 'JazzBluesApp:events' %}">Default sorting</option>
+            <option value="{% url 'JazzBluesApp:events' %}?{{ request.GET.urlencode }}">Default sorting</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsName' %}
-            <option value="{% url 'JazzBluesApp:eventsName' %}" selected="selected">Sort by album name: A - Z</option>
+            <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}" selected="selected">Sort by album name: A - Z</option>
             {% else %}
-            <option value="{% url 'JazzBluesApp:eventsName' %}">Sort by event name: A - Z</option>
+            <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}">Sort by event name: A - Z</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsNameDesc' %}
-            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}" selected="selected">Sort by album name: Z - A</option>
+            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}" selected="selected">Sort by album name: Z - A</option>
             {% else %}
-            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}">Sort by event name: Z - A</option>
+            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}">Sort by event name: Z - A</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsPrice' %}
-            <option value="{% url 'JazzBluesApp:eventsPrice' %}" selected="selected">Sort by price: low to high</option>
+            <option value="{% url 'JazzBluesApp:eventsPrice' %}?{{ request.GET.urlencode }}" selected="selected">Sort by price: low to high</option>
             {% else %}
-            <option value="{% url 'JazzBluesApp:eventsPrice' %}">Sort by price: low to high</option>
+            <option value="{% url 'JazzBluesApp:eventsPrice' %}?{{ request.GET.urlencode }}">Sort by price: low to high</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsPriceDesc' %}
-            <option value="{% url 'JazzBluesApp:eventsPriceDesc' %}" selected="selected">Sort by price: high to low</option>
+            <option value="{% url 'JazzBluesApp:eventsPriceDesc' %}?{{ request.GET.urlencode }}" selected="selected">Sort by price: high to low</option>
             {% else %}
-            <option value="{% url 'JazzBluesApp:eventsPriceDesc' %}">Sort by price: high to low</option>
+            <option value="{% url 'JazzBluesApp:eventsPriceDesc' %}?{{ request.GET.urlencode }}">Sort by price: high to low</option>
             {% endif %}
 			</select>
     </form>

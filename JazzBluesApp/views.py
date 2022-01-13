@@ -35,18 +35,6 @@ def autocomplete(request):
 
 def albums(request):
 
-    #print(parse_qs(urlparse(request.META['HTTP_REFERER']).query)['artist_id'][0]) printa broj artista
-
-    #filter_params = parse_qs(urlparse(request.META['HTTP_REFERER']).query)
-    #bla = urlparse(request.META['HTTP_REFERER']).query
-    #return redirect('JazzBluesApp:albumsName' + bla)
-    #print(filter_params)
-
-    #if "artist_id" in filter_params:
-    #    print('tu je')
-    #else:
-    #    print('nema ga')
-
     albums = Album.objects.all()
 
     albumFilter = AlbumFilter(request.GET, queryset=albums)
@@ -60,7 +48,6 @@ def albums(request):
     return render(request, 'albums.html', context)
 
 def albumsName(request):
-
     albums = Album.objects.all().order_by('album_name')
 
     albumFilter = AlbumFilter(request.GET, queryset=albums)
