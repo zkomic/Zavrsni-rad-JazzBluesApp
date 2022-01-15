@@ -1,11 +1,17 @@
 {% extends 'base.html' %} {% load static %} 
 
 {% block styles %}
-<link rel='stylesheet' href="{% static 'styles/albums_events_style.css' %}" type='text/css' media='all' /> {% endblock %}
+<link rel='stylesheet' href="{% static 'styles/albums_events_style.css' %}" type='text/css' media='all' />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock %}
 
-{% block title %} Albums | {% endblock %} {% block content %}
+{% block title %} Albums | {% endblock %}
+
+{% block content %}
 
 <div class="container">
+
     <!--{% if user.is_staff %}
                         <a href="{% url 'JazzBluesApp:newAlbum'%}" class="button">New album</a> {% endif %}
 
@@ -23,17 +29,7 @@
             <fieldset class="search-fieldset">
                 <p>Select artist: </p>
                 <form class="search-form search-style">
-                    <p class="artists">{% for object in albumFilter.form.artist_id|slice:"0:3" %}
-                        {{object}}<br>
-                        {% endfor %}
-                        <span class="moreArtists">
-                            {% for object in albumFilter.form.artist_id|slice:"3:" %}
-                            {{object}}<br>
-                            {% endfor %}
-                        </span>
-                    </p>
-                <br>
-                <div><a class="load-more-btn" href="#">+ See more</a></div>
+                    {{albumFilter.form.artist_id}}
                     <div>
                         {{albumFilter.form.album_format}}
                     </div>
@@ -118,12 +114,17 @@
 
 <script src="{% static 'scripts/filters.js' %}"></script>
 <script>
-
 function redirectlink(src) {
     window.location=src;
-}
-
+};
 </script>
+<!--dropdown za multiple select artista-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+<script>
+    $('#artistMultiple').select2( {
+    multiple:true
+});
+</script>
 {% endblock %}

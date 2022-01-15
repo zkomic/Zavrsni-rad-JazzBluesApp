@@ -34,7 +34,7 @@ class AlbumFilter(django_filters.FilterSet):
 
     artist_id = django_filters.ModelMultipleChoiceFilter(
         queryset = Artist.objects.all(),
-        widget = CheckboxSelectMultiple(),
+        widget = forms.SelectMultiple(attrs={'id':'artistMultiple','class':'artistMultiple'}),
         label = "Artist",
     )
     class Meta:
@@ -45,9 +45,10 @@ class EventFilter(django_filters.FilterSet):
     event_name = django_filters.CharFilter(field_name='event_name', lookup_expr='icontains')
     artist_id = django_filters.ModelMultipleChoiceFilter(
         queryset = Artist.objects.all(),
-        widget = CheckboxSelectMultiple(),
+        widget = forms.SelectMultiple(attrs={'id':'artistMultiple','class':'artistMultiple'}),
         label = "Artist",
     )
+    
 
     category = django_filters.ChoiceFilter(
         choices = EVENT_CATEGORY_CHOICES,

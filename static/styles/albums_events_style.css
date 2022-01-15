@@ -372,27 +372,8 @@ input[type=text] {
     padding: 5px;
 }
 
-.artists {
+.artistMultiple {
     width: 300px;
     height: 110px;
     overflow: auto;
 }
-
-.moreArtists {
-    display: none;
-  }
-  .read-more-btn {
-    padding: 15px 60px;
-    background-color: rgb(149, 170, 197);
-    color: rgb(53, 49, 49);
-    border: none;
-    outline: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  .artists.show-more .moreArtists {
-    display: inline;
-  }
-
-
-  
