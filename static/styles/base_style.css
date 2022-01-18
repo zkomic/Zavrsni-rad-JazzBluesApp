@@ -98,7 +98,9 @@ a {
 
 #cart-icon {
     width: 25px;
-    display: inline-block
+    display: inline-block;
+    background-color: white;
+    background: white;
 }
 
 .main-navigation ul ul {
@@ -133,5 +135,93 @@ a {
     font-style: normal;
     letter-spacing: 3px;
     margin-bottom: 4px;
-    text-align: center
+    text-align: center;
 }
+
+
+/* ---------------------
+    TOP PAGE NAVIGATION
+--------------------- */
+
+.logo-top {
+    height: 90px;
+}
+
+.site-title {
+    padding-top: 80px;
+}
+
+
+.site-description {
+    font-family: 'Quattrocento Sans';
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 30px;
+    padding-top: 0;
+    color: #222222;
+}
+
+.menu-top {
+    float: right;
+}
+
+.main-navigation-top {
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: Oswald
+}
+
+.main-navigation-top .menu-top {
+    padding-top: 35px;
+}
+
+
+.main-navigation-top a {
+    text-decoration: none;
+    color: #222!important;
+}
+
+.main-navigation-top ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 3px 0
+}
+
+.main-navigation-top li {
+    display: inline;
+    float: left;
+    margin: 0 1em;
+    position: relative
+}
+
+.main-navigation-top ul ul {
+    display: none;
+    text-transform: none;
+    box-shadow: none;
+    opacity: .9;
+    float: left;
+    left: -1em;
+    padding: .5em 1em;
+    position: absolute;
+    top: 1.5em;
+    z-index: 99999;
+    padding-top: 10px;
+    transition: all .3s;
+    font-weight: 400;
+    background-color: #fff
+}
+
+.main-navigation-top ul ul li {
+    margin: 0;
+    width: 150px
+}
+
+.main-navigation-top ul li:hover>ul {
+    display: block;
+}
+
