@@ -18,21 +18,6 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
-def autocomplete(request):
-    if 'term' in request.GET:
-        artists = Artist.objects.filter(artist_name__icontains=request.GET.get('term'))
-        albums = Album.objects.filter(album_name__icontains=request.GET.get('term'))
-        events = Event.objects.filter(event_name__icontains=request.GET.get('term'))
-        results = list()
-        for artist in artists:
-            results.append(artist.artist_name)
-        for album in albums:
-            results.append(album.album_name)
-        for event in events:
-            results.append(event.event_name)
-        return JsonResponse(results, safe=False)
-    return render(request, 'home.html')
-
 def albums(request):
 
     albums = Album.objects.all()

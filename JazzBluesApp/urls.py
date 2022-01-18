@@ -49,8 +49,6 @@ urlpatterns = [
     url(r'^staffOrders/$', views.staffOrders, name="staffOrders"),
     url(r'^staffOrderDetail/(?P<albumorder_id>\w+)$', views.staffOrderDetail, name="staffOrderDetail"),
     url(r'^userOrderDetail/(?P<albumorder_id>\w+)$', views.userOrderDetail, name="userOrderDetail"),
-    url(r'autocomplete/', views.autocomplete, name="autocomplete"),
-    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
 
 if settings.DEBUG:
