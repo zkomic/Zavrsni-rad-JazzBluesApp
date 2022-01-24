@@ -1,247 +1,979 @@
-.amazing-reviews blockquote {
-    background: white;
-    margin: 10px 0 0 0;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    padding: 15px 15px 10px 15px;
-    position: relative;
-    box-shadow: rgba(0, 0, 0, .025) 0 3px 10px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    cursor: default;
-    width: 75%;
-    margin: 30px 15px 0 15px;
+ .col2-set .col-2 {
+    float: right;
+    width: 48%
 }
 
-.amazing-reviews blockquote:before {
-    content: '';
-    display: block;
-    border: 20px solid transparent;
-    border-top-color: #ccc;
-    position: absolute;
-    top: 100%;
-    left: 20px;
-    z-index: 250;
-    background: transparent;
-    height: 0;
-    opacity: 1;
+ img {
+    height: auto;
+    max-width: 100%
 }
 
-.amazing-reviews blockquote:nth-of-type(even) {
-    margin-left: calc(25% - 15px);
+ #content div.product div.images, 
+ div.product div.images {
+    float: left;
+    width: 48%
 }
 
-.amazing-reviews blockquote:nth-of-type(even):before {
-    left: auto;
-    right: 20px;
-}
-
-.amazing-reviews blockquote:after {
-    content: '';
-    display: block;
-    border: 19px solid transparent;
-    border-top-color: white;
-    position: absolute;
-    top: 100%;
-    left: 21px;
-    z-index: 500;
-}
-
-.amazing-reviews blockquote:nth-of-type(even):after {
-    left: auto;
-    right: 21px;
-}
-
-.amazing-reviews blockquote:last-of-type {
-    margin-bottom: 45px;
-}
-
-.amazing-reviews blockquote header span i {
-    color: white;
-    text-shadow: #aaa 1px 0 0, #aaa 0 1px 0, #aaa -1px 0 0, #aaa 0 -1px 0;
-}
-
-.amazing-reviews blockquote strong {
-    color: black;
-    display: inline;
-}
-
-.amazing-reviews strong+span {
-    margin-left: -3px;
-}
-
-.amazing-reviews blockquote strong+span+span {
-    display: block;
-    margin: 5px 0;
-}
-
-.amazing-reviews blockquote span em {
-    font-style: italic;
-    font-weight: bold;
-    color: black;
-    text-decoration: italic;
-}
-
-.amazing-reviews blockquote span:last-of-type {
-    font-size: 10pt;
-    font-weight: bold;
-    display: block;
-}
-
-.amazing-reviews blockquote p {
-    font-size: 10pt;
-    font-style: normal;
-    margin: 5px 0 0 0;
-    color: black;
-}
-
-.amazing-reviews h2:last-of-type {
-    background: #eee;
-    text-align: center;
-    font-weight: 400;
-    padding: 15px;
-    margin: 0;
-    border: 1px solid #ccc;
-    position: relative;
-}
-
-.amazing-reviews h2 q,
-.amazing-reviews h2 strong {
-    font-weight: 600;
-}
-
-.jazzblues-breadcrumb {
-    margin: 0 0 1em;
-    padding: 0;
-    font-size: .92em;
-    color: #777;
-    padding-top: 20px;
-}
-
-.jazzblues .jazzblues-breadcrumb a:hover {
-    color: #ccc;
-    transition: all 0.2s ease-in-out;
-}
-
-.jazzblues .jazzblues-breadcrumb:after,
-.jazzblues .jazzblues-breadcrumb:before {
+ #content div.product div.thumbnails::after,
+  #content div.product div.thumbnails::before, 
+   div.product div.thumbnails::after,
+    div.product div.thumbnails::before {
     content: " ";
     display: table
 }
 
-.jazzblues .jazzblues-breadcrumb a {
-    color: #777
+ #content div.product div.thumbnails::after, 
+  div.product div.thumbnails::after{
+    clear: both
 }
 
+#content div.product div.thumbnails a, 
+ div.product div.thumbnails a {
+    float: left;
+    width: 30.75%;
+    margin-right: 3.8%;
+    margin-bottom: 1em
+}
 
-/*summary*/
+ #content div.product div.thumbnails a.last, 
+  div.product div.thumbnails a.last {
+    margin-right: 0
+}
 
-.jazzblues div.summary {
-    margin-bottom: 2em;
+ #content div.product div.thumbnails a.first,  div.product div.thumbnails a.first{
+    clear: both
+}
+
+ #content div.product div.thumbnails.columns-1 a, 
+  div.product div.thumbnails.columns-1 a{
+    width: 100%;
+    margin-right: 0;
+    float: none
+}
+
+ #content div.product div.thumbnails.columns-2 a,  div.product div.thumbnails.columns-2 a {
+    width: 48%
+}
+
+ #content div.product div.thumbnails.columns-4 a,  div.product div.thumbnails.columns-4 a {
+    width: 22.05%
+}
+
+ #content div.product div.thumbnails.columns-5 a,  div.product div.thumbnails.columns-5 a{
+    width: 16.9%
+}
+
+ #content div.product div.summary,  div.product div.summary {
     float: right;
     width: 48%;
+    clear: none
 }
 
-.jazzblues .container .single-product img {
-    width: 49%;
+ #content div.product .tabs,  div.product .tabs{
+    clear: both
+}
+
+ #content div.product .tabs ul.tabs::after, 
+ #content div.product .tabs ul.tabs::before, 
+  div.product .tabs ul.tabs::after, 
+   div.product .tabs ul.tabs::before {
+    content: " ";
+    display: table
+}
+
+ #content div.product .tabs ul.tabs::after, 
+  div.product .tabs ul.tabs::after {
+    clear: both
+}
+
+ #content div.product .tabs ul.tabs li,  
+ div.product .tabs ul.tabs li{
+    display: inline-block
+}
+
+ #content div.product #reviews .comment::after, 
+  #content div.product #reviews .comment::before, 
+   div.product #reviews .comment::after, 
+    div.product #reviews .comment::before{
+    content: " ";
+    display: table
+}
+
+#content div.product #reviews .comment::after,  div.product #reviews .comment::after{
+    clear: both
+}
+
+#content div.product #reviews .comment img, 
+ div.product #reviews .comment img {
+    float: right;
+    height: auto
+}
+
+ ul.products {
+    clear: both
+}
+
+ ul.products::after,  ul.products::before {
+    content: " ";
+    display: table
+}
+
+ ul.products::after {
+    clear: both
+}
+
+ ul.products li.product {
+    float: left;
+    margin: 0 3.8% 2.992em 0;
+    padding: 0;
+    position: relative;
+    width: 22.05%;
+    margin-left: 0
+}
+
+ ul.products li.first {
+    clear: both
+}
+
+ ul.products li.last {
+    margin-right: 0
+}
+
+ ul.products.columns-1 li.product {
+    width: 100%;
+    margin-right: 0
+}
+
+ ul.products.columns-2 li.product {
+    width: 48%
+}
+
+ ul.products.columns-3 li.product {
+    width: 30.75%
+}
+
+ ul.products.columns-5 li.product    {
+    width: 16.95%
+}
+
+ ul.products.columns-6 li.product {
+    width: 13.5%
+}
+
+.columns-1 ul.products li.product {
+    width: 100%;
+    margin-right: 0
+}
+
+.columns-2 ul.products li.product {
+    width: 48%
+}
+
+.columns-3 ul.products li.product {
+    width: 30.75%
+}
+
+.columns-5 ul.products li.product {
+    width: 16.95%
+}
+
+.columns-6 ul.products li.product {
+    width: 13.5%
+}
+
+
+
+ form .form-row::after,  form .form-row::before {
+    content: " ";
+    display: table
+}
+
+ form .form-row::after {
+    clear: both
+}
+
+ form .form-row label {
+    display: block
+}
+
+ form .form-row label.checkbox {
+    display: inline
+}
+
+
+
+ .col2-set .col-1 {
+    float: right
+}
+
+ .col2-set .col-2 {
+    float: left
+}
+
+
+
+.clear {
+    clear: both
+}
+
+
+ a.remove {
+    display: block;
+    font-size: 1.5em;
+    height: 1em;
+    width: 1em;
+    text-align: center;
+    line-height: 1;
+    border-radius: 100%;
+    color: red !important;
+    text-decoration: none;
+    font-weight: 700;
+    border: 0
+}
+
+ a.remove:hover {
+    color: #fff !important;
+    background: red
+}
+
+ small.note {
+    display: block;
+    color: #767676;
+    font-size: .857em;
+    margin-top: 10px
+}
+
+ .breadcrumb {
+    margin: 2em 0 1em;
+    padding: 0;
+    font-size: .92em;
+    color: #767676;
+    background-color: white;
+}
+
+ .breadcrumb::after,  .breadcrumb::before {
+    content: " ";
+    display: table
+}
+
+ .breadcrumb::after {
+    clear: both
+}
+
+.breadcrumb a {
+    color: #767676
+}
+
+ .quantity .qty {
+    width: 3.631em;
+    text-align: center
+}
+
+ div.product {
+    margin-bottom: 0;
+    position: relative
+}
+
+ div.product p.price,  div.product span.price {
+    color: #77a464;
+    font-size: 1.25em
+}
+
+ div.product p.price ins,  div.product span.price ins {
+    background: inherit;
+    font-weight: 700;
+    display: inline-block
+}
+
+ div.product p.price del,  div.product span.price del {
+    opacity: .5;
+    display: inline-block
+}
+
+ div.product p.stock {
+    font-size: .92em
+}
+
+ div.product .stock {
+    color: #77a464
+}
+
+ div.product .out-of-stock {
+    color: red
+}
+
+ div.product .product-rating {
+    margin-bottom: 1.618em
+}
+
+ div.product div.images {
+    margin-bottom: 2em
+}
+
+ div.product div.images img {
+    display: block;
+    width: 100%;
     height: auto;
     box-shadow: none
 }
 
-.entry-summary {
-    margin: 1em 0;
+ div.product div.images div.thumbnails {
+    padding-top: 1em
 }
 
-
-/*album_title entry-title*/
-
-.jazzblues .single-product {
-    color: #777
+ div.product div.images .product-gallery {
+    position: relative
 }
 
-.jazzblues .album_title {
-    clear: none;
-    margin-top: 0;
+ div.product div.images .product-gallery__wrapper {
+    -webkit-transition: all cubic-bezier(.795, -.035, 0, 1) .5s;
+    transition: all cubic-bezier(.795, -.035, 0, 1) .5s;
+    margin: 0;
+    padding: 0
+}
+
+ div.product div.images .product-gallery__wrapper .zoomImg {
+    background-color: #fff;
+    opacity: 0
+}
+
+ div.product div.images .product-gallery__image--placeholder {
+    border: 1px solid #f2f2f2
+}
+
+ div.product div.images .product-gallery__image:nth-child(n+2) {
+    width: 25%;
+    display: inline-block
+}
+
+ div.product div.images .product-gallery__trigger {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    font-size: 2em;
+    z-index: 9;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    text-indent: -9999px;
+    border-radius: 100%;
+    box-sizing: content-box
+}
+
+ div.product div.images .product-gallery__trigger::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #000;
+    border-radius: 100%;
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    box-sizing: content-box
+}
+
+ div.product div.images .product-gallery__trigger::after {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 8px;
+    background: #000;
+    border-radius: 6px;
+    position: absolute;
+    top: 19px;
+    left: 22px;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: content-box
+}
+
+ div.product div.images .flex-control-thumbs {
+    overflow: hidden;
+    zoom: 1;
+    margin: 0;
+    padding: 0
+}
+
+ div.product div.images .flex-control-thumbs li {
+    width: 25%;
+    float: left;
+    margin: 0;
+    list-style: none
+}
+
+ div.product div.images .flex-control-thumbs li img {
+    cursor: pointer;
+    opacity: .5;
+    margin: 0
+}
+
+ div.product div.images .flex-control-thumbs li img.flex-active, 
+  div.product div.images .flex-control-thumbs li img:hover {
+    opacity: 1
+}
+
+ div.product .product-gallery--columns-3 .flex-control-thumbs li:nth-child(3n+1) {
+    clear: left
+}
+
+ div.product .product-gallery--columns-4 .flex-control-thumbs li:nth-child(4n+1) {
+    clear: left
+}
+
+ div.product .product-gallery--columns-5 .flex-control-thumbs li:nth-child(5n+1) {
+    clear: left
+}
+
+ div.product div.summary {
+    margin-bottom: 2em
+}
+
+ div.product div.social {
+    text-align: right;
+    margin: 0 0 1em
+}
+
+ div.product div.social span {
+    margin: 0 0 0 2px
+}
+
+ div.product div.social span span {
+    margin: 0
+}
+
+ div.product div.social span .stButton .chicklets {
+    padding-left: 16px;
+    width: 0
+}
+
+ div.product div.social iframe {
+    float: left;
+    margin-top: 3px
+}
+
+ div.product form.cart {
+    margin-bottom: 2em
+}
+
+ div.product form.cart::after,  div.product form.cart::before {
+    content: " ";
+    display: table
+}
+
+ #reviews h2 small {
+    float: right;
+    color: #767676;
+    font-size: 15px;
+    margin: 10px 0 0
+}
+
+ #reviews h2 small a {
+    text-decoration: none;
+    color: #767676
+}
+
+ #reviews h3 {
+    margin: 0
+}
+
+ #reviews #respond {
+    margin: 0;
+    border: 0;
+    padding: 0
+}
+
+ #reviews #comment {
+    height: 75px
+}
+
+ #reviews #comments .add_review::after, 
+  #reviews #comments .add_review::before {
+    content: " ";
+    display: table
+}
+
+ #reviews #comments .add_review::after {
+    clear: both
+}
+
+ #reviews #comments h2 {
+    clear: none
+}
+
+ #reviews #comments ol.commentlist {
+    margin: 0;
+    width: 100%;
+    background: 0 0;
+    list-style: none
+}
+
+ #reviews #comments ol.commentlist::after,  #reviews #comments ol.commentlist::before {
+    content: " ";
+    display: table
+}
+
+ #reviews #comments ol.commentlist::after {
+    clear: both
+}
+
+ #reviews #comments ol.commentlist li {
     padding: 0;
+    margin: 0 0 20px;
+    border: 0;
+    position: relative;
+    background: 0;
+    border: 0
 }
 
-.jazzblues span.artist-name {
-    margin-top: 10px;
+ #reviews #comments ol.commentlist li .meta {
+    color: #767676;
+    font-size: .75em
 }
 
-.entry-title,
-.entry-title a {
-    color: #222222;
+ #reviews #comments ol.commentlist li img.avatar {
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 3px;
+    width: 32px;
+    height: auto;
+    background: #ebe9eb;
+    border: 1px solid #e4e1e3;
+    margin: 0;
+    box-shadow: none
 }
 
-.entry-title {
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
+ #reviews #comments ol.commentlist li .comment-text {
+    margin: 0 0 0 50px;
+    border: 1px solid #e4e1e3;
+    border-radius: 4px;
+    padding: 1em 1em 0
+}
+
+ #reviews #comments ol.commentlist li .comment-text::after, 
+  #reviews #comments ol.commentlist li .comment-text::before {
+    content: " ";
+    display: table
+}
+
+ #reviews #comments ol.commentlist li .comment-text::after {
+    clear: both
+}
+
+ #reviews #comments ol.commentlist li .comment-text p {
+    margin: 0 0 1em
+}
+
+ #reviews #comments ol.commentlist li .comment-text p.meta {
+    font-size: .83em
+}
+
+ #reviews #comments ol.commentlist ul.children {
+    list-style: none outside;
+    margin: 20px 0 0 50px
+}
+
+ #reviews #comments ol.commentlist ul.children .star-rating {
+    display: none
+}
+
+ #reviews #comments ol.commentlist #respond {
+    border: 1px solid #e4e1e3;
+    border-radius: 4px;
+    padding: 1em 1em 0;
+    margin: 20px 0 0 50px
+}
+
+ #reviews #comments .commentlist>li::before {
+    content: ""
+}
+
+ .star-rating {
+    float: right;
+    overflow: hidden;
+    position: relative;
+    height: 1em;
+    line-height: 1;
+    font-size: 1em;
+    width: 5.4em;
+    font-family: star
+}
+
+ .product-rating {
+    line-height: 2;
+    display: block
+}
+
+ .product-rating::after, .product-rating::before {
+    content: " ";
+    display: table
+}
+
+ .product-rating::after {
+    clear: both
+}
+
+ .product-rating .star-rating {
+    margin: .5em 4px 0 0;
+    float: left
+}
+
+ .products .star-rating {
+    display: block;
+    margin: 0 0 .5em;
+    float: none
+}
+
+ #review_form #respond {
+    position: static;
+    margin: 0;
+    width: auto;
+    padding: 0;
+    background: transparent none;
+    border: 0
+}
+
+ #review_form #respond::after, 
+  #review_form #respond::before {
+    content: " ";
+    display: table
+}
+
+ #review_form #respond::after {
+    clear: both
+}
+
+ #review_form #respond p {
+    margin: 0 0 10px
+}
+
+ #review_form #respond .form-submit input {
+    left: auto
+}
+
+ #review_form #respond textarea {
+    box-sizing: border-box;
+    width: 100%
+}
+
+
+ p.stars a::before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    font-family: WooCommerce;
+    content: "\e021";
+    text-indent: 0
+}
+
+ p.stars a:hover~a::before {
+    content: "\e021"
+}
+
+ p.stars:hover a::before {
+    content: "\e020"
+}
+
+ p.stars.selected a.active::before {
+    content: "\e020"
+}
+
+ p.stars.selected a.active~a::before {
+    content: "\e021"
+}
+
+ p.stars.selected a:not(.active)::before {
+    content: "\e020"
+}
+
+
+
+/*--------------------------------------------------------------1.0 - Reset--------------------------------------------------------------*/
+html, body {
+    font-family: inherit;
+}
+
+
+
+
+
+
+
+    .container {
+        margin: 0 auto;
+        width: 960px;
+    }
+
+
+/*--------------------------------------------------------------3.0 Typography--------------------------------------------------------------*/
+body {
     letter-spacing: 1px;
-    text-align: left;
-    text-transform: uppercase;
-    font-family: 'Oswald';
+}
+
+
+
+/*--------------------------------------------------------------5.0 Forms--------------------------------------------------------------*/
+button, input, select, textarea {
+    font-size: 100%;
+    /* Corrects font size not being inherited in all browsers */
+    margin: 0;
+    /* Addresses margins set differently in IE6/7,F3/4,S5,Chrome */
+    vertical-align: baseline;
+    /* Improves appearance and consistency in all browsers */
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    background: #ccc;
+    color: #fff;
+    cursor: pointer;
+    /* Improves usability and consistency of cursor style between image-type 'input' and others */
+    -webkit-appearance: button;
+    /* Corrects inability to style clickable 'input' types in iOS */
+    padding: 3px 15px;
+}
+
+button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover {
+    opacity: 0.6;
+}
+
+
+
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], textarea {
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    color: #666;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, textarea:focus {
+    color: #111;
+}
+
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"] {
+    padding: 6px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    overflow: auto;
+    /* Removes default vertical scrollbar in IE6/7/8/9 */
+    padding: 5px;
+    vertical-align: top;
+    /* Improves readability and alignment in all browsers */
+    width: 98%;
+}
+
+
+/* Entry Title */
+.entry-title {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 2px;
     line-height: 1.4;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.entry-title a {
+    text-decoration: none;
+    color: #222;
+}
+
+.entry-title a:hover {
+    color: #ccc !important;
+}
+
+/* Entry Content */
+.entry-content {
+    white-space: normal;
+}
+
+.entry-content p:last-child {
     margin-bottom: 0;
 }
 
-h1 .album_title {
-    display: block;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
+/*--------------------------------------------------------------11.5 Comments--------------------------------------------------------------*/
+.comment-list {
+    list-style: none;
+    margin-left: 0;
 }
 
-.jazzblues div.album p.price,
-.jazzblues div.single-product span.price {
+.comment-body {
+    border-bottom: 1px solid #f2f2f2;
+    padding: 20px 0;
+}
+
+.comment-content {
+    margin-left: 80px;
+}
+
+.comment-content a {
+    word-wrap: break-word;
+}
+
+.comment-list .children {
+    list-style: none;
+    margin-left: 80px;
+    position: relative;
+}
+
+.comment-list .children .depth-5 {
+    padding-top: 30px;
+}
+
+
+
+ #reviews #comments ol.commentlist li img.avatar {
+    width: 42px;
+    height: auto;
+    border: 0;
+    padding: 0;
+}
+
+ div.product p.price,  div.product span.price {
     font-size: 14px;
 }
 
-.jazzblues div.single-product button {
-    vertical-align: middle;
-    float: left;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 11px;
-    min-height: 31px;
-    background-color: #222;
-    color: #fff;
-    margin: 0;
-    line-height: 1;
-    cursor: pointer;
-    text-decoration: none;
-    overflow: visible;
-    padding: .618em 1em;
-    font-weight: 700;
-}
-
-.jazzblues div.single-product .disabled {
-    background-color: #777;
-    color: #fff;
-    cursor: default;
-}
 
 
-/*related albums*/
-
-.jazzblues .related-albums .albums {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    column-gap: 10px;
-    margin-left: -40px
-}
-
-.jazzblues .related-albums h2 {
-    font-family: 'Oswald';
-    letter-spacing: 0px;
-    text-align: left;
-    float: left;
+h3#reply-title, .comments-title {
     font-weight: 400;
-    font-size: 17px;
     margin-top: 0;
+    font-size: 16px;
+    text-transform: uppercase;
 }
+
+form.comment-form {
+    margin-bottom: 30px;
+}
+
+/* TABS */
+
+[data-tab-content] {
+    display: none;
+  }
+  
+.active[data-tab-content] {
+    display: block;
+  }
+   
+  
+.tab {
+    cursor: pointer;
+}
+
+div.product .tabs ul.tabs {
+    list-style: none;
+    padding: 0 0 0 1em;
+    margin: 0 0 1.618em;
+    overflow: hidden;
+    position: relative
+}
+
+ div.product .tabs ul.tabs li {
+    border: 1px solid #d3ced2;
+    background-color: #ebe9eb;
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    border-radius: 4px 4px 0 0;
+    margin: 0 -5px;
+    padding: 0 1em;
+    display: inline-block;
+    padding: .5em 0;
+    font-weight: 700;
+    color: #515151;
+    text-decoration: none
+}
+
+ div.product .tabs ul.tabs li:hover {
+    text-decoration: none;
+    color: #6b6a6b
+}
+
+ div.product .tabs ul.tabs li.active {
+    background: #fff;
+    z-index: 2;
+    border-bottom-color: #fff
+}
+
+ div.product .tabs ul.tabs li.active::before {
+    box-shadow: 2px 2px 0 #fff
+}
+
+ div.product .tabs ul.tabs li.active::after {
+    box-shadow: -2px 2px 0 #fff
+}
+
+ div.product .tabs ul.tabs li::after,  
+ div.product .tabs ul.tabs li::before {
+    border: 1px solid #d3ced2;
+    position: absolute;
+    bottom: -1px;
+    width: 5px;
+    height: 5px;
+    content: " ";
+    box-sizing: border-box
+}
+
+ div.product .tabs ul.tabs li::before {
+    left: -5px;
+    border-bottom-right-radius: 4px;
+    border-width: 0 1px 1px 0;
+    box-shadow: 2px 2px 0 #ebe9eb
+}
+
+ div.product .tabs ul.tabs li::after {
+    right: -5px;
+    border-bottom-left-radius: 4px;
+    border-width: 0 0 1px 1px;
+    box-shadow: -2px 2px 0 #ebe9eb
+}
+
+ div.product .tabs ul.tabs::before {
+    position: absolute;
+    content: " ";
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #d3ced2;
+    z-index: 1
+}
+
+
+
+
+div.product .tabs ul.tabs li {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+ div.product .tabs ul.tabs li:before {
+    left: -3px;
+    border-width: 0;
+    box-shadow: none;
+}
+
+
+ div.product .tabs ul.tabs li:after {
+    border-bottom-left-radius: 0;
+    border-width: 0;
+    box-shadow: none;
+}
+
+ div.product .tabs ul.tabs li:after,  
+ div.product .tabs ul.tabs li:before {
+    width: 0;
+}
+
+
+

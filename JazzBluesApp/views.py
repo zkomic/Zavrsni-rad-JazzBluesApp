@@ -18,25 +18,37 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
+#pagination stuff
+from django.core.paginator import Paginator
+
 def albums(request):
 
     albums = Album.objects.all()
-
     albumFilter = AlbumFilter(request.GET, queryset=albums)
     albums = albumFilter.qs
 
+    # set up pagination
+    p = Paginator(albums, 16)
+    page = request.GET.get('page')
+    albums_paginated = p.get_page(page)
+
     context = {
         'albums' : albums,
+        'albums_paginated' : albums_paginated,
         'albumFilter' : albumFilter,
     }
 
     return render(request, 'albums.html', context)
 
 def albumsName(request):
-    albums = Album.objects.all().order_by('album_name')
 
+    albums = Album.objects.all().order_by('album_name')
     albumFilter = AlbumFilter(request.GET, queryset=albums)
     albums = albumFilter.qs
+
+    p = Paginator(albums, 16)
+    page = request.GET.get('page')
+    albums_paginated = p.get_page(page)
 
     context = {
         'albums' : albums,
@@ -48,9 +60,13 @@ def albumsName(request):
 def albumsNameDesc(request):
 
     albums = Album.objects.all().order_by('-album_name')
-
     albumFilter = AlbumFilter(request.GET, queryset=albums)
     albums = albumFilter.qs
+
+    # set up pagination
+    p = Paginator(Album.objects.all(), 16)
+    page = request.GET.get('page')
+    albums_paginated = p.get_page(page)
 
     context = {
         'albums' : albums,
@@ -63,9 +79,13 @@ def albumsNameDesc(request):
 def albumsPrice(request):
 
     albums = Album.objects.all().order_by('album_price')
-
     albumFilter = AlbumFilter(request.GET, queryset=albums)
     albums = albumFilter.qs
+
+    # set up pagination
+    p = Paginator(Album.objects.all(), 16)
+    page = request.GET.get('page')
+    albums_paginated = p.get_page(page)
 
     context = {
         'albums' : albums,
@@ -77,9 +97,13 @@ def albumsPrice(request):
 def albumsPriceDesc(request):
 
     albums = Album.objects.all().order_by('-album_price')
-
     albumFilter = AlbumFilter(request.GET, queryset=albums)
     albums = albumFilter.qs
+
+    # set up pagination
+    p = Paginator(Album.objects.all(), 16)
+    page = request.GET.get('page')
+    albums_paginated = p.get_page(page)
 
     context = {
         'albums' : albums,

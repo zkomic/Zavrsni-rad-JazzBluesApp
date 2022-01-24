@@ -10,6 +10,7 @@
 
 {% block content %}
 
+
 <div class="container">
     <!--{% if user.is_staff %}
                         <a href="{% url 'JazzBluesApp:newAlbum'%}" class="button">New album</a> {% endif %}
@@ -80,6 +81,50 @@
     </form>
     <p class="result-count">
         Showing all {{albums.count}} results</p>
+    {% if albums_paginated %}
+    <ul class="products">
+        {% for album in albums_paginated %}
+        <li class="product">
+            <a href="{% url 'JazzBluesApp:albumDetail' album_id=album.id %}">
+                {% if album.album_cover %}
+                <img src="{{album.album_cover.url}}">
+                <img width="200px" /> {% else %}
+                <img width="300" height="300" src="{{MEDIA_ROOT}}/media/albums/album_default.png" /> {% endif %}
+                {% if album.album_format == "vinyl" %}
+                    <div class="format">Vinyl</div> 
+                {% elif album.album_format == "cd_album" %}
+                    <div class="format">CD Album</div> 
+                {% else %}
+                    <div class="format">CD Box Set</div> 
+                {% endif %}
+                
+                <div class="info">
+                    <p class="product-title">{{album.album_name}}</p><br>
+                    <p class="artist-name">{{album.artist_id.artist_name}}</p><br>
+                    <p class="price">${{album.album_price}}</p><br>
+                </div>
+            </a> {% if user.is_staff %}
+            <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.id %}" class="button">Edit album</a> {% else %} {% if album.in_stock == 0 %}
+            <a class="disabled">Sold out</a> {% else %}
+            <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a> {% endif %} {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% if albums_paginated.has_previous %}
+        <a href="?page=1">&laquo; First</a>
+        <a href="?page={{albums_paginated.previous_page_number}}">&laquo; Previous</a>
+    {% endif %}
+
+    Page {{ albums_paginated.number }} of {{albums_paginated.paginator.num_pages}}
+
+    {% if albums_paginated.has_next %}
+        <a href="?page={{albums_paginated.next_page_number}}">Next</a>
+        <a href="?page={{albums_paginated.paginator.num_pages}}">Last &raquo;</a>
+    {% endif %}
+
+    {% endif %}
+    
+    {% if albums %}
     <ul class="products">
         {% for album in albums %}
         <li class="product">
@@ -108,6 +153,7 @@
         </li>
         {% endfor %}
     </ul>
+    {% endif %}
 
 </div>
 
