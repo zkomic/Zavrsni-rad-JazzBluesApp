@@ -31,7 +31,9 @@ Events |
                     <a href="{% url 'JazzBluesApp:events'%}">Clear all filters</a>
                 </div>
             </div>
-           
+            {% if user.is_staff %}
+            <a href="{% url 'JazzBluesApp:newConcert'%}" class="filters">New concert</a>
+            <a href="{% url 'JazzBluesApp:newFestival'%}" class="filters">New festival</a> {% endif %}
     <a href="#" id="filters-button" class="filters">Filters</a>
     <form class="ordering" id="ordering" method="GET">
         {% csrf_token %}

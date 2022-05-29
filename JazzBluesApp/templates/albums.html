@@ -22,7 +22,7 @@
                         <a class="disabled">Sold out</a> {% else %}
                         <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a> {% endif %} {% endif %}
                     </li>
-                    {% endfor %}-->
+    {% endfor %}-->
     <div class="bg-modal-filters">
         <div class="modal-content">
             <div class="close">+</div>
@@ -47,8 +47,10 @@
         </div>
     </div>
 
-    
+    {% if user.is_staff %}
+                        <a href="{% url 'JazzBluesApp:newAlbum'%}" class="filters">New album</a> {% endif %}
     <a href="#" id="filters-button" class="filters">Filters</a>
+    
     <form class="ordering" id="ordering" method="GET">
         {% csrf_token %}
         <select name="orderby" class="orderby" onchange="redirectlink(this.value)"> 
@@ -110,20 +112,21 @@
         </li>
         {% endfor %}
     </ul>
+
     {% if albums_paginated.has_previous %}
-        <a href="?page=1">&laquo; First</a>
-        <a href="?page={{albums_paginated.previous_page_number}}">&laquo; Previous</a>
+        <a href="{{request.get_full_path}}&page=1">&laquo; First</a>
+        <a href="{{request.get_full_path}}&page={{albums_paginated.previous_page_number}}">&laquo; Previous</a>
     {% endif %}
 
     Page {{ albums_paginated.number }} of {{albums_paginated.paginator.num_pages}}
 
     {% if albums_paginated.has_next %}
-        <a href="?page={{albums_paginated.next_page_number}}">Next</a>
-        <a href="?page={{albums_paginated.paginator.num_pages}}">Last &raquo;</a>
+        <a href="{{request.get_full_path}}&page={{albums_paginated.next_page_number}}">Next</a>
+        <a href="{{request.get_full_path}}&page={{albums_paginated.paginator.num_pages}}">Last &raquo;</a>
     {% endif %}
 
     {% endif %}
-    
+    <!--
     {% if albums %}
     <ul class="products">
         {% for album in albums %}
@@ -153,7 +156,7 @@
         </li>
         {% endfor %}
     </ul>
-    {% endif %}
+    {% endif %} -->
 
 </div>
 

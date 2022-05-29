@@ -52,6 +52,7 @@ def albumsName(request):
 
     context = {
         'albums' : albums,
+        'albums_paginated' : albums_paginated,
         'albumFilter' : albumFilter,
     }
 
@@ -64,12 +65,13 @@ def albumsNameDesc(request):
     albums = albumFilter.qs
 
     # set up pagination
-    p = Paginator(Album.objects.all(), 16)
+    p = Paginator(albums, 16)
     page = request.GET.get('page')
     albums_paginated = p.get_page(page)
 
     context = {
         'albums' : albums,
+        'albums_paginated' : albums_paginated,
         'albumFilter' : albumFilter,
     }
 
@@ -83,12 +85,13 @@ def albumsPrice(request):
     albums = albumFilter.qs
 
     # set up pagination
-    p = Paginator(Album.objects.all(), 16)
+    p = Paginator(albums, 16)
     page = request.GET.get('page')
     albums_paginated = p.get_page(page)
 
     context = {
         'albums' : albums,
+        'albums_paginated' : albums_paginated,
         'albumFilter' : albumFilter,
     }
 
@@ -101,12 +104,13 @@ def albumsPriceDesc(request):
     albums = albumFilter.qs
 
     # set up pagination
-    p = Paginator(Album.objects.all(), 16)
+    p = Paginator(albums, 16)
     page = request.GET.get('page')
     albums_paginated = p.get_page(page)
 
     context = {
         'albums' : albums,
+        'albums_paginated' : albums_paginated,
         'albumFilter' : albumFilter,
     }
 

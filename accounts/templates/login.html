@@ -64,7 +64,16 @@
 
                 <label for="{{ form.username.id_for_label }}">Username</label>{{form.username}}
                 <label for="{{ form.password.id_for_label }}">Password</label>{{form.password}}
-
+                
+                {% if messages %}
+                <div>
+                    {% for message in messages %}
+                    <div>
+                        {{ message|safe }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %} 
 
                 <button type="submit">Login</button>
                 <a href="#" class="forgot">
@@ -83,5 +92,6 @@
 </div>
 <div style="clear:left;"></div>
 <!-- dodala zbog odvajanja inline-block elemenata -->
+
 
 {% endblock %}

@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 from accounts.forms import registrationForm, addFields
 from django.contrib.auth.decorators import login_required
 from JazzBluesApp.models import Users
+from django.contrib import messages
 
 def register(request): 
     if request.method == "POST":
@@ -34,9 +35,14 @@ def login_fun(request):
             user = form.get_user()#dohvacanje upisanih podataka (usera)
             login(request, user)#logiranje usera
             return redirect('base')
+        else:
+            messages.warning(request, "Login error!") 
+            context = {
+            'form': AuthenticationForm(),
+        }
     else:
         context = {
-            'form': AuthenticationForm,
+            'form': AuthenticationForm(),
         }
     return render(request, 'login.html', context)
 
@@ -44,4 +50,3 @@ def login_fun(request):
 def logout_fun(request):
     logout(request)
     return redirect('base')
-

@@ -23,7 +23,7 @@
         <div class="summary entry-summary">
             <h1 class="entry-title">{{album.0.album_name}}</h1>{{album.0.artist_id}}
             <div class="product-rating">
-                <a href="#reviews">(<span class="count">2</span> customer reviews)</a>
+                <a class="tab" data-tab-target="#reviews-tab">(<span class="count">2</span> customer reviews)</a>
             </div>
             <p class="price">
                 <span class="Price-amount amount"><span>$</span>{{album.0.album_price}}</span>
@@ -74,7 +74,7 @@
                 <div id="reviews">
                     {% if comments %}
                     <div id="comments">
-                        <h2 class="Reviews-title">
+                        <h2 class="reviews-title">
                             2 reviews for <span>Beige Fedora</span> </h2>
                         <ol class="commentlist">
                             {% for comment in comments %}
