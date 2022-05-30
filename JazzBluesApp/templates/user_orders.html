@@ -1,162 +1,249 @@
 {% extends 'base.html' %} {% load static %} {% load poll_extras %} 
-{% block styles %}<link rel="stylesheet" href="{% static 'styles/tickets.css' %}" />{% endblock %}
-{% block title %} {{request.user.first_name}}'s Orders |{% endblock %} {% block content %} {% if not albumOrders and not eventOrders %}
-<p>Nemate narudžbi...</p>
-{% else %}
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' /> 
+<link rel="stylesheet" href="{% static 'styles/tickets.css' %}" />{% endblock %}
+{% block title %} {{request.user.first_name}}'s Orders |{% endblock %} {% block content %} 
 
-<div class="container">
-    <h2>My Orders <br><small>Album orders</small></h2>
-    <div class="order">
-        <ul class="responsive-table">
-            <li class="table-header">
-                <div class="col col-1">Date</div>
-                <div class="col col-2">Status</div>
-                <div class="col col-3">Total</div>
-                <div class="col col-4"></div>
-            </li>
-            {% for album in albumOrders %}
-            <li class="table-row">
-                <div class="col col-1" data-label="order-date">{{album.order_date|date:"d.m.Y"}}</div>
+<div class="cart">
+    {% if not albumOrders and not eventOrders %}
+        <p>Nemate narudžbi...</p>
+    {% else %}
 
-                <div class="col col-2" data-label="order-status">{{album.order_status|capital}}</div>
-                <div class="col col-3" data-label="price">${{album.id|album_total}}</div>
-                <div class="col col-4" data-label="details">
-                    <td><a href="{% url 'JazzBluesApp:userOrderDetail' albumorder_id=album.id %}" class="button">Details</a></td>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+    <div id="main" class="main">
+        <div id="col2" class="clearfix col-mid" role="main">
+            <a name="main-content"></a>
+            <h2>My Orders <br><small>Album orders</small></h2>
+            <table id="basketContent">
+                {% for album in albumOrders %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="title">
+                            <a href="#">#{{album.id}}: {{album.order_status|capital}}</a>
+                          </dt>
+                            <dd class="dispatch">Order date: {{album.order_date|date:"d.m.Y"}}</dd>
+                        </dl>
+                    </td>
+                    <td>
+                        <dt="title">
+                        <a href="{% url 'JazzBluesApp:userOrderDetail' albumorder_id=album.id %}" class="button">Details</a>
+                        </dt>
+                    </td>
+                    <td>
+                        <dl>
+                            <h1 class="orders-price">£{{album.id|album_total}}</h1>
+                        </dl>
+                    </td>
+                </tr>
+                {% endfor %} 
+                {% for event in eventOrders %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="title">
+                            <a href="#">#{{event.id}}: {{event.event_id.all.0.artist_id}} - {{event.event_id.all.0.event_name}}</a>
+                          </dt>
+                            <dd class="dispatch">Purchase date: {{event.order_date|date:"d.m.Y"}}</dd>
+                        </dl>
+                    </td>
+                    <td>
+                        <dt="title">
+                        </dt>
+                    </td>
+                    <td>
+                        <dl>
+                            <h1 class="orders-price">£{{event.id|ticket_total}}</h1>
+                        </dl>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for ticket in tickets %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="title">
+                            <a href="#">#{{ticket.id}}: {{ticket.event_id.artist_id}} - {{ticket.event_id.event_name}}</a>
+                          </dt>
+                            <dd class="dispatch">Purchase date: {{ticket.order_date|date:"d.m.Y"}}</dd>
+                        </dl>
+                    </td>
+                    <td>
+                        <dt="title">
+                        </dt>
+                    </td>
+                    <td>
+                        <dl>
+                            <h1 class="orders-price">£{{ticket.event_id.ticket_price}}</h1>
+                        </dl>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>                   
+                </tr>
+            </table>
+        </div>
     </div>
-    
 </div>
+{% endif %}
 
 {% for event in eventOrders %}
-<div class="festivalticketWrap {{event.id}}">
-    <div class="ticket ticketLeft">
-        <h1>FESTIVAL <span>TICKET</span></h1>
-        <div class="title">
-            <h2>{{event.event_id.all.0.event_name}}</h2>
-            <span>festival</span>
+<div class="ticket">
+    <div class="left">
+        <div class="image">
+            <p class="admit-one">
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+            </p>
+            <div class="ticket-number">
+                <p>
+                    #{{event.id}}
+                </p>
+            </div>
         </div>
-        <div class="name">
-            <h2>{{event.event_id.all.0.artist_id}}</h2>
-            <span>artist name</span>
+        <div class="ticket-info">
+            <p class="date">
+                <span>FESTIVAL</span>
+                <span class="day">{{event.event_id.all.0.event_start_datetime|date:"M d"}}</span>
+                <span>TICKET</span>
+            </p>
+            <div class="show-name">
+                <h1>{{event.event_id.all.0.event_name}}</h1>
+                <h2>{{event.event_id.all.0.artist_id}}</h2>
+            </div>
+            <div class="time">
+                <p>{{event.event_id.all.0.event_start_datetime|date:"M d"}}<span> TO </span>{{event.event_id.all.0.event_end_datetime|date:"M d"}}</p>
+            </div>
+            <p class="location">
+                <span>{{event.event_id.all.0.venue_id.venue_name}}</span>
+                <span>{{event.event_id.all.0.venue_id.location}}</span>
+            </p>
         </div>
-        <div class="seat">
-            <h2>{{event.event_id.all.0.event_start_datetime|date:"d.m.Y"}}</h2>
-            <span> date</span>
-        </div>
-        <div class="time">
-            <h2>{{event.event_id.all.0.event_start_datetime|date:"H:m"}}</h2>
-            <span> time</span>
-        </div>
-        <div class="time">
-            <h2>${{event.event_id.all.0.ticket_price}}</h2>
-            <span>price</span>
-        </div>
-        
-
     </div>
-    <div class="ticket ticketRight">
-       
-        <div class="number">
-            <h3><br></h3>
-            <span><br></span>
+    <div class="right">
+        <p class="admit-one">
+            <span>ADMIT ONE</span>
+            <span>ADMIT ONE</span>
+            <span>ADMIT ONE</span>
+        </p>
+        <div class="right-info-container">
+            <div class="show-name">
+                <h1>{{event.event_id.all.0.event_name}}</h1>
+            </div>
+            <div class="time">
+                <p>{{event.event_id.all.0.event_start_datetime|date:"M d"}}<span>&nbsp;TO&nbsp;</span>{{event.event_id.all.0.event_end_datetime|date:"M d"}}</p>
+            </div>
+            <div class="barcode">
+                <img src="{% static "images/qr.png" %}" alt="">
+            </div>
+            <p class="ticket-number">
+                #{{event.id}}
+            </p>
         </div>
-        <div class="barcode"></div>
     </div>
+    <button onclick="Ticket({{forloop.counter}})">Download ticket</button>
 </div>
-<br>
-<button onclick="FestivalTicket({{forloop.counter}})">Download ticket</button>
-<br>
-{% endfor %} 
-
+{% endfor %}
 
 {% for ticket in tickets %}
-<div class="concertticketWrap {{ticket.id}}">
-    <div class="ticket ticketLeft">
-        <h1>CONCERT <span>TICKET</span></h1>
-        <div class="title">
-            <h2>{{ticket.event_id.event_name}}</h2>
-            <span>concert</span>
+<div class="ticket">
+    <div class="left">
+        <div class="image">
+            <p class="admit-one">
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+                <span>ADMIT ONE</span>
+            </p>
+            <div class="ticket-number">
+                <p>
+                    #{{ticket.id}}
+                </p>
+            </div>
         </div>
-        <div class="name">
-            <h2>{{ticket.event_id.artist_id}}</h2>
-            <span>artist name</span>
+        <div class="ticket-info">
+            <p class="date">
+                <span>{{ticket.event_id.event_start_datetime|date:"l"}}</span>
+                <span class="day">{{ticket.event_id.event_start_datetime|date:"M d"}}</span>
+                <span>{{ticket.event_id.event_start_datetime|date:"Y"}}</span>
+            </p>
+            <div class="show-name">
+                <h1>{{ticket.event_id.event_name}}</h1>
+                <h2>{{ticket.event_id.artist_id}}</h2>
+            </div>
+            <div class="time">
+                <p><span>SEAT</span> {{ticket.seat_number}}</p>
+                <p>START <span>@</span>{{ticket.event_id.event_start_datetime|date:"h:m"}} PM</p>
+            </div>
+            <p class="location">
+                <span>{{ticket.event_id.venue_id.venue_name}}</span>
+                <span>{{ticket.event_id.venue_id.location}}</span>
+            </p>
         </div>
-        <div class="seat">
-            <h2>{{ticket.event_id.event_start_datetime|date:"d.m.Y"}}</h2>
-            <span>date</span>
-        </div>
-        <div class="time">
-            <h2>{{ticket.event_id.event_start_datetime|date:"H:m"}}</h2>
-            <span>time</span>
-        </div>
-        <div class="time">
-            <h2>${{ticket.event_id.ticket_price}}</h2>
-            <span>price</span>
-        </div>
-
     </div>
-    <div class="ticket ticketRight">
-        <div class="number">
-            <h3>{{ticket.seat_number}}</h3>
-            <span>seat</span>
+    <div class="right">
+        <p class="admit-one">
+            <span>ADMIT ONE</span>
+            <span>ADMIT ONE</span>
+            <span>ADMIT ONE</span>
+        </p>
+        <div class="right-info-container">
+            <div class="show-name">
+                <h1>{{ticket.event_id.event_name}}</h1>
+            </div>
+            <div class="time">
+                <p><span>SEAT</span> {{ticket.seat_number}}</p>
+                <p>START<span> @</span>{{ticket.event_id.event_start_datetime|date:"h:m"}} PM</p>
+            </div>
+            <div class="barcode">
+                <img src="{% static "images/qr.png" %}" alt="">
+            </div>
+            <p class="ticket-number">
+                #{{ticket.id}}
+            </p>
         </div>
-        <div class="barcode"></div>
     </div>
+    <button onclick="Ticket({{forloop.counter}})">Download ticket</button>
 </div>
-<br>
-<button onclick="ConcertTicket({{forloop.counter}})">Download ticket</button>
-<br>
-{% endfor %} 
+{% endfor %}
 
+ <!-- div to pdf -->
 
-{% endif %} <!-- div to pdf -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script>
+function Ticket(){
+
+		var HTML_Width = $(".ticket").width();
+		var HTML_Height = $(".ticket").height();
+		var top_left_margin = 15;
+		var PDF_Width = HTML_Width+(top_left_margin*2);
+		var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
+		var canvas_image_width = HTML_Width;
+		var canvas_image_height = HTML_Height;
+		
+		var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
+		
+
+		html2canvas($(".ticket")[0],{allowTaint:true}).then(function(canvas) {
+			canvas.getContext('2d');
+			
+			console.log(canvas.height+"  "+canvas.width);
+			
+			
+			var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
+		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+			
+			
+			for (var i = 1; i <= totalPDFPages; i++) { 
+				pdf.addPage(PDF_Width, PDF_Height);
+				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+			}
+			
+		    pdf.save("ticket.pdf");
+        });
+	};
+</script>
     
-    <script>
-        function ConcertTicket(x) {
-            var HTML_Width = $(".concertticketWrap").width();
-            var HTML_Height = $(".concertticketWrap").height();
-            var top_left_margin = 15;
-            var PDF_Width = HTML_Width + (top_left_margin * 2);
-            var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
-            var canvas_image_width = HTML_Width;
-            var canvas_image_height = HTML_Height;
-
-            var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
-
-            html2canvas($(".concertticketWrap")[x-1]).then(function(canvas) {
-                var imgData = canvas.toDataURL("image/jpeg", 1.0);
-                var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
-                pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
-                for (var i = 1; i <= totalPDFPages; i++) {
-                    pdf.addPage(PDF_Width, PDF_Height);
-                    pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
-                }
-                pdf.save("concert_ticket.pdf");
-            });
-        }
-        function FestivalTicket(x) {
-            var HTML_Width = $(".festivalticketWrap").width();
-            var HTML_Height = $(".festivalticketWrap").height();
-            var top_left_margin = 15;
-            var PDF_Width = HTML_Width + (top_left_margin * 2);
-            var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
-            var canvas_image_width = HTML_Width;
-            var canvas_image_height = HTML_Height;
-
-            var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
-
-            html2canvas($(".festivalticketWrap")[x-1]).then(function(canvas) {
-                var imgData = canvas.toDataURL("image/jpeg", 1.0);
-                var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
-                pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
-                for (var i = 1; i <= totalPDFPages; i++) {
-                    pdf.addPage(PDF_Width, PDF_Height);
-                    pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
-                }
-                pdf.save("festival_ticket.pdf");
-            });
-        }
-    </script>{% endblock %}
+{% endblock %}

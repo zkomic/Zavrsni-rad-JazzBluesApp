@@ -163,7 +163,8 @@ h2 {
 }
 
 .col-mid .add,
-.col-mid .remove {
+.col-mid .remove
+.col-mid .orders-price {
     padding: 0;
     margin: 1px;
     float: none;

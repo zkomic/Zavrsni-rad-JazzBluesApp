@@ -1,5 +1,5 @@
 from django import template
-from JazzBluesApp.models import Album, AlbumCartUser, EventCartUser, AlbumOrderUser, EventOrderUser, AlbumOrder, User, AlbumCart, EventCart
+from JazzBluesApp.models import Album, Event, AlbumCartUser, EventCartUser, AlbumOrderUser, EventOrderUser, AlbumOrder, EventOrder, User, AlbumCart, EventCart
 from datetime import datetime
 
 register = template.Library()
@@ -52,16 +52,22 @@ def capital(status):
 
 @register.filter('album_total')
 def album_total(order_id):
-    print(order_id)
     total = 0
     albumOrder = AlbumOrder.objects.filter(id=order_id)
-    print(albumOrder)
     albumUserOrder = AlbumOrderUser.objects.filter(albumorder_id__in=albumOrder)
-    print(albumUserOrder)
     for album in albumUserOrder:
-        print(album.album_id.album_name, album.quantity)
         album_price = Album.objects.get(id=album.album_id.id)
         total = total + album.quantity * album_price.album_price
+    return total
+
+@register.filter('ticket_total')
+def ticket_total(order_id):
+    total = 0
+    eventOrder = EventOrder.objects.filter(id=order_id)
+    eventUserOrder = EventOrderUser.objects.filter(eventorder_id__in=eventOrder)
+    for event in eventUserOrder:
+        ticket_price = Event.objects.get(id=event.event_id.id)
+        total = total + event.quantity * ticket_price.ticket_price
     return total
 
 @register.filter('get_username')

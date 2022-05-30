@@ -26,7 +26,6 @@
                             <dt class="title">
                             <a href="#">{{album.artist_id.artist_name}}: {{album.album_name}}</a>
                           </dt>
-                            <dd class="code">(M4782UKLPX.SIG)&nbsp;Vinyl LP</dd>
                             <dd class="dispatch">Release Date 18 February 2022</dd>
                         </dl>
                     </td>
@@ -54,7 +53,6 @@
                             <dt class="title">
                             <a href="#">{{event.artist_id.artist_name}}:  {{event.event_name}}</a>
                           </dt>
-                            <dd class="code">(M4782UKLPX.SIG)&nbsp;Vinyl LP</dd>
                             <dd class="dispatch">Release Date 18 February 2022</dd>
                         </dl>
                     </td>
@@ -71,9 +69,7 @@
                     <td colspan="4">Total <span>£{{total}}</span></td>
                 </tr>
             </table>
-            <form id="basketForm" action="https://www.recordstore.co.uk/cart.html" method="post">
                 <a href="{% url 'JazzBluesApp:checkout' username=current_user.username %}" class="button"><button class="btn-checkout" type="submit" name="review-order">Checkout</button></a>
-            </form>
         </div>
     </div>
 </div>
