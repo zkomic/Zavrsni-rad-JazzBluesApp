@@ -588,6 +588,10 @@ def userOrders(request, username):
 def userOrderDetail(request, albumorder_id):
     total = 0
 
+    current_user = User.objects.get(username=request.user.username)
+    context = {'current_user': current_user,}
+    #total = 0
+
     albumOrder = AlbumOrder.objects.filter(id=albumorder_id)
     albumUserOrder = AlbumOrderUser.objects.filter(albumorder_id__in=albumOrder)
     
@@ -595,11 +599,14 @@ def userOrderDetail(request, albumorder_id):
        
         album_price = Album.objects.get(id=album.album_id.id)
         total = total + album.quantity * album_price.album_price
+   
     
-    context = {
-        'albumOrder': albumOrder[0],
+    album_order = {
+        'albumOrder': albumOrder[0], 
         'total': total,
     }
+    context.update(album_order)
+
     return render(request, 'user_order_detail.html', context)
 
 

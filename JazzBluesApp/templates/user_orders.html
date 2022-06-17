@@ -1,7 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% load poll_extras %} 
 {% block styles %}
 <link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' /> 
-<link rel="stylesheet" href="{% static 'styles/tickets.css' %}" />{% endblock %}
+<link rel="stylesheet" href="{% static 'styles/tickets.css' %}" /> 
+{% endblock %}
 {% block title %} {{request.user.first_name}}'s Orders |{% endblock %} {% block content %} 
 
 <div class="cart">
@@ -19,15 +20,12 @@
                     <td>
                         <dl>
                             <dt class="title">
-                            <a href="#">#{{album.id}}: {{album.order_status|capital}}</a>
+                                <a href="{% url 'JazzBluesApp:userOrderDetail' albumorder_id=album.id %}" class="button">#{{album.id}}: {{album.order_status|capital}}</a>
                           </dt>
-                            <dd class="dispatch">Order date: {{album.order_date|date:"d.m.Y"}}</dd>
                         </dl>
                     </td>
                     <td>
-                        <dt="title">
-                        <a href="{% url 'JazzBluesApp:userOrderDetail' albumorder_id=album.id %}" class="button">Details</a>
-                        </dt>
+                        <dt="title">Order date: {{album.order_date|date:"d.m.Y"}}</dt>
                     </td>
                     <td>
                         <dl>
@@ -43,12 +41,10 @@
                             <dt class="title">
                             <a href="#">#{{event.id}}: {{event.event_id.all.0.artist_id}} - {{event.event_id.all.0.event_name}}</a>
                           </dt>
-                            <dd class="dispatch">Purchase date: {{event.order_date|date:"d.m.Y"}}</dd>
                         </dl>
                     </td>
                     <td>
-                        <dt="title">
-                        </dt>
+                        <dt="title">Purchase date: {{event.order_date|date:"d.m.Y"}}</dt>
                     </td>
                     <td>
                         <dl>
@@ -64,12 +60,10 @@
                             <dt class="title">
                             <a href="#">#{{ticket.id}}: {{ticket.event_id.artist_id}} - {{ticket.event_id.event_name}}</a>
                           </dt>
-                            <dd class="dispatch">Purchase date: {{ticket.order_date|date:"d.m.Y"}}</dd>
                         </dl>
                     </td>
                     <td>
-                        <dt="title">
-                        </dt>
+                        <dt="title">Purchase date: {{ticket.order_date|date:"d.m.Y"}}</dt>
                     </td>
                     <td>
                         <dl>

@@ -174,11 +174,13 @@ processing = 'processing'
 shipped = 'shipped'
 sent = 'sent'
 canceled = 'canceled'
+delivered = 'delivered'
 
 ALBUM_ORDER_STATUS_CHOICES = (
     (processing, 'Processing'),
     (shipped, 'Shipped'),
-    (canceled, 'Canceled')
+    (canceled, 'Canceled'),
+    (delivered, 'Delivered')
 )
 
 class AlbumOrder(models.Model):

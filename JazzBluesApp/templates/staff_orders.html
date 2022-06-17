@@ -1,4 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% load poll_extras %} {% block title %}
+{% extends 'base.html' %} {% load static %} {% load poll_extras %}
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' /> 
+<link rel="stylesheet" href="{% static 'styles/tickets.css' %}" /> 
+{% endblock %}
+{% block title %}
 Orders |{% endblock %} {% block content %}
 
 <fieldset>
