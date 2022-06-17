@@ -12,17 +12,6 @@
 
 
 <div class="container">
-    <!--{% if user.is_staff %}
-                        <a href="{% url 'JazzBluesApp:newAlbum'%}" class="button">New album</a> {% endif %}
-
-                    {% for album in albums %}
-                    <li class="album">
-                         {% if user.is_staff %}
-                        <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.id %}" class="button">Edit album</a> {% else %} {% if album.in_stock == 0 %}
-                        <a class="disabled">Sold out</a> {% else %}
-                        <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a> {% endif %} {% endif %}
-                    </li>
-    {% endfor %}-->
     <div class="bg-modal-filters">
         <div class="modal-content">
             <div class="close">+</div>

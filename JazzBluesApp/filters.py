@@ -62,7 +62,7 @@ class OrderFilter(django_filters.FilterSet):
 
     user_id = django_filters.ModelMultipleChoiceFilter(
         queryset = User.objects.all(),
-        widget = CheckboxSelectMultiple(),
+        widget = forms.SelectMultiple(attrs={'id':'userMultiple','class':'userMultiple'}),
         label = "User",
     )
 

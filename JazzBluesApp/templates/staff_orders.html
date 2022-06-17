@@ -7,51 +7,86 @@
 Orders |{% endblock %} {% block content %}
 
 <fieldset>
-        <form class="search-form">
-
-            <div class="multiselect">
-                <div class="selectBox" onclick="showCheckboxes()">
-                    <select>
-                  <option>Select user...</option>
-                </select>
-                    <div class="overSelect"></div>
-                </div>
-                <ul id="checkboxes">
-                    {% for object in orderFilter.form.user_id %}
-                    <li>{{object}}</li>{% endfor %}
-                </ul>
-            </div>
+        <form>
+            <div>{{orderFilter.form.user_id}}</div>
             <div>{{orderFilter.form.order_status}}</div>
             <div><button type="submit">Search</button></div>
         </form>
 
     </fieldset>
 
- 
-<div class="container">
-    <h2>My Orders <br><small>Album orders</small></h2>
-    <div class="order">
-        <ul class="responsive-table">
-            <li class="table-header">
-                <div class="col col-1">Username</div>
-                <div class="col col-2">Order date</div>
-                <div class="col col-3">Order status</div>
-                <div class="col col-4"></div>
-            </li>
-            {% for order in orders %}
-            <li class="table-row">
-                <div class="col col-1" data-label="order-date">{{order.0.user_id_id|get_username}}</div>
 
-                <div class="col col-2" data-label="order-status">{{order.0.order_date|date:"d.m.Y"}}</div>
-                <div class="col col-3" data-label="price">{{order.0.order_status|capital}}</div>
-                <div class="col col-4" data-label="details">
-                    <a href="{% url 'JazzBluesApp:staffOrderDetail' albumorder_id=order.0.id %}" class="button">Details</a>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+<div class="cart">
+    <div id="main" class="main">
+        <div id="col2" class="clearfix col-mid" role="main">
+            <a name="main-content"></a>
+            <h2>User orders <br><small>Album orders</small></h2>
+            <table id="basketContent">
+                {% for order in orders %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="title">
+                                <a href="{% url 'JazzBluesApp:staffOrderDetail' albumorder_id=order.0.id %}">#{{order.0.id}}: {{order.0.order_status|capital}}</a>
+                          </dt>
+                        </dl>
+                    </td>
+                    <td>
+                        <dl>
+                            <dt>{{order.0.user_id_id|get_username}}</dt>
+                            <dt="title">{{order.0.order_date|date:"d.m.Y"}}</dt>
+                        </dl>
+                    </td>
+                    <td>
+                        <dl>
+                            <h1 class="orders-price"> možda ukupni iznos? </h1>
+                        </dl>
+                    </td>
+                </tr>
+                {% endfor %} 
+                {% for event in eventOrders %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="title">
+                            <a href="#">#{{event.id}}: {{event.event_id.all.0.artist_id}} - {{event.event_id.all.0.event_name}}</a>
+                          </dt>
+                        </dl>
+                    </td>
+                    <td>
+                        <dt="title">Purchase date: {{event.order_date|date:"d.m.Y"}}</dt>
+                    </td>
+                    <td>
+                        <dl>
+                            <h1 class="orders-price">£{{event.id|ticket_total}}</h1>
+                        </dl>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for ticket in tickets %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="title">
+                            <a href="#">#{{ticket.id}}: {{ticket.event_id.artist_id}} - {{ticket.event_id.event_name}}</a>
+                          </dt>
+                        </dl>
+                    </td>
+                    <td>
+                        <dt="title">Purchase date: {{ticket.order_date|date:"d.m.Y"}}</dt>
+                    </td>
+                    <td>
+                        <dl>
+                            <h1 class="orders-price">£{{ticket.event_id.ticket_price}}</h1>
+                        </dl>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>                   
+                </tr>
+            </table>
+        </div>
     </div>
-    
 </div>
 
 <script>
