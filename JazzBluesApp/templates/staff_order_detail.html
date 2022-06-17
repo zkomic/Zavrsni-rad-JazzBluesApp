@@ -1,4 +1,8 @@
-{% extends 'base.html' %} {% load static %} {% load poll_extras %} {% block title %}
+{% extends 'base.html' %} {% load static %} {% load poll_extras %} 
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' /> 
+{% endblock %}
+{% block title %}
 Order details |{% endblock %} {% block content %}
 
 
@@ -9,40 +13,44 @@ Order details |{% endblock %} {% block content %}
         <br><input type="submit" value="Spremi"><br>
     </div>
 </form>
-<br>
-<div class="container">
 
-
-    <div class="order-detail">
-        <ul class="responsive-table">
-            <li class="table-header">
-                <div class="col col-1"></div>
-                <div class="col col-2">Album</div>
-                <div class="col col-3">Price</div>
-                <div class="col col-4">Quantity</div>
-                <div class="col col-5">Total</div>
-            </li>
-            {% for order in albumOrder.album_id.all %}
-            <li class="table-row">
-                <div class="col col-1"><img src="{{order.album_cover.url}}" width="60px" /><br></div>
-                <div class="col col-2">{{order}}</div>
-                <div class="col col-3">${{order.album_price}}</div>
-                <div class="col col-4">{{albumOrder.id|get_albumOrder_quantity:order.id}}</div>
-                <div class="col col-5">${{albumOrder.id|get_albumOrder_quantity:order.id|mult:order.album_price}}</div>
-            </li>
-            {% endfor %}
-        </ul>
-
-
-        <ul class="responsive-table">
-            <li class="table-row">
-                <div class="col col-1"><b>TOTAL</b></div>
-                <div class="col col-2"></div>
-                <div class="col col-3"></div>
-                <div class="col col-4"></div>
-                <div class="col col-5"><b>${{total}}</b></div>
-            </li>
-        </ul>
+<div class="cart">
+    <div id="main" class="main">
+        <div id="col2" class="clearfix col-mid" role="main">
+            <a name="main-content"></a>
+            <h2>Order #{{albumOrder.id}}</h2>
+            <table id="basketContent">
+                {% for order in albumOrder.album_id.all %}
+                <tr>
+                    <td>
+                        <dl>
+                            <dt class="image">
+                              <a href="#">
+                              {% if order.album_cover %}
+                                <img src="{{order.album_cover.url}}" width="50" loading="lazy" alt="">
+                              {% else %}
+                              <img src="{{MEDIA_ROOT}}/media/albums/album_default.png" width="50" loading="lazy" alt="">
+                              {% endif %}
+                              </a>
+                          </dt>
+                            <dt class="title">
+                            <a href="#">{{order.artist_id.artist_name}}: {{order}}</a>
+                          </dt>
+                          <dd class="dispatch">Release Date 18 February 2022</dd>
+                        </dl>
+                    </td>
+                    <td>{{albumOrder.id|get_albumOrder_quantity:order.id}} × £{{order.album_price}}</td>
+                    <td>
+                        £{{albumOrder.id|get_albumOrder_quantity:order.id|mult:order.album_price}}
+                    </td>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr class="total">
+                    <td colspan="4">Total <span>£{{total}}</span></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 
