@@ -8,6 +8,9 @@
     }
 </style>
 {{ form.media }}
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/new_album_event_style.css' %}" type='text/css' media='all' />
+{% endblock %}
 {% block title %} 
 Edit Event | 
 {% endblock %}
@@ -15,106 +18,104 @@ Edit Event |
 {% block content %}
 
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <input type="hidden" name="event_id" value="{event.0.id}">
-
-{% if event.0.category == 'concert' %}
-    <table border="1" style="margin-left: auto; margin-right: auto;">
-        
-        <tr>
-            <td>Artist:</td>
-            <td>
-                {{eventForm.artist_id}}
-                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button">
-                    +
-               </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Venue:</td>
-            <td>{{eventForm.venue_id}}</td>
-        </tr>
-        <tr>
-            <td>Event name:</td>
-            <td>{{eventForm.event_name}}</td>
-        </tr>
-        <tr>
-            <td>Event date and time:</td>
-            <td>{{eventForm.event_start_datetime}}(npr. 2021-07-20 20:06:40)</td>
-        </tr>
-        <tr>
-            <td>Price:</td>
-            <td>{{eventForm.ticket_price}}&nbsp;$</td>
-        </tr>
-        <tr>
-            <td>Event details:</td>
-            <td>{{eventForm.event_details}}</td>
-        </tr>
-        <tr>
-            <td>Event poster:</td>
-            <td>{{eventForm.event_poster}}</td>
-        </tr>
-    </table>
-
-{% else %}
-
-    <table border="1" style="margin-left: auto; margin-right: auto;">
-        
-        <tr>
-            <td>Artist:</td>
-            <td>
-                {{eventForm.artist_id}}
-                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button">
-                    +
-               </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Venue:</td>
-            <td>{{eventForm.venue_id}}</td>
-        </tr>
-        <tr>
-            <td>Event name:</td>
-            <td>{{eventForm.event_name}}</td>
-        </tr>
-        <tr>
-            <td>Event start:</td>
-            <td>{{eventForm.event_start_datetime}}</td>
-        </tr>
-        <tr>
-            <td>Event end:</td>
-            <td>{{eventForm.event_end_datetime}}</td>
-        </tr>
-         <tr>
-            <td>Available tickets:</td>
-            <td>{{eventForm.available_tickets}}</td>
-        </tr>
-        <tr>
-            <td>Price:</td>
-            <td>{{eventForm.ticket_price}}&nbsp;$</td>
-        </tr>
-        <tr>
-            <td>Event details:</td>
-            <td>{{eventForm.event_details}}</td>
-        </tr>
-        <tr>
-            <td>Event poster:</td>
-            <td>{{eventForm.event_poster}}</td>
-        </tr>
-    </table>
-
-
-{% endif %}
-
-    <div style="text-align: center;">
-        <br><input type="submit" value="Spremi"><br>
+<div class="body-register">
+    <div id="container">
+        <div id="secureRegistration">
+            <form class="registrationForm" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="rbroundbox">
+                            <h2>Edit {{event.0.event_name}}</h2>
+                    <div class="rbcontent">
+                        <input type="hidden" name="event_id" value="{event.0.id}">
+                        {% if event.0.category == 'concert' %}
+                        <table id="register1" class="address">
+                        <tr>
+                                    <td><label for="">Artist <em>*</em></label></td>
+                                    <td class="plus-div">{{eventForm.artist_id}}<a href="{% url 'JazzBluesApp:newArtist' %}" class="button">+</a></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Venue <em>*</em></label></td>
+                                    <td class="plus-div">{{eventForm.venue_id}}
+                                        <a href="{% url 'JazzBluesApp:newVenue' %}" class="button">
+                                            +
+                                    </a></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Event name <em>*</em></label></td>
+                                    <td>{{eventForm.event_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Event date and time <em>*</em></label></td>
+                                    <td>{{eventForm.event_start_datetime}}(npr. 2021-07-20 20:06:40)</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Price <em>*</em></label></td>
+                                    <td>{{eventForm.ticket_price}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Event details <em>*</em></label></td>
+                                    <td>{{eventForm.event_details}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Event poster <em>*</em></label></td>
+                                    <td>{{eventForm.event_poster}}</td>
+                                </tr>
+                        </table>
+                        {% else %}
+                        <table id="register1" class="address">
+                            <tr>
+                                        <td><label for="">Artist <em>*</em></label></td>
+                                        <td class="plus-div">{{eventForm.artist_id}}<a href="{% url 'JazzBluesApp:newArtist' %}" class="button">+</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Venue <em>*</em></label></td>
+                                        <td class="plus-div">{{eventForm.venue_id}}
+                                            <a href="{% url 'JazzBluesApp:newVenue' %}" class="button">
+                                                +
+                                        </a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Event name <em>*</em></label></td>
+                                        <td>{{eventForm.event_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Event start <em>*</em></label></td>
+                                        <td>{{eventForm.event_start_datetime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Event end <em>*</em></label></td>
+                                        <td>{{eventForm.event_end_datetime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Available tickets <em>*</em></label></td>
+                                        <td>{{eventForm.available_tickets}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Price <em>*</em></label></td>
+                                        <td>{{eventForm.ticket_price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Event details <em>*</em></label></td>
+                                        <td>{{eventForm.event_details}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="avatar">Event poster</label></td>
+                                        <td>{{eventForm.event_poster}}</td>
+                                    </tr>       
+                            </table>
+                            {% endif %}
+                        <table id="register2" class="address">   
+                        </table>
+                    </div>
+                </div>
+                <button type="submit" class="button">Save changes</button>
+                <button class="delete">
+                    <a href="{% url 'JazzBluesApp:eventDelete' event_id=event.0.id %}">Delete</a>
+                </button>
+        </div>
+        </form>
     </div>
-
-</form>
-
-
+</div>
 
 <div style="text-align: center;"><br>
     <a href="{% url 'JazzBluesApp:eventDelete' event_id=event.0.id %}" class="button">Delete</a><br><br>

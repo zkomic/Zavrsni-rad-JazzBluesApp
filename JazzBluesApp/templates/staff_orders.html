@@ -8,9 +8,9 @@ Orders |{% endblock %} {% block content %}
 
 <fieldset>
         <form>
-            <div>{{orderFilter.form.user_id}}</div>
-            <div>{{orderFilter.form.order_status}}</div>
-            <div><button type="submit">Search</button></div>
+            {{orderFilter.form.user_id}}
+            {{orderFilter.form.order_status}}
+            <button type="submit">Search</button>
         </form>
 
     </fieldset>
@@ -32,14 +32,11 @@ Orders |{% endblock %} {% block content %}
                         </dl>
                     </td>
                     <td>
-                        <dl>
-                            <dt>{{order.0.user_id_id|get_username}}</dt>
-                            <dt="title">{{order.0.order_date|date:"d.m.Y"}}</dt>
-                        </dl>
+                        <dl style="padding-left:15px;">{{order.0.user_id_id|get_username}}</dl>
                     </td>
                     <td>
                         <dl>
-                            <h1 class="orders-price"> možda ukupni iznos? </h1>
+                            <h1 class="orders-price">{{order.0.order_date|date:"d.m.Y"}}</h1>
                         </dl>
                     </td>
                 </tr>
@@ -59,25 +56,6 @@ Orders |{% endblock %} {% block content %}
                     <td>
                         <dl>
                             <h1 class="orders-price">£{{event.id|ticket_total}}</h1>
-                        </dl>
-                    </td>
-                </tr>
-                {% endfor %}
-                {% for ticket in tickets %}
-                <tr>
-                    <td>
-                        <dl>
-                            <dt class="title">
-                            <a href="#">#{{ticket.id}}: {{ticket.event_id.artist_id}} - {{ticket.event_id.event_name}}</a>
-                          </dt>
-                        </dl>
-                    </td>
-                    <td>
-                        <dt="title">Purchase date: {{ticket.order_date|date:"d.m.Y"}}</dt>
-                    </td>
-                    <td>
-                        <dl>
-                            <h1 class="orders-price">£{{ticket.event_id.ticket_price}}</h1>
                         </dl>
                     </td>
                 </tr>

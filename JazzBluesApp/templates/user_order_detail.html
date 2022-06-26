@@ -16,7 +16,7 @@
                     <td>
                         <dl>
                             <dt class="image">
-                              <a href="#">
+                              <a href="{% url 'JazzBluesApp:albumDetail' album_id=order.id %}">
                               {% if order.album_cover %}
                                 <img src="{{order.album_cover.url}}" width="50" loading="lazy" alt="">
                               {% else %}
@@ -25,7 +25,7 @@
                               </a>
                           </dt>
                             <dt class="title">
-                            <a href="#">{{order.artist_id.artist_name}}: {{order}}</a>
+                            <a href="{% url 'JazzBluesApp:albumDetail' album_id=order.id %}">{{order.artist_id.artist_name}}: {{order}}</a>
                           </dt>
                           <dd class="dispatch">Release Date 18 February 2022</dd>
                         </dl>

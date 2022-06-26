@@ -1,73 +1,83 @@
-{% extends 'base.html' %} {% block title %}
+{% extends 'base.html' %} 
+{% load static %}
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/new_album_event_style.css' %}" type='text/css' media='all' />
+{% endblock %}
+{% block title %}
 Edit Album |
 {% endblock %} {% load static %} {% block content %}
 
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <input type="hidden" name="album_id" value="{album.0.id}">
-    <table border="1" style="margin-left: auto; margin-right: auto;">
-        <tr>
-            <td>Artist</td>
-            <td>
-                {{albumForm.artist_id}}
-                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button">
-                    +
-               </a></td>
-        </tr>
-        <tr>
-            <td>Record label</td>
-            <td>
-                {{albumForm.recordLabel_id}}
-                <a href="{% url 'JazzBluesApp:newRecordLabel' %}" class="button">+</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Genre</td>
-            <td>{{albumForm.genre_id}}</td>
-        </tr>
-        <tr>
-            <td>Album name</td>
-            <td>{{albumForm.album_name}}</td>
-        </tr>
-        <tr>
-            <td>Date released</td>
-            <td>{{albumForm.date_released}}</td>
-        </tr>
-        <tr>
-            <td>Format</td>
-            <td>{{albumForm.album_format}}</td>
-        </tr>
-        <tr>
-            <td>Price</td>
-            <td>{{albumForm.album_price}}</td>
-        </tr>
-        <tr>
-            <td>In stock: </td>
-            <td>{{albumForm.in_stock}}</td>
-        </tr>
-        <tr>
-            <td>Number of tracks</td>
-            <td>{{albumForm.number_of_tracks}}</td>
-        </tr>
-        <tr>
-            <td>Number of discs</td>
-            <td>{{albumForm.number_of_discs}}</td>
-        </tr>
-        <tr>
-            <td>Album cover</td>
-            <td>{{albumForm.album_cover}}</td>
-        </tr>
-    </table>
-
-    <div style="text-align: center;">
-        <br><input type="submit" value="Spremi"><br>
+<div class="body-register">
+    <div id="container">
+        <div id="secureRegistration">
+            <form class="registrationForm" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="rbroundbox">
+                            <h2>Edit {{album.0.album_name}}</h2>
+                    <div class="rbcontent">
+                        <input type="hidden" name="album_id" value="{album.0.id}">
+                        <table id="register1" class="address">
+                        <tr>
+                                    <td><label for="">Artist <em>*</em></label></td>
+                                    <td class="plus-div">{{albumForm.artist_id}}<a href="{% url 'JazzBluesApp:newArtist' %}" class="button">+</a></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Record label <em>*</em></label></td>
+                                    <td class="plus-div">{{albumForm.recordLabel_id}}
+                                        <a href="{% url 'JazzBluesApp:newRecordLabel' %}" class="button">
+                                            +
+                                    </a></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Genre <em>*</em></label></td>
+                                    <td>{{albumForm.genre_id}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Album name <em>*</em></label></td>
+                                    <td>{{albumForm.album_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Date released <em>*</em></label></td>
+                                    <td>{{albumForm.date_released}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Album format <em>*</em></label></td>
+                                    <td>{{albumForm.album_format}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Price <em>*</em></label></td>
+                                    <td>{{albumForm.album_price}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Adding to stock <em>*</em></label></td>
+                                    <td>{{albumForm.in_stock}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Number of tracks <em>*</em></label></td>
+                                    <td>{{albumForm.number_of_tracks}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Number of discs <em>*</em></label></td>
+                                    <td>{{albumForm.number_of_discs}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="avatar">Album cover</label></td>
+                                    <td>{{albumForm.album_cover}}</td>
+                                </tr>       
+                        </table>
+                        <table id="register2" class="address">   
+                        </table>
+                    </div>
+                </div>
+                <button type="submit" class="button">Save changes</button>
+                <button class="delete">
+                    <a href="{% url 'JazzBluesApp:albumDelete' album_id=album.0.id %}">Delete</a>
+                </button>
+        </div>
+        </form>
+        
     </div>
-
-</form>
-<div style="text-align: center;"><br>
-    <a href="{% url 'JazzBluesApp:albumDelete' album_id=album.0.id %}" class="button">Izbriši</a><br><br>
 </div>
 
 

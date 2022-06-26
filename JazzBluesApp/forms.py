@@ -11,7 +11,7 @@ class NewAlbumForm(forms.ModelForm):
     artist_id = forms.ModelChoiceField(queryset=Artist.objects.all())
     genre_id = forms.ModelChoiceField(queryset=Genre.objects.all())
     album_name = forms.CharField()
-    date_released = forms.DateField()
+    date_released = forms.DateField(widget=AdminDateWidget(attrs={'type': 'date'}))
     album_format = forms.ChoiceField(choices=ALBUM_FORMAT_CHOICES)
     album_price = forms.DecimalField()
     in_stock = forms.IntegerField()

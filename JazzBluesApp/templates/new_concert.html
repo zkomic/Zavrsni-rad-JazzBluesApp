@@ -1,53 +1,58 @@
-{% extends 'base.html' %}  {% load static %} {% block title %} New Concert | {% endblock %}
+{% extends 'base.html' %}  {% load static %} 
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/new_album_event_style.css' %}" type='text/css' media='all' />
+{% endblock %}{% block title %} New Concert | {% endblock %}
 
  {% block content %}
 
-<form method="POST">
-    {% csrf_token %}
-
-    <table border="1" style="margin-left: auto; margin-right: auto;">
-        <tr>
-            <td>Artist:</td>
-            <td>{{form.artist_id}}
-                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button">
-                    +
-               </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Location: </td>
-            <td>{{form.venue_id}}
-            <a href="{% url 'JazzBluesApp:newVenue' %}" class="button">
-                    +
-            </a></td>
-        </tr>
-        <tr>
-            <td>Event name:</td>
-            <td>{{form.event_name}}</td>
-        </tr>
-        <tr>
-            <td>Event start date:</td>
-            <td>{{form.event_start_datetime}}(yyyy-mm-dd hh-mm-ss)</td>
-        </tr>
-        <tr>
-            <td>Price:</td>
-            <td>{{form.ticket_price}} €</td>
-        </tr>
-        <tr>
-            <td>Event details:</td>
-            <td>{{form.event_details}}</td>
-        </tr>
-        <tr>
-            <td>Event poster:</td>
-            <td>{{form.event_poster}}</td>
-        </tr>
-    </table>
-
-    <div style="text-align: center;">
-        <br><input type="submit" value="Spremi"><br>
+ <div class="body-register">
+    <div id="container">
+        <div id="secureRegistration">
+            <form class="registrationForm" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="rbroundbox">
+                            <h2>New Album</h2>
+                    <div class="rbcontent">
+                        <table id="register1" class="address">
+                        <tr>
+                                    <td><label for="">Artist <em>*</em></label></td>
+                                    <td class="plus-div">{{form.artist_id}}<a href="{% url 'JazzBluesApp:newArtist' %}" class="button">+</a></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Location <em>*</em></label></td>
+                                    <td class="plus-div">{{form.venue_id}}<a href="{% url 'JazzBluesApp:newVenue' %}" class="button">+</a></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Event name <em>*</em></label></td>
+                                    <td>{{form.event_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Event start date: <em>*</em></label></td>
+                                    <td>{{form.event_start_datetime}}(yyyy-mm-dd hh-mm-ss)</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Price <em>*</em></label></td>
+                                    <td>{{form.ticket_price}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Event details <em>*</em></label></td>
+                                    <td>{{form.event_details}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Event poster <em>*</em></label></td>
+                                    <td>{{form.event_poster}}</td>
+                                </tr>
+                        </table>
+                        <table id="register2" class="address">   
+                        </table>
+                    </div>
+                </div>
+                <button type="submit" class="register">Save</button>
+        </div>
+        </form>
     </div>
+</div>
 
-</form>
 
 <br> {% if messages %}
 <div style="text-align: center; ">
