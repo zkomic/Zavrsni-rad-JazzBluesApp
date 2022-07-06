@@ -71,7 +71,7 @@
 			</select>
     </form>
     <p class="result-count">
-        Showing all {{albums.count}} results</p>
+        Showing {{albums.count}} results</p>
     {% if albums_paginated %}
     <ul class="products">
         {% for album in albums_paginated %}
@@ -102,6 +102,7 @@
         {% endfor %}
     </ul>
 
+    {% if 'album_name=' in request.get_full_path %}
     {% if albums_paginated.has_previous %}
         <a href="{{request.get_full_path}}&page=1">&laquo; First</a>
         <a href="{{request.get_full_path}}&page={{albums_paginated.previous_page_number}}">&laquo; Previous</a>
@@ -110,9 +111,23 @@
     Page {{ albums_paginated.number }} of {{albums_paginated.paginator.num_pages}}
 
     {% if albums_paginated.has_next %}
-        <a href="{{request.get_full_path}}&page={{albums_paginated.next_page_number}}">Next</a>
+        <a href="{{request.get_full_path}}&page={{albums_paginated.next_page_number}}">Next</a> <!-- radi s filterima, bez njih treba biti ?&page -->
         <a href="{{request.get_full_path}}&page={{albums_paginated.paginator.num_pages}}">Last &raquo;</a>
     {% endif %}
+    {% else %}
+    {% if albums_paginated.has_previous %}
+        <a href="{{request.get_full_path}}?&page=1">&laquo; First</a>
+        <a href="{{request.get_full_path}}?&page={{albums_paginated.previous_page_number}}">&laquo; Previous</a>
+    {% endif %}
+
+    Page {{ albums_paginated.number }} of {{albums_paginated.paginator.num_pages}}
+
+    {% if albums_paginated.has_next %}
+        <a href="{{request.get_full_path}}?&page={{albums_paginated.next_page_number}}">Next</a>
+        <a href="{{request.get_full_path}}?&page={{albums_paginated.paginator.num_pages}}">Last &raquo;</a>
+    {% endif %}
+    {% endif %}
+  
 
     {% endif %}
     <!--
