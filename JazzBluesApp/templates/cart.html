@@ -1,5 +1,43 @@
 {% extends 'base.html' %} {% load static %} {% block styles %}
 <link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' /> {% endblock %} {% load poll_extras %} {% block title %} {{request.user.first_name}}'s Cart |{% endblock %} {% block content %}
+
+<style>
+    .alert {
+      padding: 20px;
+      background-color: #f44336;
+      color: white;
+    }
+    
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .closebtn:hover {
+      color: black;
+    }
+    </style>
+
+    {% if messages %}
+<div>
+    {% for message in messages %}
+    <br>
+    <div>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            {{ message|safe }}
+          </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <div class="cart">
     {% if not userAlbumCart and not userEventCart %}
     <p>Nemate ništa u košarici...</p>
@@ -74,15 +112,7 @@
     </div>
 </div>
 
-{% if messages %}
-<div>
-    {% for message in messages %}
-    <div>
-        {{ message|safe }}
-    </div>
-    {% endfor %}
-</div>
-{% endif %} {% endif %} {% endblock %}
+ {% endif %} {% endblock %}
 
 
 <!--<div class="cart">

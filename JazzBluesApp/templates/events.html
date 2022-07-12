@@ -37,21 +37,21 @@ Events |
     <a href="#" id="filters-button" class="filters">Filters</a>
     <form class="ordering" id="ordering" method="GET">
         {% csrf_token %}
-        <select name="orderby" class="orderby" onchange="redirectlink(this.value)">
-            {% if request.resolver_match.url_name == 'albums' %}
+        <select name="orderby" class="orderby" onchange="redirectlink(this.value)"> 
+            {% if request.resolver_match.url_name == 'events' %}
             <option value="{% url 'JazzBluesApp:events' %}?{{ request.GET.urlencode }}" selected="selected" >Default sorting</option>
             {% else %}
             <option value="{% url 'JazzBluesApp:events' %}?{{ request.GET.urlencode }}">Default sorting</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsName' %}
             <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}" selected="selected">Sort by album name: A - Z</option>
-            {% else %}
-            <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}">Sort by event name: A - Z</option>
+            {% else %}  
+            <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}">Sort by album name: A - Z</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsNameDesc' %}
             <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}" selected="selected">Sort by album name: Z - A</option>
             {% else %}
-            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}">Sort by event name: Z - A</option>
+            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}">Sort by album name: Z - A</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsPrice' %}
             <option value="{% url 'JazzBluesApp:eventsPrice' %}?{{ request.GET.urlencode }}" selected="selected">Sort by price: low to high</option>
@@ -104,6 +104,36 @@ Events |
         </li>
         {% endfor %}
     </ul>
+
+    {% if 'event_name=' in request.get_full_path %}
+    {% if events_paginated.has_previous %}
+        <a href="{{request.get_full_path}}&page=1">&laquo; First</a>
+        <a href="{{request.get_full_path}}&page={{events_paginated.previous_page_number}}">&laquo; Previous</a>
+    {% endif %}
+
+    Page {{ events_paginated.number }} of {{events_paginated.paginator.num_pages}}
+
+    {% if events_paginated.has_next %}
+        <a href="{{request.get_full_path}}&page={{events_paginated.next_page_number}}">Next</a>
+        <a href="{{request.get_full_path}}&page={{events_paginated.paginator.num_pages}}">Last &raquo;</a>
+    {% endif %}
+    {% else %}
+    {% if events_paginated.has_previous %}
+        <a href="{{request.get_full_path}}?&page=1">&laquo; First</a>
+        <a href="{{request.get_full_path}}?&page={{events_paginated.previous_page_number}}">&laquo; Previous</a>
+    {% endif %}
+
+    Page {{ events_paginated.number }} of {{events_paginated.paginator.num_pages}}
+
+    {% if events_paginated.has_next %}
+        <a href="{{request.get_full_path}}?&page={{events_paginated.next_page_number}}">Next</a>
+        <a href="{{request.get_full_path}}?&page={{events_paginated.paginator.num_pages}}">Last &raquo;</a>
+    {% endif %}
+    {% endif %}
+  
+
+
+
 </div>
 
 

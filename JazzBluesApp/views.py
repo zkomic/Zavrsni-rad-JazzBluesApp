@@ -325,73 +325,100 @@ def seatReservation(request, event_id):
             new_ticket.user_id.add(user_id)
     return redirect ('JazzBluesApp:userOrders', username=username)
 
-def events(request):
+def events(request): 
 
-    #filter_artist=request.GET.get('artist_id','')
-    #print(filter_artist)
-    #filter_name = request.GET.get('event_name','')
-    #print(filter_name)
-    #filter_category = request.GET.get('category','')
-    #print(filter_category)
     events = Event.objects.all()
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
 
+    # set up pagination
+    p = Paginator(events, 16)
+    page = request.GET.get('page')
+    events_paginated = p.get_page(page)
+
     context = {
         'events' : events,
+        'events_paginated' : events_paginated,
         'eventsFilter' : eventsFilter
     }
 
     return render(request, 'events.html', context)
 
 def eventsName(request):
+
     events = Event.objects.all().order_by('event_name')
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
 
+    p = Paginator(events, 16)
+    page = request.GET.get('page')
+    events_paginated = p.get_page(page)
+
     context = {
         'events' : events,
+        'events_paginated' : events_paginated,
         'eventsFilter' : eventsFilter
     }
 
     return render(request, 'events.html', context)
 
 def eventsNameDesc(request):
+
     events = Event.objects.all().order_by('-event_name')
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
 
+    p = Paginator(events, 16)
+    page = request.GET.get('page')
+    events_paginated = p.get_page(page)
+
     context = {
         'events' : events,
+        'events_paginated' : events_paginated,
         'eventsFilter' : eventsFilter
     }
 
     return render(request, 'events.html', context)
 
+
 def eventsPrice(request):
+
     events = Event.objects.all().order_by('ticket_price')
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
 
+    # set up pagination
+    p = Paginator(events, 16)
+    page = request.GET.get('page')
+    events_paginated = p.get_page(page)
+
     context = {
         'events' : events,
+        'events_paginated' : events_paginated,
         'eventsFilter' : eventsFilter
     }
 
     return render(request, 'events.html', context)
 
 def eventsPriceDesc(request):
+
     events = Event.objects.all().order_by('-ticket_price')
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
 
+    # set up pagination
+    p = Paginator(events, 16)
+    page = request.GET.get('page')
+    events_paginated = p.get_page(page)
+
     context = {
         'events' : events,
+        'events_paginated' : events_paginated,
         'eventsFilter' : eventsFilter
     }
 
@@ -646,7 +673,7 @@ def cart(request, username):
     if AlbumCart.objects.all().filter(user_id=current_user.id).exists():
         albums = []
         albumCart = AlbumCart.objects.filter(user_id=current_user)
-        albumUserCart = AlbumCartUser.objects.filter(albumcart_id__in=albumCart) 
+        albumUserCart = AlbumCartUser.objects.filter(albumcart_id__in=albumCart).order_by('-id')
         for album in albumUserCart: 
             albums.append(album.album_id)
             album_price = Album.objects.get(id=album.album_id.id) 
@@ -663,7 +690,7 @@ def cart(request, username):
     if EventCart.objects.all().filter(user_id=current_user).exists():
         events = []
         eventCart = EventCart.objects.filter(user_id=current_user)
-        eventUserCart = EventCartUser.objects.filter(eventcart_id__in=eventCart)
+        eventUserCart = EventCartUser.objects.filter(eventcart_id__in=eventCart).order_by('-id')
         for event in eventUserCart: 
             events.append(event.event_id)
             ticket_price = Event.objects.get(id=event.event_id.id) 
@@ -754,6 +781,7 @@ def checkout(request, username):
     current_user = User.objects.get(username=username) #mozda ne proslijedivati nista? nego requestat?
     album_cart = AlbumCart.objects.filter(user_id=current_user.id)
     event_cart = EventCart.objects.filter(user_id=current_user.id)
+    print(album_cart)
     if album_cart.exists():
         userAlbumCart = AlbumCartUser.objects.filter(albumcart_id__in=album_cart)
         order_item = AlbumOrder(user_id=current_user)
