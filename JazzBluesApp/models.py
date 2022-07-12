@@ -45,7 +45,7 @@ class Address (models.Model):
 class Users (models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES, default=rather_not_say)
-    address_id = models.ForeignKey(Address, on_delete=models.CASCADE, null=True)
+    address_id = models.ForeignKey(Address, on_delete=models.DO_NOTHING, null=True, blank=True)
     avatar = models.ImageField(upload_to='users/', null=True, blank=True)
     #credit_card_type = models.CharField(choices=CREDIT_CARD_CHOICES, default=None)
     #credit_card_number 

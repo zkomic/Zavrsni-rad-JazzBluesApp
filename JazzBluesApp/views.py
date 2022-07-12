@@ -77,7 +77,6 @@ def albumsNameDesc(request):
 
     return render(request, 'albums.html', context)
 
-
 def albumsPrice(request):
 
     albums = Album.objects.all().order_by('album_price')
@@ -708,8 +707,7 @@ def cart(request, username):
 def orderAddressPayment(request, username):
     current_user = User.objects.get(username=username)
     user_address = Users.objects.get(user=current_user)
-    print(user_address)
-    context = {'current_user': current_user,'user_address':user_address}
+    context = {'current_user': current_user,'user_address':user_address }
     total = 0
     if AlbumCart.objects.all().filter(user_id=current_user.id).exists():
         albums = []
@@ -857,23 +855,28 @@ def checkout(request, username):
     return redirect('JazzBluesApp:userOrders', username=username)
 
 def newAddress(request):
+    prev_url = request.META.get('HTTP_REFERER')
     user = User.objects.get(id=request.user.id)
     current_user = Users.objects.get(user=user)
     if request.method == 'POST':
         addressForm = NewAddressForm(request.POST or None)
         if addressForm.is_valid():
+            next_url = request.POST.get('next_url')
+            print(next_url)
             addressForm.save()
             newUserAddress = Address.objects.last()
             current_user.address_id = newUserAddress
             current_user.save()
-            return redirect('JazzBluesApp:albums')
+            return redirect (next_url)
     addressForm = NewAddressForm()
     context = {
+        'prev_url': prev_url,
         'form': addressForm,
     }
     return render(request, 'new_address.html', context)
 
 def addressEdit(request, address_id):
+    prev_url = request.META.get('HTTP_REFERER')
     address = Address.objects.all().filter(id=address_id)
     instanca = address.first()
     data = {
@@ -889,15 +892,15 @@ def addressEdit(request, address_id):
         addressForm = NewAddressForm(request.POST, instance=instanca)
         print(addressForm.errors)
         if addressForm.is_valid():
+            next_url = request.POST.get('next_url')
             addressForm.save()
-            return redirect('JazzBluesApp:addressEdit', address_id=address[0].id)     
+            return redirect (next_url)  
     else:
         addressForm = NewAddressForm(initial=data)
     context = {
+        'prev_url': prev_url,
         'addressForm': addressForm,
         'address': address,
     }
     return render(request, 'address_edit.html', context)
-
-
 
