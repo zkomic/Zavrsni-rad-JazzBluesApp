@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^eventsPriceDesc/$', views.eventsPriceDesc, name="eventsPriceDesc"),
     url(r'^newAlbum/$', views.newAlbum, name="newAlbum"),
     url(r'^newArticle/$', views.newArticle, name="newArticle"),
+    url(r'^newAddress/$', views.newAddress, name="newAddress"),
     url(r'^editArticle/(?P<article_id>\w+)$', views.editArticle, name="editArticle"),
     url(r'^articleDelete/(?P<article_id>\w+)$', views.articleDelete, name="articleDelete"),
     url(r'^newArtist/$', views.newArtist, name="newArtist"),

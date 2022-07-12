@@ -856,7 +856,23 @@ def checkout(request, username):
         pass
     return redirect('JazzBluesApp:userOrders', username=username)
 
-    
+def newAddress(request):
+    user = User.objects.get(id=request.user.id)
+    current_user = Users.objects.get(user=user)
+    if request.method == 'POST':
+        addressForm = NewAddressForm(request.POST or None)
+        if addressForm.is_valid():
+            addressForm.save()
+            newUserAddress = Address.objects.last()
+            current_user.address_id = newUserAddress
+            current_user.save()
+            return redirect('JazzBluesApp:albums')
+    addressForm = NewAddressForm()
+    context = {
+        'form': addressForm,
+    }
+    return render(request, 'new_address.html', context)
+
 def addressEdit(request, address_id):
     address = Address.objects.all().filter(id=address_id)
     instanca = address.first()

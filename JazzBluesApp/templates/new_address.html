@@ -1,0 +1,135 @@
+{% extends 'base.html' %} {% load static %}
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/new_album_event_style.css' %}" type='text/css' media='all' />
+{% endblock %}
+{% block title %}
+New Address |
+{% endblock %} {% load static %} {% block content %}
+
+
+<div class="body-register">
+    <div id="container">
+        <div id="secureRegistration">
+            <form class="registrationForm" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="rbroundbox">
+                            <h2>New Address</h2>
+                    <div class="rbcontent">
+                        <table id="register1" class="address">
+                            <tr>
+                                        <td><label for="">Street name <em>*</em></label></td>
+                                        <td class="plus-div">{{form.street_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Street number <em>*</em></label></td>
+                                        <td class="plus-div">{{form.street_number}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">City <em>*</em></label></td>
+                                        <td>{{form.city}}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td><label for="">Postal code <em>*</em></label></td>
+                                        <td>{{form.postal_code}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Country <em>*</em></label></td>
+                                        <td>{{form.country}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Phone number <em>*</em></label></td>
+                                        <td>{{form.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="">Address details <em>*</em></label></td>
+                                        <td>{{form.address_details}}</td>
+                                    </tr>
+                            </table>
+                        
+                        <table id="register2" class="address">   
+                        </table>
+                    </div>
+                </div>
+                <button type="submit" class="register">Save</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+<!--
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <table border="1" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td>Artist</td>
+            <td>
+                {{form.artist_id}}
+                <a href="{% url 'JazzBluesApp:newArtist' %}" class="button" > 
+                    +
+               </a></td>
+        </tr>
+        <tr>
+            <td>Record label</td>
+            <td>
+                {{form.recordLabel_id}}
+                <a href="{% url 'JazzBluesApp:newRecordLabel' %}" class="button">
+                    +
+            </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Genre</td>
+            <td>{{form.genre_id}}</td>
+        </tr>
+        <tr>
+            <td>Album name</td>
+            <td>{{form.album_name}}</td>
+        </tr>
+        <tr>
+            <td>Date released</td>
+            <td>{{form.date_released}} (yyyy-mm-dd)</td>
+        </tr>
+        <tr>
+            <td>Format</td>
+            <td>{{form.album_format}}</td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td>{{form.album_price}}</td>
+        </tr>
+        <tr>
+            <td>Adding to stock</td>
+            <td>{{form.in_stock}}</td>
+        </tr>
+        <tr>
+            <td>Number of tracks</td>
+            <td>{{form.number_of_tracks}}</td>
+        </tr>
+        <tr>
+            <td>Number of discs</td>
+            <td>{{form.number_of_discs}}</td>
+        </tr>
+        <tr>
+            <td>Album cover</td>
+            <td>{{form.album_cover}}</td>
+        </tr>
+    </table>
+
+    <div style="text-align: center;">
+        <br><input type="submit" value="Spremi"><br>
+    </div>
+
+</form>
+-->
+
+<br> {% if messages %}
+<div style="text-align: center; ">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endblock %}

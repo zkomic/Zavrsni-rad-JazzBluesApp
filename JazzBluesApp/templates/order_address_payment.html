@@ -104,12 +104,17 @@
         </div>
         <div id="col2" class="clearfix col-mid" role="main">
             <h3>Shipping address</h3>
+            {% if user_address.address_id %}
+            <a href="{% url 'JazzBluesApp:addressEdit' address_id=user_address.address_id.id %}" class="button">Edit adress</a> 
+            {% else %}
+            <a href="{% url 'JazzBluesApp:newAddress' %}" class="button">New adress</a>
+            {% endif %}
             {{user_address.address_id.street_name}} {{user_address.address_id.street_number}}<br>
             {{user_address.address_id.postal_code}} {{user_address.address_id.city}}<br>
             {{user_address.address_id.country}}<br>
             {{user_address.address_id.phone}}
 
-            <a href="{% url 'JazzBluesApp:addressEdit' address_id=user_address.address_id.id %}" class="button">Edit adress</a> 
+             
 
         </div>
     </div>
