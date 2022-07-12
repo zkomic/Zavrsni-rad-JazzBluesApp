@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
-from JazzBluesApp.models import Album, Article, Artist, Comment, Event, TicketPurchase, Users, Venue, AlbumCart, AlbumCartUser, EventCart, EventCartUser, AlbumOrder, AlbumOrderUser, EventOrder, EventOrderUser
+from JazzBluesApp.models import Album, Article, Artist, Address, Comment, Event, TicketPurchase, Users, Venue, AlbumCart, AlbumCartUser, EventCart, EventCartUser, AlbumOrder, AlbumOrderUser, EventOrder, EventOrderUser
 from django.shortcuts import render, redirect
-from .forms import NewAlbumForm, NewArtistForm, NewComment, NewRecordLabel, NewEventForm, updateOrderStatus, NewVenueForm, NewArticleForm
+from .forms import NewAlbumForm, NewArtistForm, NewAddressForm, NewComment, NewRecordLabel, NewEventForm, updateOrderStatus, NewVenueForm, NewArticleForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .filters import AlbumFilter, EventFilter, OrderFilter
@@ -705,6 +705,48 @@ def cart(request, username):
         pass
     return render(request, 'cart.html', context)
 
+def orderAddressPayment(request, username):
+    current_user = User.objects.get(username=username)
+    user_address = Users.objects.get(user=current_user)
+    print(user_address)
+    context = {'current_user': current_user,'user_address':user_address}
+    total = 0
+    if AlbumCart.objects.all().filter(user_id=current_user.id).exists():
+        albums = []
+        albumCart = AlbumCart.objects.filter(user_id=current_user)
+        albumUserCart = AlbumCartUser.objects.filter(albumcart_id__in=albumCart).order_by('-id')
+        for album in albumUserCart: 
+            albums.append(album.album_id)
+            album_price = Album.objects.get(id=album.album_id.id) 
+            total = total + album.quantity * album_price.album_price 
+        
+        album_dict = {
+            'userAlbumCart': albumCart[0],
+            'albums': albums,
+            'total': total,
+        }
+        context.update(album_dict)
+    else:
+        pass
+    if EventCart.objects.all().filter(user_id=current_user).exists():
+        events = []
+        eventCart = EventCart.objects.filter(user_id=current_user)
+        eventUserCart = EventCartUser.objects.filter(eventcart_id__in=eventCart).order_by('-id')
+        for event in eventUserCart: 
+            events.append(event.event_id)
+            ticket_price = Event.objects.get(id=event.event_id.id) 
+            total = total + event.quantity * ticket_price.ticket_price 
+        event_dict = {
+            'userEventCart': eventCart[0],
+            'events': events,
+            'total': total
+        }
+        context.update(event_dict)
+    else:
+        pass
+    return render(request, 'order_address_payment.html', context)
+
+
 def cartAlbumIncrement(request, album_id):
     current_user = User.objects.get(id=request.user.id)
     try:
@@ -815,6 +857,31 @@ def checkout(request, username):
     return redirect('JazzBluesApp:userOrders', username=username)
 
     
+def addressEdit(request, address_id):
+    address = Address.objects.all().filter(id=address_id)
+    instanca = address.first()
+    data = {
+        "street_name": address[0].street_name,
+        "street_number": address[0].street_number,
+        "city": address[0].city,
+        "postal_code": address[0].postal_code,
+        "country": address[0].country,
+        "phone": address[0].phone,
+        "address_details": address[0].address_details,
+    }
+    if request.method == 'POST':
+        addressForm = NewAddressForm(request.POST, instance=instanca)
+        print(addressForm.errors)
+        if addressForm.is_valid():
+            addressForm.save()
+            return redirect('JazzBluesApp:addressEdit', address_id=address[0].id)     
+    else:
+        addressForm = NewAddressForm(initial=data)
+    context = {
+        'addressForm': addressForm,
+        'address': address,
+    }
+    return render(request, 'address_edit.html', context)
 
 
 

@@ -69,14 +69,18 @@ class NewEventForm(forms.ModelForm):
         
         
 
-class NewAddress(forms.ModelForm):
+class NewAddressForm(forms.ModelForm):
     street_name = forms.CharField()
     street_number = forms.CharField()
     city = forms.CharField()
     postal_code = forms.IntegerField()
     country = forms.CharField()#možda dodati choices padajući izbornik s državama?
     phone = forms.CharField()
-    address_details = forms.CharField()
+    address_details = forms.CharField(required=False)
+
+    class Meta:
+        model = Address 
+        fields = '__all__'
 
 class NewArticleForm(forms.ModelForm):
     class Meta:

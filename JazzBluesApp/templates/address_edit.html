@@ -1,0 +1,88 @@
+{% extends 'base.html' %}  {% load static %}
+<script type="text/javascript" src="{% url 'JazzBluesApp:javascript-catalog' %}"></script>
+<script type="text/javascript" src="{% static '/admin/js/core.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static '/admin/css/widgets.css' %}">
+<style>
+    .calendar>table>caption {
+        caption-side: unset
+    }
+</style>
+{{ form.media }}
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/new_album_event_style.css' %}" type='text/css' media='all' />
+{% endblock %}
+{% block title %} 
+Edit Address | 
+{% endblock %}
+
+{% block content %}
+
+
+<div class="body-register">
+    <div id="container">
+        <div id="secureRegistration">
+            <form class="registrationForm" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="rbroundbox">
+                            <h2>Edit address</h2>
+                    <div class="rbcontent">
+                        <input type="hidden" name="address_id" value="{address.0.id}">
+                        
+                        <table id="register1" class="address">
+                        <tr>
+                                    <td><label for="">Street name <em>*</em></label></td>
+                                    <td class="plus-div">{{addressForm.street_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Street number <em>*</em></label></td>
+                                    <td class="plus-div">{{addressForm.street_number}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">City <em>*</em></label></td>
+                                    <td>{{addressForm.city}}</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td><label for="">Postal code <em>*</em></label></td>
+                                    <td>{{addressForm.postal_code}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Country <em>*</em></label></td>
+                                    <td>{{addressForm.country}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Phone number <em>*</em></label></td>
+                                    <td>{{addressForm.phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td><label for="">Address details <em>*</em></label></td>
+                                    <td>{{addressForm.address_details}}</td>
+                                </tr>
+                        </table>
+                        <table id="register2" class="address">   
+                        </table>
+                    </div>
+                </div>
+                <button type="submit" class="button">Save changes</button>
+                <button class="delete">
+                    <a href="#">Delete</a>
+                </button>
+        </div>
+        </form>
+    </div>
+</div>
+
+<div style="text-align: center;"><br>
+    <a href="#" class="button">Delete</a><br><br>
+</div>
+
+
+<br> {% if messages %}
+<div style="text-align: center; ">
+    {% for message in messages %}
+    <div>
+        {{ message|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %} {% endblock %}

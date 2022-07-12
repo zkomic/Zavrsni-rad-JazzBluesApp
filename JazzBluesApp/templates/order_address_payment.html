@@ -45,7 +45,7 @@
         </div><br>
         {% endif %}
             <a name="main-content"></a>
-            <h2>Cart</h2>
+            <h2>Checkout</h2>
             <table id="basketContent">
                 {% for album in albums %}
                 <tr>
@@ -67,11 +67,8 @@
                         </dl>
                     </td>
                     {% for cart in userAlbumCart.album_id.all %} {% if cart|stringformat:"s" == album.album_name|stringformat:"s" %}
+                    <td></td>
                     <td>{{current_user.id|get_albumCart_quantity:cart}} × £{{album.album_price}}</td>
-                    <td>
-                        <a href="{% url 'JazzBluesApp:cartAlbumDecrement' album_id=cart.id %}"><button class="remove" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="0">-</button></a>
-                        <a href="{% url 'JazzBluesApp:cartAlbumIncrement' album_id=cart.id %}"><button class="add" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="2">+</button></a>
-                    </td>
                     {% endif %} {% endfor %}
                 </tr>
                 {% endfor %} {% for event in events %}
@@ -94,11 +91,8 @@
                         </dl>
                     </td>
                     {% for cart in userEventCart.event_id.all %} {% if cart|stringformat:"s" == event.event_name|stringformat:"s" %}
+                    <td></td>
                     <td>{{current_user.id|get_event_quantity:cart}} × £{{event.ticket_price}}</td>
-                    <td>
-                        <a href="{% url 'JazzBluesApp:cartEventDecrement' event_id=cart.id %}"><button class="remove" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="0">-</button></a>
-                        <a href="{% url 'JazzBluesApp:cartEventIncrement' event_id=cart.id %}"><button class="add" type="submit" name="updateQuantity_M4782UKLPX.SIG" value="2">+</button></a>
-                    </td>
                     {% endif %} {% endfor %}
                 </tr>
                 {% endfor %}
@@ -106,8 +100,17 @@
                     <td colspan="4">Total <span>£{{total}}</span></td>
                 </tr>
             </table>
-                <a href="{% url 'JazzBluesApp:orderAddressPayment' username=current_user.username %}" class="button"><button class="btn-checkout" type="submit" name="review-order">Checkout</button></a>
                 <!--<a href="{% url 'JazzBluesApp:checkout' username=current_user.username %}" class="button"><button class="btn-checkout" type="submit" name="review-order">Checkout</button></a>-->
+        </div>
+        <div id="col2" class="clearfix col-mid" role="main">
+            <h3>Shipping address</h3>
+            {{user_address.address_id.street_name}} {{user_address.address_id.street_number}}<br>
+            {{user_address.address_id.postal_code}} {{user_address.address_id.city}}<br>
+            {{user_address.address_id.country}}<br>
+            {{user_address.address_id.phone}}
+
+            <a href="{% url 'JazzBluesApp:addressEdit' address_id=user_address.address_id.id %}" class="button">Edit adress</a> 
+
         </div>
     </div>
 </div>

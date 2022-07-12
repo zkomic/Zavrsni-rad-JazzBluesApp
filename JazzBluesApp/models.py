@@ -33,7 +33,7 @@ CREDIT_CARD_CHOICES = (
     (maestro, 'Maestro')
 )
 
-class Address (models.Model): #adrese za venues i billing adresses
+class Address (models.Model):
     street_name = models.CharField(max_length=50)
     street_number = models.CharField(max_length=10)
     city = models.CharField(max_length=50)
@@ -207,7 +207,6 @@ class EventOrderUser(models.Model):
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)
     eventorder_id = models.ForeignKey(EventOrder, on_delete=models.CASCADE, null=True, related_name="eventorderitems")
     quantity = models.IntegerField(default=1)
-    
 
 class TicketPurchase(models.Model):
     event_id = models.ForeignKey(Event, on_delete=models.CASCADE)
