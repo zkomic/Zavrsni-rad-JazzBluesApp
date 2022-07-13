@@ -22,6 +22,31 @@
     .closebtn:hover {
       color: black;
     }
+
+    .shipping-payment {
+      margin-top: 50px;
+    }
+
+    .column-shipping {
+      float: left;
+      width: 50%;
+    }
+
+    .column-payment {
+      float: right;
+      width: 50%;
+    }
+
+    .column-payment{
+      text-align: right;
+    }
+    
+    /* Clear floats after the columns */
+    .shipping-payment:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
     </style>
 
 
@@ -63,7 +88,13 @@
                             <dt class="title">
                             <a href="#">{{album.artist_id.artist_name}}: {{album.album_name}}</a>
                           </dt>
-                            <dd class="dispatch">Release Date 18 February 2022</dd>
+                          {% if album.album_format == "vinyl" %}
+                          <dd class="dispatch">Vinyl 12" Album</dd>
+                          {% elif album.album_format == "cd_album" %}
+                          <dd class="dispatch">CD Album</dd>
+                          {% else %}
+                          <dd class="dispatch">CD Box Set</dd>
+                          {% endif %}
                         </dl>
                     </td>
                     {% for cart in userAlbumCart.album_id.all %} {% if cart|stringformat:"s" == album.album_name|stringformat:"s" %}
@@ -86,8 +117,12 @@
                           </dt>
                             <dt class="title">
                             <a href="#">{{event.artist_id.artist_name}}:  {{event.event_name}}</a>
-                          </dt>
-                            <dd class="dispatch">Release Date 18 February 2022</dd>
+                          </dt> 
+                            {% if event.category == "concert" %}
+                            <dd class="dispatch">Concert</dd> 
+                            {% elif event.category == "festival" %}
+                            <dd class="dispatch">Festival</dd>
+                            {% endif %}
                         </dl>
                     </td>
                     {% for cart in userEventCart.event_id.all %} {% if cart|stringformat:"s" == event.event_name|stringformat:"s" %}
@@ -99,27 +134,63 @@
                 <tr class="total">
                     <td colspan="4">Total <span>£{{total}}</span></td>
                 </tr>
-            </table>
-                
-        </div>
-        <div id="col2" class="clearfix col-mid" role="main">
-            <h3>Shipping address</h3> 
-            {% if user_address.address_id %}
-            <a href="{% url 'JazzBluesApp:addressEdit' address_id=user_address.address_id.id %}" class="button">Edit adress</a> 
-            {% else %}
-            <a href="{% url 'JazzBluesApp:newAddress' %}" class="button">New adress</a>
-            {% endif %}
-            {{user_address.address_id.street_name}} {{user_address.address_id.street_number}}<br>
-            {{user_address.address_id.postal_code}} {{user_address.address_id.city}}<br>
-            {{user_address.address_id.country}}<br>
-            {{user_address.address_id.phone}}
+            </table>   
 
-             
+            <div class="shipping-payment">
+              <div class="column-shipping">
+                <h2>Shipping address</h2>
+                <p>{% if user_address.address_id %}
+                  {{user_address.address_id.street_name}} {{user_address.address_id.street_number}}<br>
+                  {{user_address.address_id.postal_code}} {{user_address.address_id.city}}<br>
+                  {{user_address.address_id.country}}<br>
+                  {{user_address.address_id.phone}}<br>
+                  <a href="{% url 'JazzBluesApp:addressEdit' address_id=user_address.address_id.id %}" class="button">Edit adress</a> 
+                  {% else %}
+                  <a href="{% url 'JazzBluesApp:newAddress' %}" class="button">New adress</a>
+                  {% endif %}
+                </p>
+              </div>
+            
+              <div class="column-payment">
+                <h2>Payment</h2>
+                <p class="card-details">
+                  Name on card: <input id="name" type="text" placeholder="John Smith">
+                  <br>Card Number:
+                  <input id="cardnumber" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+                  <br>Exp. date: <input id="expiry" type="text" maxlength="5" placeholder="xx / xx"/>
+                </p>
+              </div>
+            </div>             
+        </div>
+        <div id="col2" class="clearfix col-mid" role="main">      
             <a href="{% url 'JazzBluesApp:checkout' username=current_user.username %}" class="button"><button class="btn-checkout" type="submit" name="review-order">Checkout</button></a>
         </div>
-        
     </div>
 </div>
 
- {% endif %} {% endblock %}
+ {% endif %}
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+ <script>
+
+$('#expiry').on('input',function(e){
+    if($(this).val().length == 2 && characterCount < $(this).val().length) {
+        $(this).val($(this).val()+'/');
+    }
+    characterCount = $(this).val().length
+});
+
+
+$('#cardnumber').on('keypress change', function () {
+  $(this).val(function (index, value) {
+	  return value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
+  });
+});
+ </script>
+
+ {% endblock %}
+
+
+
+
 
