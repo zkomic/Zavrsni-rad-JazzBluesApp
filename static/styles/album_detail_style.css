@@ -1,6 +1,10 @@
+* {
+    font-family: 'Oswald';
+    font-size: 12px;
+    color: #777;
+}
 
-
- div.product div.images {
+div.product div.images {
     float: left;
     width: 48%
 }
@@ -12,12 +16,11 @@ div.product div.summary {
     clear: none
 }
 
- div.product .tabs{
+div.product .tabs {
     clear: both
 }
 
-
- .breadcrumb {
+.breadcrumb {
     margin: 2em 0 1em;
     padding: 0;
     font-size: .92em;
@@ -25,12 +28,12 @@ div.product div.summary {
     background-color: white;
 }
 
- .breadcrumb::after,  .breadcrumb::before {
+.breadcrumb::after, .breadcrumb::before {
     content: " ";
     display: table
 }
 
- .breadcrumb::after {
+.breadcrumb::after {
     clear: both
 }
 
@@ -39,69 +42,67 @@ div.product div.summary {
 }
 
 
- div.product {
+div.product {
     margin-bottom: 0;
     position: relative
 }
 
- div.product p.price,  div.product span.price {
+div.product p.price, div.product span.price {
     color: #77a464;
-    font-size: 1.25em
 }
 
- div.product p.price ins,  div.product span.price ins {
+div.product p.price ins, div.product span.price ins {
     background: inherit;
-    font-weight: 700;
     display: inline-block
 }
 
- div.product p.price del,  div.product span.price del {
+div.product p.price del, div.product span.price del {
     opacity: .5;
     display: inline-block
 }
 
- div.product div.images {
+div.product div.images {
     margin-bottom: 2em
 }
 
- div.product div.images img {
+div.product div.images img {
     display: block;
     width: 100%;
     height: auto;
     box-shadow: none
 }
 
- #reviews #respond {
+#reviews #respond {
     margin: 0;
     border: 0;
     padding: 0
 }
 
- #reviews #comment {
+#reviews #comment {
     height: 75px
 }
 
- #reviews #comments h2 {
+#reviews #comments h2 {
     clear: none
 }
 
- #reviews #comments ol.commentlist {
+#reviews #comments ol.commentlist {
     margin: 0;
     width: 100%;
     background: 0 0;
     list-style: none
 }
 
- #reviews #comments ol.commentlist::after,  #reviews #comments ol.commentlist::before {
+#reviews #comments ol.commentlist::after, #reviews #comments ol.commentlist::before {
     content: " ";
     display: table
 }
 
- #reviews #comments ol.commentlist::after {
+#reviews #comments ol.commentlist::after {
     clear: both
 }
 
- #reviews #comments ol.commentlist li {
+#reviews #comments ol.commentlist li {
     padding: 0;
     margin: 0 0 20px;
     border: 0;
@@ -110,12 +111,11 @@ div.product div.summary {
     border: 0
 }
 
- #reviews #comments ol.commentlist li .meta {
+#reviews #comments ol.commentlist li .meta {
     color: #767676;
-    font-size: .75em
 }
 
- #reviews #comments ol.commentlist li img.avatar {
+#reviews #comments ol.commentlist li img.avatar {
     float: left;
     position: absolute;
     top: 0;
@@ -129,52 +129,50 @@ div.product div.summary {
     box-shadow: none
 }
 
- #reviews #comments ol.commentlist li .comment-text {
+#reviews #comments ol.commentlist li .comment-text {
     margin: 0 0 0 50px;
     border: 1px solid #e4e1e3;
     border-radius: 4px;
     padding: 1em 1em 0
 }
 
- #reviews #comments ol.commentlist li .comment-text::after, 
-  #reviews #comments ol.commentlist li .comment-text::before {
+#reviews #comments ol.commentlist li .comment-text::after,
+#reviews #comments ol.commentlist li .comment-text::before {
     content: " ";
     display: table
 }
 
- #reviews #comments ol.commentlist li .comment-text::after {
+#reviews #comments ol.commentlist li .comment-text::after {
     clear: both
 }
 
- #reviews #comments ol.commentlist li .comment-text p {
+#reviews #comments ol.commentlist li .comment-text p {
     margin: 0 0 1em
 }
 
- #reviews #comments ol.commentlist li .comment-text p.meta {
-    font-size: .83em
-}
 
- #reviews #comments ol.commentlist ul.children {
+
+#reviews #comments ol.commentlist ul.children {
     list-style: none outside;
     margin: 20px 0 0 50px
 }
 
- #reviews #comments ol.commentlist ul.children .star-rating {
+#reviews #comments ol.commentlist ul.children .star-rating {
     display: none
 }
 
- #reviews #comments ol.commentlist #respond {
+#reviews #comments ol.commentlist #respond {
     border: 1px solid #e4e1e3;
     border-radius: 4px;
     padding: 1em 1em 0;
     margin: 20px 0 0 50px
 }
 
- #reviews #comments .commentlist>li::before {
+#reviews #comments .commentlist>li::before {
     content: ""
 }
 
- .star-rating {
+.star-rating {
     float: right;
     overflow: hidden;
     position: relative;
@@ -182,10 +180,9 @@ div.product div.summary {
     line-height: 1;
     font-size: 1em;
     width: 5.4em;
-    font-family: star
 }
 
- #review_form #respond {
+#review_form #respond {
     position: static;
     margin: 0;
     width: auto;
@@ -194,25 +191,25 @@ div.product div.summary {
     border: 0
 }
 
- #review_form #respond::after, 
-  #review_form #respond::before {
+#review_form #respond::after,
+#review_form #respond::before {
     content: " ";
     display: table
 }
 
- #review_form #respond::after {
+#review_form #respond::after {
     clear: both
 }
 
- #review_form #respond p {
+#review_form #respond p {
     margin: 0 0 10px
 }
 
- #review_form #respond .form-submit input {
+#review_form #respond .form-submit input {
     left: auto
 }
 
- #review_form #respond textarea {
+#review_form #respond textarea {
     box-sizing: border-box;
     width: 100%
 }
@@ -220,14 +217,11 @@ div.product div.summary {
 
 
 /*--------------------------------------------------------------1.0 - Reset--------------------------------------------------------------*/
-html, body {
-    font-family: inherit;
-}
 
-    .container {
-        margin: 0 auto;
-        width: 960px;
-    }
+.container {
+    margin: 0 auto;
+    width: 960px;
+}
 
 
 /*--------------------------------------------------------------3.0 Typography--------------------------------------------------------------*/
@@ -241,9 +235,8 @@ body {
 
 /* Entry Title */
 .entry-title {
-    font-weight: 700;
     font-size: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     line-height: 1.4;
     margin-top: 0;
     margin-bottom: 0;
@@ -299,18 +292,12 @@ body {
 
 
 
- #reviews #comments ol.commentlist li img.avatar {
+#reviews #comments ol.commentlist li img.avatar {
     width: 42px;
     height: auto;
     border: 0;
     padding: 0;
 }
-
- div.product p.price,  div.product span.price {
-    font-size: 14px;
-}
-
-
 
 h3#reply-title, .comments-title {
     font-weight: 400;
@@ -327,13 +314,13 @@ form.comment-form {
 
 [data-tab-content] {
     display: none;
-  }
-  
+}
+
 .active[data-tab-content] {
     display: block;
-  }
-   
-  
+}
+
+
 .tab {
     cursor: pointer;
 }
@@ -346,43 +333,40 @@ div.product .tabs ul.tabs {
     position: relative
 }
 
- div.product .tabs ul.tabs li {
+div.product .tabs ul.tabs li {
     border: 1px solid #d3ced2;
     background-color: #ebe9eb;
     display: inline-block;
     position: relative;
     z-index: 0;
-    border-radius: 4px 4px 0 0;
     margin: 0 -5px;
-    padding: 0 1em;
     display: inline-block;
-    padding: .5em 0;
-    font-weight: 700;
+    padding: .5em 1em;
     color: #515151;
     text-decoration: none
 }
 
- div.product .tabs ul.tabs li:hover {
+div.product .tabs ul.tabs li:hover {
     text-decoration: none;
     color: #6b6a6b
 }
 
- div.product .tabs ul.tabs li.active {
+div.product .tabs ul.tabs li.active {
     background: #fff;
     z-index: 2;
     border-bottom-color: #fff
 }
 
- div.product .tabs ul.tabs li.active::before {
+div.product .tabs ul.tabs li.active::before {
     box-shadow: 2px 2px 0 #fff
 }
 
- div.product .tabs ul.tabs li.active::after {
+div.product .tabs ul.tabs li.active::after {
     box-shadow: -2px 2px 0 #fff
 }
 
- div.product .tabs ul.tabs li::after,  
- div.product .tabs ul.tabs li::before {
+div.product .tabs ul.tabs li::after,
+div.product .tabs ul.tabs li::before {
     border: 1px solid #d3ced2;
     position: absolute;
     bottom: -1px;
@@ -392,21 +376,21 @@ div.product .tabs ul.tabs {
     box-sizing: border-box
 }
 
- div.product .tabs ul.tabs li::before {
+div.product .tabs ul.tabs li::before {
     left: -5px;
     border-bottom-right-radius: 4px;
     border-width: 0 1px 1px 0;
     box-shadow: 2px 2px 0 #ebe9eb
 }
 
- div.product .tabs ul.tabs li::after {
+div.product .tabs ul.tabs li::after {
     right: -5px;
     border-bottom-left-radius: 4px;
     border-width: 0 0 1px 1px;
     box-shadow: -2px 2px 0 #ebe9eb
 }
 
- div.product .tabs ul.tabs::before {
+div.product .tabs ul.tabs::before {
     position: absolute;
     content: " ";
     width: 100%;
@@ -424,21 +408,67 @@ div.product .tabs ul.tabs li {
     font-size: 12px;
 }
 
- div.product .tabs ul.tabs li:before {
+div.product .tabs ul.tabs li:before {
     left: -3px;
     border-width: 0;
     box-shadow: none;
 }
 
 
- div.product .tabs ul.tabs li:after {
+div.product .tabs ul.tabs li:after {
     border-bottom-left-radius: 0;
     border-width: 0;
     box-shadow: none;
 }
 
- div.product .tabs ul.tabs li:after,  
- div.product .tabs ul.tabs li:before {
+div.product .tabs ul.tabs li:after,
+div.product .tabs ul.tabs li:before {
     width: 0;
 }
 
+
+/*----------------------------------
+                Buttons
+    ----------------------------------*/
+
+a:hover.button {
+    color: #fff;
+    opacity: 0.6;
+}
+
+
+a.button {
+    line-height: 1;
+    cursor: pointer;
+    background-color: #f4f5f6;
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    padding: 10px;
+    font-weight: 500;
+}
+
+a.button:hover {
+    background-color: #d3d3d3;
+}
+
+a.disabled {
+    line-height: 1;
+    cursor: default;
+    background-color: #d3d3d3;
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 11px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+
+* {
+    font-family: 'Oswald';
+    font-size: 12px;
+    color: #777;
+}

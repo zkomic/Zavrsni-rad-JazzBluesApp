@@ -1,78 +1,55 @@
-#star-1:checked~section [for='star-1'] svg,
-#star-2:checked~section [for='star-1'] svg,
-#star-2:checked~section [for='star-2'] svg,
-#star-3:checked~section [for='star-1'] svg,
-#star-3:checked~section [for='star-2'] svg,
-#star-3:checked~section [for='star-3'] svg,
-#star-4:checked~section [for='star-1'] svg,
-#star-4:checked~section [for='star-2'] svg,
-#star-4:checked~section [for='star-3'] svg,
-#star-4:checked~section [for='star-4'] svg,
-#star-5:checked~section [for='star-1'] svg,
-#star-5:checked~section [for='star-2'] svg,
-#star-5:checked~section [for='star-3'] svg,
-#star-5:checked~section [for='star-4'] svg,
-#star-5:checked~section [for='star-5'] svg {
-    transform: scale(1);
-}
-
-#star-1:checked~section [for='star-1'] svg path,
-#star-2:checked~section [for='star-1'] svg path,
-#star-2:checked~section [for='star-2'] svg path,
-#star-3:checked~section [for='star-1'] svg path,
-#star-3:checked~section [for='star-2'] svg path,
-#star-3:checked~section [for='star-3'] svg path,
-#star-4:checked~section [for='star-1'] svg path,
-#star-4:checked~section [for='star-2'] svg path,
-#star-4:checked~section [for='star-3'] svg path,
-#star-4:checked~section [for='star-4'] svg path,
-#star-5:checked~section [for='star-1'] svg path,
-#star-5:checked~section [for='star-2'] svg path,
-#star-5:checked~section [for='star-3'] svg path,
-#star-5:checked~section [for='star-4'] svg path,
-#star-5:checked~section [for='star-5'] svg path {
-    fill: #fb0;
-    stroke: #cc9600;
-}
-
-section {
-    width: 300px;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-}
 
 label {
-    width: 20px;
-    text-align: center;
+
     cursor: pointer;
 }
 
-label svg {
-    width: 100%;
-    height: auto;
-    fill: white;
-    stroke: #ccc;
-    transform: scale(0.8);
-    transition: transform 200ms ease-in-out;
-}
-
-label svg path {
-    transition: fill 200ms ease-in-out, stroke 100ms ease-in-out;
-}
-
-label[for="star-null"] {
-    display: inline-block;
-    margin: 0 auto;
-    color: black;
-}
-
-.rating {
-    display: none;
-}
-
 .input-rating {
+    text-align: center;
+
+    transform: translate3d(-50%, -50%, 0);
     margin-top: 10px;
-    margin-left: 60px;
+    margin-left: 82px;
+}
+
+
+/*get stars and reverse order*/
+
+.starRating:not(old){
+    display        : inline-block;
+    width          : 7.5em;
+    height         : 1.5em;
+    overflow       : hidden;
+    vertical-align : bottom;
+  }
+
+  /*hide radio button */
+  .starRating:not(old) > input{
+    margin-right : -100%;
+    opacity      : 0;
+  }
+
+  .starRating:not(old) > label{
+    display         : block;
+    float           : right;
+    position        : relative;
+    background      : url('/media/rate_star_grey.png'); 
+    background-size : contain;
+  }
+
+  .starRating:not(old) > label:before{
+    content         : '';
+    display         : block;
+    width           : 1.5em;
+    height          : 1.5em;
+    background      : url('/media/rate_star_yellow.png'); 
+    background-size : contain;
+    opacity         : 0;
+    transition      : opacity 0.2s linear;
+  }
+
+  .starRating:not(old) > label:hover:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(:hover) > :checked ~ label:before{
+  opacity : 1;
 }

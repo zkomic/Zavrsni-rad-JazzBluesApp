@@ -506,10 +506,6 @@ def addComment(request, album_id):
             comment.user_id = current_user
             comment.album_id = Album.objects.get(id = album_id)
             if comment.subject and comment.comment and comment.rating: 
-                print(comment.album_id)
-                print(comment.subject)
-                print(comment.comment)
-                print(comment.rating)
                 comment.save()
                 messages.success(request, "Your review has been sent. Thank you!")
                 return redirect('JazzBluesApp:albumDetail', album_id=album_id)
