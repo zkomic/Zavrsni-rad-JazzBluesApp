@@ -212,6 +212,7 @@ def albumEdit(request, album_id):
     return render(request, 'album_edit.html', context)
 
 def albumDetail(request, album_id):
+    sum = 0
     album = Album.objects.all().filter(id=album_id)
     related_albums = Album.objects.all().filter(artist_id=album[0].artist_id).exclude(id=album_id)
     comments = Comment.objects.all().filter(album_id=album_id)
@@ -220,6 +221,15 @@ def albumDetail(request, album_id):
         'comments': comments,
         'related_albums': related_albums,
     }
+    if comments:
+        for comment in comments:
+            sum = sum + comment.rating
+        average_rating = sum/comments.count()
+        context_average = {
+            'average_rating': average_rating,
+        }
+        context.update(context_average)
+    
     return render(request, 'album_detail.html', context)
 
 def eventDetail(request, event_id):

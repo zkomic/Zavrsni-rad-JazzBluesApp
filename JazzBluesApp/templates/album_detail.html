@@ -21,100 +21,8 @@
 
                 <button type="submit" name="add-to-cart" value="507" class="button">Add to cart</button>
             </form>
-
-
         </div>
-
-            <div id="reviews-tab" data-tab-content>
-                <div id="reviews">
-                    {% if comments %}
-                    <div id="comments">
-                        <h2 class="reviews-title">
-                            2 reviews for <span>Beige Fedora</span> </h2>
-                        <ol class="commentlist">
-                            {% for comment in comments %}
-                            <li class="comment">
-                                <div id="comment-13" class="comment_container">
-                                    <img alt="" src="{{comment.user_id.avatar.url}}" srcset="" class="avatar photo"
-                                        height="60" width="60" loading="lazy">
-                                    <div class="comment-text">
-                                        <div class="star-rating">rating:
-                                            <div class="review-rating">
-                                                <i class="fa fa-star{% if comment.rating < 1 %}-o empty{% endif %}"></i>
-                                                <i class="fa fa-star{% if comment.rating < 2 %}-o empty{% endif %}"></i>
-                                                <i class="fa fa-star{% if comment.rating < 3 %}-o empty{% endif %}"></i>
-                                                <i class="fa fa-star{% if comment.rating < 4 %}-o empty{% endif %}"></i>
-                                                <i class="fa fa-star{% if comment.rating < 5 %}-o empty{% endif %}"></i>
-                                            </div>
-                                        </div>
-                                        <p class="meta">
-                                            <strong class="review__author">{{comment.user_id.user.username}}
-                                            </strong>
-                                            <span class="review__dash">–</span>
-                                            <time class="review__published-date"
-                                                datetime="">{{comment.create_at}}</time>
-                                        </p>
-                                        <div>
-                                            <strong>{{comment.subject}}</strong>
-                                            <p>{{comment.comment}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            {% endfor %}
-                        </ol>
-                    </div>
-                    {% else %} Nema komentara...
-                    {% endif %}
-
-                    <div id="review_form_wrapper">
-                        <div id="review_form">
-                            <div id="respond" class="comment-respond">
-                                <span id="reply-title" class="comment-reply-title">Add a
-                                    review </span>
-                                <form action="https://www.themepush.com/demo-moschino/wp-comments-post.php"
-                                    method="post" id="commentform" class="comment-form" novalidate="">
-                                    <p class="comment-notes">
-                                        Required fields are marked <span class="required">*</span></p>
-                                    <div class="comment-form-rating"><label for="rating">Your rating&nbsp;<span
-                                                class="required">*</span></label>
-                                        <p class="stars"> <span> <a class="star-1" href="#">1</a>
-                                                <a class="star-2" href="#">2</a>
-                                                <a class="star-3" href="#">3</a>
-                                                <a class="star-4" href="#">4</a>
-                                                <a class="star-5" href="#">5</a>
-                                            </span> </p><select name="rating" id="rating" required=""
-                                            style="display: none;">
-                                            <option value="">Rate…</option>
-                                            <option value="5">Perfect</option>
-                                            <option value="4">Good</option>
-                                            <option value="3">Average</option>
-                                            <option value="2">Not that bad</option>
-                                            <option value="1">Very poor</option>
-                                        </select>
-                                    </div>
-                                    <p class="comment-form-comment"><label for="comment">Your review&nbsp;
-                                            <span class="required">*</span></label>
-                                        <textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
-                                    </p>
-                                    <p class="comment-form-author"><label for="author">Name&nbsp;<span
-                                                class="required">*</span></label><input id="author" name="author"
-                                            type="text" value="" size="30" required=""></p>
-                                    <p class="comment-form-email"><label for="email">Email&nbsp;<span
-                                                class="required">*</span></label><input id="email" name="email"
-                                            type="email" value="" size="30" required=""></p>
-                                    <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit"
-                                            value="Submit"> <input type="hidden" name="comment_post_ID" value="507"
-                                            id="comment_post_ID">
-                                        <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-                                    </p><noscript></noscript>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+   
         </div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br>
         {% if related_albums %}
@@ -148,20 +56,14 @@
     </div>
 </div>
 
-
-
 -->
 
-
-
-
 <div class="container">
-
     <nav class="breadcrumb">
         <a href="{% url 'base' %}">Home</a>&nbsp;/&nbsp;<a
             href="{% url 'JazzBluesApp:albums' %}">Albums</a>&nbsp;/&nbsp;{{album.0.album_name}}
     </nav>
-    <div class="woocommerce-notices-wrapper"></div>
+    
     <div id="product" class="product">
 
 
@@ -173,26 +75,39 @@
             {% endif %}
         </div>
         <div class="summary entry-summary">
-            <h1 class="entry-title">{{album.0.album_name}}</h1>{{album.0.artist_id}}
-            <div class="product-rating">
-                <a class="tab" data-tab-target="#reviews-tab">(<span class="count">2</span>
+            <h1 class="entry-title">{{album.0.album_name}}</h1>
+            <div class="album-artist">{{album.0.artist_id}}</div>
+            {% if average_rating > 0 %}
+            <div class="product-rating"><br>
+                <a class="tab" data-tab-target="#reviews-tab">
+                    <i class="fa fa-star{% if average_rating < 0.5%}-o{% elif average_rating >= 0.5 and average_rating < 1 %}-half-o{% endif %}" aria-hidden="true"></i>
+                    <i class="fa fa-star{% if average_rating < 1.5%}-o{% elif average_rating >= 1.5 and average_rating < 2 %}-half-o{% endif %}" aria-hidden="true"></i>
+                    <i class="fa fa-star{% if average_rating < 2.5%}-o{% elif average_rating >= 2.5 and average_rating < 3 %}-half-o{% endif %}" aria-hidden="true"></i>
+                    <i class="fa fa-star{% if average_rating < 3.5%}-o{% elif average_rating >= 3.5 and average_rating < 4 %}-half-o{% endif %}" aria-hidden="true"></i>
+                    <i class="fa fa-star{% if average_rating < 4.5%}-o{% elif average_rating >= 4.5 and average_rating < 5 %}-half-o{% endif %}" aria-hidden="true"></i>
+                                                
+                    &nbsp;&nbsp;(<span class="count">{{comments.count}}</span>
                     customer reviews)</a>
             </div>
+            {% endif %}
+            <br>
             <p class="price">
                 <span class="Price-amount amount"><span>$</span>{{album.0.album_price}}</span>
             </p>
-            <div class="woocommerce-product-details__short-description">
+            <br>
+            <div class="product_description">
                 <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
                     fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
                     ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
                     egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
                     leo.</p>
             </div>
-
+            <br>
             {% if user.is_staff %}
             <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.0.id %}" class="button">Edit album</a> {% else %} {% if album.0.in_stock == 0 %}
             <a class="disabled">Sold out</a> {% else %}
             <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.0.id %}" class="button">Add to cart</a> {% endif %} {% endif %}
+            <br><br>
             <div class="product_meta">
                 <span class="posted_in">Categories: <a href="#" rel="tag">Clothing</a>, <a href="#"
                         rel="tag">Hoodies</a></span>
@@ -205,12 +120,11 @@
                     Description
                 </li>
                 <li class="tab" data-tab-target="#reviews-tab">
-                    Reviews (2)
+                    &nbsp;Reviews ({{comments.count}})
                 </li>
             </ul>
             <div class="active" id="tab-description" data-tab-content>
-                <h2>Description</h2>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
+                <p class="details_description">Pellentesque habitant morbi tristique senectus et netus et malesuada
                     fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
                     ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
                     egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
@@ -219,11 +133,11 @@
             <div id="reviews-tab" data-tab-content>
                 <div id="reviews">
                     {% if comments %}
-                    <div id="reviews" class="woocommerce-Reviews">
+                    <div id="reviews" class="woocommerce-Reviews" class="details_reviews">
                         <div id="comments">
-                            <h2 class="woocommerce-Reviews-title">
-                                2 reviews for <span>Beige Fedora</span> </h2><br>
-
+                            <h2>
+                                {{comments.count}} reviews for <span>{{album.0.album_name}}</span>
+                            </h2><br>
                             <ol class="commentlist">
                                 {% for comment in comments %}
                                 <li class="comment">
@@ -238,7 +152,6 @@
                                                     <i class="fa fa-star{% if comment.rating < 3.5%}-o{% elif comment.rating >= 3.5 and comment.rating < 4 %}-half-o{% endif %}" aria-hidden="true"></i>
                                                     <i class="fa fa-star{% if comment.rating < 4.5%}-o{% elif comment.rating >= 4.5 and comment.rating < 5 %}-half-o{% endif %}" aria-hidden="true"></i>
                                                 </span>
-                                                <span><strong>( {{ review.rating }}/5 )</strong></span>
                                             </div>
                                             <p class="meta">
                                                 <strong
@@ -300,13 +213,39 @@
                     </div>
                 </div>
             </div>
-            <div class="woocommerce-Tabs-panel">
-
+            <br>
+            {% if related_albums %}
+            <h2 class="related-title">Related albums</h2>
+            <div class="related-products">
+                {% for album in related_albums %}
+                <li class="related-product">
+                    <a href="">
+                        {% if album.album_cover %}
+                        <img src="{{album.album_cover.url}}">
+                        <img width="200px" /> {% else %}
+                        <img width="300" height="300" src="{{MEDIA_ROOT}}/media/albums/album_default.png" /> {% endif %}
+            
+                        <div class="info">
+                            <p class="product-title">{{album.album_name}}</p><br>
+                            <p class="artist-name">{{album.artist_id.artist_name}}</p>
+                            <p class="price">${{album.album_price}}</p><br>
+                        </div>
+                    </a> {% if user.is_staff %}
+                    <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.id %}" class="button">Edit album</a> {% else
+                    %} {% if album.in_stock == 0 %}
+                    <a class="disabled">Sold out</a> {% else %}
+                    <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a>
+                    {% endif %} {% endif %}
+                </li>
+                {% endfor %}
             </div>
+            {% endif %}
         </div>
     </div>
     </main>
 </div>
+
+
 
 
 <br> {% if messages %}

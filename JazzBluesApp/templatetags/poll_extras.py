@@ -75,5 +75,3 @@ def get_username(user_id):
     username = User.objects.get(id=user_id)
     return username.username
 
-
-

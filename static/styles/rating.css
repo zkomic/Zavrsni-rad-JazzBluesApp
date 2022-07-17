@@ -1,20 +1,15 @@
-
 label {
-
     cursor: pointer;
 }
 
 .input-rating {
     text-align: center;
-
     transform: translate3d(-50%, -50%, 0);
     margin-top: 10px;
     margin-left: 82px;
 }
 
-
 /*get stars and reverse order*/
-
 .starRating:not(old){
     display        : inline-block;
     width          : 7.5em;
@@ -28,7 +23,7 @@ label {
     margin-right : -100%;
     opacity      : 0;
   }
-
+ /*off state stars or the unrated stars*/
   .starRating:not(old) > label{
     display         : block;
     float           : right;
@@ -36,7 +31,7 @@ label {
     background      : url('/media/rate_star_grey.png'); 
     background-size : contain;
   }
-
+ /*This element pushes down and eventually hides the labels.(of the radio buttons)*/
   .starRating:not(old) > label:before{
     content         : '';
     display         : block;
@@ -47,8 +42,9 @@ label {
     opacity         : 0;
     transition      : opacity 0.2s linear;
   }
-
-  .starRating:not(old) > label:hover:before,
+  
+ /*determining the status of the stars according to the above defined element codes*/
+.starRating:not(old) > label:hover:before,
 .starRating:not(old) > label:hover ~ label:before,
 .starRating:not(:hover) > :checked ~ label:before{
   opacity : 1;
