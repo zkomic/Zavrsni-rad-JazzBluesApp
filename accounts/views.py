@@ -28,20 +28,24 @@ def success(request):
     return render(request, 'home.html')
 
 def login_fun(request): 
+    prev_url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)#validacija podataka
         if form.is_valid():
+            next_url = request.POST.get('next_url')
             #log in the user
             user = form.get_user()#dohvacanje upisanih podataka (usera)
             login(request, user)#logiranje usera
-            return redirect('base')
+            return redirect (next_url)
         else:
             messages.warning(request, "Login error!") 
             context = {
+            'prev_url': prev_url,
             'form': AuthenticationForm(),
         }
     else:
         context = {
+            'prev_url': prev_url,
             'form': AuthenticationForm(),
         }
     return render(request, 'login.html', context)

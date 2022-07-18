@@ -198,7 +198,7 @@ div.product div.images img {
     height: 1em;
     line-height: 1;
     font-size: 1em;
-    width: 5.4em;
+    width: 8em;
 }
 
 #review_form #respond {
@@ -558,10 +558,6 @@ a.disabled {
 
 .related-products .related-product a.button {
     margin-top: 1em
-}
-
-.related-products .related-product .price {
-    
 }
 
 .related-products .related-product a img {

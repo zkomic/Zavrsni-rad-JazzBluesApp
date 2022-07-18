@@ -2,7 +2,36 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static 'styles/album_detail_style.css' %}" />
 <link rel="stylesheet" href="{% static 'styles/rating.css' %}" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />{% endblock %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+<style>
+    .alert-success {
+      padding: 20px;
+      background-color: #51d628cd;
+      color: white;
+    }
+    .alert-error {
+      padding: 20px;
+      background-color: #f44336;
+      color: white;
+    }
+
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .closebtn:hover {
+      color: black;
+    }
+    </style>
+
+{% endblock %}
 {% block title %} {{album.0.album_name}} - Details | {% endblock %}
 
 {% block content %}
@@ -23,36 +52,7 @@
             </form>
         </div>
    
-        </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br>
-        {% if related_albums %}
-        <section class="related products">
-            <h2>Related products</h2>
-            <ul class="products">
-                {% for album in related_albums %}
-                <li class="product">
-                    <a href="">
-                        {% if album.album_cover %}
-                        <img src="{{album.album_cover.url}}">
-                        <img width="200px" /> {% else %}
-                        <img width="300" height="300" src="{{MEDIA_ROOT}}/media/albums/album_default.png" /> {% endif %}
-
-                        <div class="info">
-                            <p class="product-title">{{album.album_name}}</p><br>
-                            <p class="artist-name">{{album.artist_id.artist_name}}</p><br>
-                            <p class="price">${{album.album_price}}</p><br>
-                        </div>
-                    </a> {% if user.is_staff %}
-                    <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.id %}" class="button">Edit album</a> {% else
-                    %} {% if album.in_stock == 0 %}
-                    <a class="disabled">Sold out</a> {% else %}
-                    <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a>
-                    {% endif %} {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-        </section>
-        {% endif %}
+        </div>        
     </div>
 </div>
 
@@ -66,6 +66,24 @@
     
     <div id="product" class="product">
 
+        {% if messages %}
+        <div>
+            {% for message in messages %}
+            {% if 'warning' in message.tags %}
+            <div class="alert-error">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+            {% endif %}
+            {% if 'success' in message.tags %}
+            <div class="alert-success">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div><br>
+        {% endif %}
 
         <div class="images">
             {% if album.0.album_cover %}
@@ -79,7 +97,7 @@
             <div class="album-artist">{{album.0.artist_id}}</div>
             {% if average_rating > 0 %}
             <div class="product-rating"><br>
-                <a class="tab" data-tab-target="#reviews-tab">
+                <a class="average-rating-link" href="#reviews-tab">
                     <i class="fa fa-star{% if average_rating < 0.5%}-o{% elif average_rating >= 0.5 and average_rating < 1 %}-half-o{% endif %}" aria-hidden="true"></i>
                     <i class="fa fa-star{% if average_rating < 1.5%}-o{% elif average_rating >= 1.5 and average_rating < 2 %}-half-o{% endif %}" aria-hidden="true"></i>
                     <i class="fa fa-star{% if average_rating < 2.5%}-o{% elif average_rating >= 2.5 and average_rating < 3 %}-half-o{% endif %}" aria-hidden="true"></i>
@@ -177,6 +195,7 @@
                         <div id="review_form_wrapper">
                             <div id="review_form">
                                 <div id="respond" class="comment-respond">
+                                    {% if user.is_authenticated %}
                                     <span id="reply-title" class="comment-reply-title">Add a
                                         review</span>
                                         <form action={% url 'JazzBluesApp:addComment' album_id=album.0.id %} method="post">
@@ -199,7 +218,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {% if user.is_authenticated %}
+                                                                                       
+                                                                               
                                             <button class="submit">Submit</button>
                                             {% else %}
                                             You must be logged in to post a review
@@ -219,7 +239,7 @@
             <div class="related-products">
                 {% for album in related_albums %}
                 <li class="related-product">
-                    <a href="">
+                    <a href="{% url 'JazzBluesApp:albumDetail' album_id=album.id %}">
                         {% if album.album_cover %}
                         <img src="{{album.album_cover.url}}">
                         <img width="200px" /> {% else %}
@@ -230,12 +250,7 @@
                             <p class="artist-name">{{album.artist_id.artist_name}}</p>
                             <p class="price">${{album.album_price}}</p><br>
                         </div>
-                    </a> {% if user.is_staff %}
-                    <a href="{% url 'JazzBluesApp:albumEdit' album_id=album.id %}" class="button">Edit album</a> {% else
-                    %} {% if album.in_stock == 0 %}
-                    <a class="disabled">Sold out</a> {% else %}
-                    <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.id %}" class="button">Add to cart</a>
-                    {% endif %} {% endif %}
+                    </a>
                 </li>
                 {% endfor %}
             </div>
@@ -244,20 +259,6 @@
     </div>
     </main>
 </div>
-
-
-
-
-<br> {% if messages %}
-<div>
-    {% for message in messages %}
-    <div>
-        {{ message|safe }}
-    </div>
-    {% endfor %}
-</div>
-{% endif %}
-
 
 
 <script src="{% static 'scripts/tabs.js' %}" defer></script>
@@ -270,6 +271,13 @@
         var me = $(this);
         log.html(me.attr('value'));
     });
+
+    var target = document.querySelectorAll('.average-rating-link');
+
+    target.click(function () {
+        $('#tab-description').classList.remove('active');
+        $('#tab-reviews').classList.add('active');
+    });  
 </script>
 
 {% endblock %}

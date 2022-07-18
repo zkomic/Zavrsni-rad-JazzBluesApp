@@ -1,5 +1,6 @@
 const tabs = document.querySelectorAll('[data-tab-target]')
 const tabContents = document.querySelectorAll('[data-tab-content]')
+const averageReview = document.querySelector('[data-tab-target]')
 
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {

@@ -181,6 +181,7 @@ def articleDelete(request, article_id):
 @login_required
 @staff_member_required
 def albumEdit(request, album_id):
+    prev_url = request.META.get('HTTP_REFERER')
     album = Album.objects.all().filter(id=album_id)
     instanca = album.first()
     data = {
@@ -199,11 +200,13 @@ def albumEdit(request, album_id):
     if request.method == 'POST':
         albumForm = NewAlbumForm(request.POST, instance=instanca)
         if albumForm.is_valid():
+            next_url = request.POST.get('next_url')
             albumForm.save()
-            return redirect('JazzBluesApp:albums')     
+            return redirect (next_url)     
     else:
         albumForm = NewAlbumForm(initial=data)
     context = {
+        'prev_url': prev_url,
         'artist': album[0].artist_id,
         'recordLabel': album[0].recordLabel_id,
         'albumForm': albumForm,
