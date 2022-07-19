@@ -470,6 +470,7 @@ a.button:hover {
     background-color: #d3d3d3;
 }
 
+
 a.disabled {
     line-height: 1;
     cursor: default;

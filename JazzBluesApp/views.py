@@ -7,7 +7,7 @@ from .forms import NewAlbumForm, NewArtistForm, NewAddressForm, NewComment, NewR
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .filters import AlbumFilter, EventFilter, OrderFilter
-from datetime import datetime
+from datetime import datetime, date
 import urllib
 from urllib.parse import urlparse, parse_qs
 from django.http import HttpResponseRedirect
@@ -323,42 +323,28 @@ def newRecordLabel(request):
     }
     return render(request, 'new_record_label.html', context)
 
-@login_required
-def seats(request, event_id):
-    event = Event.objects.get(id=event_id)
-    venue = Venue.objects.get(id=event.venue_id.id)
-    seat_range = int(venue.row_number) * int(venue.row_seat_count)
-    occupied_seats = TicketPurchase.objects.all().filter(event_id=event_id)
-    occupied_seat_numbers = []
-    for seat in occupied_seats:
-        occupied_seat_numbers.append(seat.seat_number)
-
-    context = {
-        'event': event,
-        'venue': venue,
-        'rows': venue.row_number,
-        'seats': venue.row_seat_count,
-        'range': range(seat_range),
-        'occupied': occupied_seat_numbers,
-    }
-    return render(request, 'seats.html', context)
-
 def seatReservation(request, event_id):
     username = User.objects.get(id=request.user.id).username
     if request.method == 'POST':
         seat_number = request.POST.getlist('seat_number')
         user_id = request.user.id
-        print(user_id)
-        event = Event.objects.get(id=event_id)
-        for seat in seat_number:
-            new_ticket = TicketPurchase(event_id=event, order_date=datetime.now(), seat_number=seat)
-            new_ticket.save()
-            new_ticket.user_id.add(user_id)
+        if (seat_number):
+            print(seat_number)
+            event = Event.objects.get(id=event_id)
+            for seat in seat_number:
+                new_ticket = TicketPurchase(event_id=event, order_date=datetime.now(), seat_number=seat)
+                new_ticket.save()
+                new_ticket.user_id.add(user_id)
+        else:
+            messages.warning(request, "You have to choose seat first.")
+            return redirect ('JazzBluesApp:eventDetail', event_id=event_id)
     return redirect ('JazzBluesApp:userOrders', username=username)
+
 
 def events(request): 
 
     events = Event.objects.all()
+    print(datetime.today())
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
@@ -369,12 +355,18 @@ def events(request):
     events_paginated = p.get_page(page)
 
     context = {
+        'now': datetime.today(),
         'events' : events,
         'events_paginated' : events_paginated,
         'eventsFilter' : eventsFilter
     }
 
     return render(request, 'events.html', context)
+
+    @property
+    def is_past_due(self):
+        print(self)
+        return date.today() > self.date
 
 def eventsName(request):
 

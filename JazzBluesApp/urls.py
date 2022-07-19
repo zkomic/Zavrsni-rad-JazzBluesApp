@@ -30,7 +30,6 @@ urlpatterns = [
     url(r'^albumDelete/(?P<album_id>\w+)$', views.albumDelete, name="albumDelete"),
     url(r'^albumDetail/(?P<album_id>\w+)$', views.albumDetail, name="albumDetail"),
     url(r'^addComment/(?P<album_id>\w+)$', views.addComment, name="addComment"),
-    url(r'^seats/(?P<event_id>\w+)$', views.seats, name="seats"),
     url(r'^seatReservation/(?P<event_id>\w+)$', views.seatReservation, name="seatReservation"),
     url(r'^eventDetail/(?P<event_id>\w+)$', views.eventDetail, name="eventDetail"),
     url(r'^addEventToCart/(?P<event_id>\w+)$', views.addEventToCart, name="addEventToCart"),

@@ -49,126 +49,129 @@
     }
     </style>
 
-
 <div class="cart">
-    {% if not userAlbumCart and not userEventCart %}
-    <p>Nemate ništa u košarici...</p>
-    {% else %}
-    <div id="main" class="main">
-        <div id="col2" class="clearfix col-mid" role="main">
-            {% if messages %}
-        <div>
-            {% for message in messages %}
-            <br>
-            <div>
-                <div class="alert">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                    {{ message|safe }}
-                  </div>
-            </div>
-            {% endfor %}
-        </div><br>
-        {% endif %}
-            <a name="main-content"></a>
-            <h2>Checkout</h2>
-            <table id="basketContent">
-                {% for album in albums %}
-                <tr>
-                    <td>
-                        <dl>
-                            <dt class="image">
-                              <a href="#">
-                              {% if album.album_cover %}
-                                <img src="{{album.album_cover.url}}" width="50" loading="lazy" alt="">
-                              {% else %}
-                              <img src="{{MEDIA_ROOT}}/media/albums/album_default.png" width="50" loading="lazy" alt="">
-                              {% endif %}
-                              </a>
-                          </dt>
-                            <dt class="title">
-                            <a href="#">{{album.artist_id.artist_name}}: {{album.album_name}}</a>
-                          </dt>
-                          {% if album.album_format == "vinyl" %}
-                          <dd class="dispatch">Vinyl 12" Album</dd>
-                          {% elif album.album_format == "cd_album" %}
-                          <dd class="dispatch">CD Album</dd>
-                          {% else %}
-                          <dd class="dispatch">CD Box Set</dd>
-                          {% endif %}
-                        </dl>
-                    </td>
-                    {% for cart in userAlbumCart.album_id.all %} {% if cart|stringformat:"s" == album.album_name|stringformat:"s" %}
-                    <td></td>
-                    <td>{{current_user.id|get_albumCart_quantity:cart}} × £{{album.album_price}}</td>
-                    {% endif %} {% endfor %}
-                </tr>
-                {% endfor %} {% for event in events %}
-                <tr>
-                    <td>
-                        <dl>
-                            <dt class="image">
-                              <a href="#">
-                              {% if event.event_poster %}
-                                <img src="{{event.event_poster.url}}" width="50" loading="lazy" alt="">
-                              {% else %}
-                              <img src="{{MEDIA_ROOT}}/media/events/event_default.jpg" width="50" loading="lazy" alt="">
-                              {% endif %}
-                              </a>
-                          </dt>
-                            <dt class="title">
-                            <a href="#">{{event.artist_id.artist_name}}:  {{event.event_name}}</a>
-                          </dt> 
-                            {% if event.category == "concert" %}
-                            <dd class="dispatch">Concert</dd> 
-                            {% elif event.category == "festival" %}
-                            <dd class="dispatch">Festival</dd>
+  {% if not userAlbumCart and not userEventCart %}
+  <p>Nemate ništa u košarici...</p>
+  {% else %}
+  <div id="main" class="main">
+      <div id="col2" class="clearfix col-mid" role="main">
+          {% if messages %}
+      <div>
+          {% for message in messages %}
+          <br>
+          <div>
+              <div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                  {{ message|safe }}
+                </div>
+          </div>
+          {% endfor %}
+      </div><br>
+      {% endif %}
+      <form action={% url 'JazzBluesApp:checkout' username=current_user.username %}  method="POST">
+        {% csrf_token %}
+          <a name="main-content"></a>
+          <h2>Checkout</h2>
+          <table id="basketContent">
+              {% for album in albums %}
+              <tr>
+                  <td>
+                      <dl>
+                          <dt class="image">
+                            <a href="#">
+                            {% if album.album_cover %}
+                              <img src="{{album.album_cover.url}}" width="50" loading="lazy" alt="">
+                            {% else %}
+                            <img src="{{MEDIA_ROOT}}/media/albums/album_default.png" width="50" loading="lazy" alt="">
                             {% endif %}
-                        </dl>
-                    </td>
-                    {% for cart in userEventCart.event_id.all %} {% if cart|stringformat:"s" == event.event_name|stringformat:"s" %}
-                    <td></td>
-                    <td>{{current_user.id|get_event_quantity:cart}} × £{{event.ticket_price}}</td>
-                    {% endif %} {% endfor %}
-                </tr>
-                {% endfor %}
-                <tr class="total">
-                    <td colspan="4">Total <span>£{{total}}</span></td>
-                </tr>
-            </table>   
+                            </a>
+                        </dt>
+                          <dt class="title">
+                          <a href="#">{{album.artist_id.artist_name}}: {{album.album_name}}</a>
+                        </dt>
+                        {% if album.album_format == "vinyl" %}
+                        <dd class="dispatch">Vinyl 12" Album</dd>
+                        {% elif album.album_format == "cd_album" %}
+                        <dd class="dispatch">CD Album</dd>
+                        {% else %}
+                        <dd class="dispatch">CD Box Set</dd>
+                        {% endif %}
+                      </dl>
+                  </td>
+                  {% for cart in userAlbumCart.album_id.all %} {% if cart|stringformat:"s" == album.album_name|stringformat:"s" %}
+                  <td></td>
+                  <td>{{current_user.id|get_albumCart_quantity:cart}} × £{{album.album_price}}</td>
+                  {% endif %} {% endfor %}
+              </tr>
+              {% endfor %} {% for event in events %}
+              <tr>
+                  <td>
+                      <dl>
+                          <dt class="image">
+                            <a href="#">
+                            {% if event.event_poster %}
+                              <img src="{{event.event_poster.url}}" width="50" loading="lazy" alt="">
+                            {% else %}
+                            <img src="{{MEDIA_ROOT}}/media/events/event_default.jpg" width="50" loading="lazy" alt="">
+                            {% endif %}
+                            </a>
+                        </dt>
+                          <dt class="title">
+                          <a href="#">{{event.artist_id.artist_name}}:  {{event.event_name}}</a>
+                        </dt> 
+                          {% if event.category == "concert" %}
+                          <dd class="dispatch">Concert</dd> 
+                          {% elif event.category == "festival" %}
+                          <dd class="dispatch">Festival</dd>
+                          {% endif %}
+                      </dl>
+                  </td>
+                  {% for cart in userEventCart.event_id.all %} {% if cart|stringformat:"s" == event.event_name|stringformat:"s" %}
+                  <td></td>
+                  <td>{{current_user.id|get_event_quantity:cart}} × £{{event.ticket_price}}</td>
+                  {% endif %} {% endfor %}
+              </tr>
+              {% endfor %}
+              <tr class="total">
+                  <td colspan="4">Total <span>£{{total}}</span></td>
+              </tr>
+          </table>   
 
-            <div class="shipping-payment">
-              <div class="column-shipping">
-                <h2>Shipping address</h2>
-                <p>{% if user_address.address_id %}
-                  {{user_address.address_id.street_name}} {{user_address.address_id.street_number}}<br>
-                  {{user_address.address_id.postal_code}} {{user_address.address_id.city}}<br>
-                  {{user_address.address_id.country}}<br>
-                  {{user_address.address_id.phone}}<br>
-                  <a href="{% url 'JazzBluesApp:addressEdit' address_id=user_address.address_id.id %}" class="button">Edit adress</a> 
-                  {% else %}
-                  <a href="{% url 'JazzBluesApp:newAddress' %}" class="button">New adress</a>
-                  {% endif %}
-                </p>
-              </div>
+          <div class="shipping-payment">
+            <div class="column-shipping">
+              <h2>Shipping address</h2>
+              <p>{% if user_address.address_id %}
+                {{user_address.address_id.street_name}} {{user_address.address_id.street_number}}<br>
+                {{user_address.address_id.postal_code}} {{user_address.address_id.city}}<br>
+                {{user_address.address_id.country}}<br>
+                {{user_address.address_id.phone}}<br>
+                <a href="{% url 'JazzBluesApp:addressEdit' address_id=user_address.address_id.id %}" class="button">Edit adress</a> 
+                {% else %}
+                <a href="{% url 'JazzBluesApp:newAddress' %}" class="button">New adress</a>
+                {% endif %}
+              </p>
+            </div>
             
-              <div class="column-payment">
-                <h2>Payment</h2>
-                <p class="card-details">
-                  Name on card: <input id="name" type="text" placeholder="John Smith">
-                  <br>Card Number:
-                  <input id="cardnumber" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
-                  <br>Exp. date: <input id="expiry" type="text" maxlength="5" placeholder="xx / xx"/>
-                </p>
-              </div>
-            </div>             
-        </div>
+            <div class="column-payment">
+              <h2>Payment</h2>
+              <p class="card-details">
+                Name on card: <input id="name" type="text" placeholder="John Smith" required />
+                <br>Card Number:
+                <input id="cardnumber" type="tel" inputmode="numeric"  pattern="[0-9\s]+{13,16}" maxlength="19"
+                  placeholder="xxxx xxxx xxxx xxxx" required /> <!--pattern="[0-9\s]{13,19}"-->
+                <br>Exp. date: <input id="expiry" type="text" maxlength="5" placeholder="xx / xx" required />
+              </p>
+            </div>
+          </div>             
         <div id="col2" class="clearfix col-mid" role="main">      
-            <a href="{% url 'JazzBluesApp:checkout' username=current_user.username %}" class="button"><button class="btn-checkout" type="submit" name="review-order">Place order</button></a>
+          <button type="submit" class="button">Place order</button>
         </div>
-    </div>
+    </form>
+  </div>
 </div>
 
- {% endif %}
+
+{% endif %}
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
  <script>

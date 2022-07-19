@@ -48,7 +48,7 @@ class EventFilter(django_filters.FilterSet):
         widget = forms.SelectMultiple(attrs={'id':'artistMultiple','class':'artistMultiple'}),
         label = "Artist",
     )
-    
+
 
     category = django_filters.ChoiceFilter(
         choices = EVENT_CATEGORY_CHOICES,

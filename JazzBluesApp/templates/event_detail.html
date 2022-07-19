@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{% static 'styles/rating.css' %}" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="{% static 'styles/seats.css' %}" />
+
 <style>
     .alert-success {
       padding: 20px;
@@ -37,34 +38,22 @@
 
 {% block content %}
 
-<!--
-<div class="container">
-    
-    <div class="product">   
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
-                    fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-                    ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-                    egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                    leo.</p>
-            </div>
-            <form class="cart" action="#" method="post" enctype="multipart/form-data">
-
-                <button type="submit" name="add-to-cart" value="507" class="button">Add to cart</button>
-            </form>
-        </div>
-   
-        </div>        
-    </div>
-</div>
-
--->
-
 <div class="container">
     <nav class="breadcrumb">
         <a href="/">Home</a>&nbsp;/&nbsp;<a
             href="{% url 'JazzBluesApp:events' %}">Events</a>&nbsp;/&nbsp;{{event.0.event_name}}
     </nav>
-    
+    <div>
+        {% for message in messages %}
+        <br>
+        <div>
+            <div class="alert-error">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                {{ message|safe }}
+            </div>
+        </div><br>
+        {% endfor %}
+    </div>
     <div id="product" class="product">
         <div class="images">
             {% if event.0.event_poster %}
@@ -150,7 +139,6 @@
                     </ul>
                     {% if user.is_staff %}
                     <div class="seats-container">
-                            
                             <div class="row">
                                 {% for seat in range %} {% if forloop.counter in occupied %}
                                 <input type="checkbox" class="seat taken" name="seat_number" value="{{forloop.counter}}" disabled="disabled">{% else %}
@@ -159,7 +147,6 @@
                             <div class="row ">
                                 {% endif %} {% endfor %}
                             </div>
-                            
                     </div>
                     <div class="clear"></div>
                     {% else %}
@@ -175,7 +162,8 @@
                                 {% endif %} {% endfor %}
                             </div>
                             <div class="purchase-button">
-                                <input type="submit" value="Odaberi"></div>
+                                <button  type="submit"  [disabled]="loginForm.form.invalid">Submit</button>
+                                <!--<input type="submit" class="purchase-button-submit" value="Odaberi"></div>-->
                         </form>
                     </div>
                     <div class="clear"></div>
@@ -190,15 +178,6 @@
 </div>
 
 <script src="{% static 'scripts/tabs.js' %}" defer></script>
-<script>
-    $(document).ready(function(){
-        $(".seat-reservation-button").click(function(){
-            $("#tab-description").classList.value="tab";
-            $("#tab-reviews").classList.value="active tab";
-        });
-    });
-
-</script>
 
 
 {% endblock %}

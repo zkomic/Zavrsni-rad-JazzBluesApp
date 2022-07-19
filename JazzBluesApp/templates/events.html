@@ -12,6 +12,14 @@ Events |
 
 {% block content %}
 
+{% for event in events %}
+{{event.event_start_datetime.date}}<br>
+{% if event.event_start_datetime.date < now.date %}
+    In the past <br>
+{% else %}
+    future event <br>
+{% endif %}
+{% endfor %}
 <div class="container">
             <div class="bg-modal-filters">
                 <div class="modal-content">
@@ -91,13 +99,14 @@ Events |
             </a> 
             {% if user.is_staff %}
                 <a href="{% url 'JazzBluesApp:eventEdit' event_id=event.id %}" class="button">Edit event</a> 
-                {% else %} 
+                {% else %}
                     {% if event.category == "festival" %} {% if event.available_tickets == 0 %}
                         <a class="disabled">Sold out</a> 
                     {% else %}
-                        <a href="{% url 'JazzBluesApp:addEventToCart' event_id=event.id %}" class="button">Add to cart</a> {% endif %} 
-                {% endif %} 
-            {% endif %}
+                        <a href="{% url 'JazzBluesApp:addEventToCart' event_id=event.id %}" class="button">Add to cart</a> 
+                    {% endif %} <!-- if tickets available -->
+                {% endif %} <!-- if festival -->
+            {% endif %} <!--if user.is_staff -->
            
         </li>
         {% endfor %}
