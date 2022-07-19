@@ -1,27 +1,219 @@
-{% extends 'base.html' %} {% load static %} {% block title %}
-{{event.0.event_name}} - Details | 
-{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'styles/album_detail_style.css' %}" />
+<link rel="stylesheet" href="{% static 'styles/rating.css' %}" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'styles/seats.css' %}" />
+<style>
+    .alert-success {
+      padding: 20px;
+      background-color: #77a464;
+      color: white;
+    }
+    .alert-error {
+      padding: 20px;
+      background-color: #f44336;
+      color: white;
+    }
 
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    
+    .closebtn:hover {
+      color: black;
+    }
+    </style>
 
+{% endblock %}
+{% block title %} {{event.0.event_name}} - Details | {% endblock %}
+
+{% block content %}
+
+<!--
+<div class="container">
+    
+    <div class="product">   
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
+                    fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+                    ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+                    egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                    leo.</p>
+            </div>
+            <form class="cart" action="#" method="post" enctype="multipart/form-data">
+
+                <button type="submit" name="add-to-cart" value="507" class="button">Add to cart</button>
+            </form>
+        </div>
+   
+        </div>        
+    </div>
+</div>
+
+-->
 
 <div class="container">
-    <nav class="jazzblues-breadcrumb" itemprop="breadcrumb"><a href="/">Home</a> / <a href="{% url 'JazzBluesApp:events' %}">Events</a> / {{event.0.event_name}}</nav>
+    <nav class="breadcrumb">
+        <a href="/">Home</a>&nbsp;/&nbsp;<a
+            href="{% url 'JazzBluesApp:events' %}">Events</a>&nbsp;/&nbsp;{{event.0.event_name}}
+    </nav>
+    
+    <div id="product" class="product">
+        <div class="images">
+            {% if event.0.event_poster %}
+            <img src="{{event.0.event_poster.url}}" alt="cover"></img>
+            {% else %}
+            <img src="{{MEDIA_ROOT}}/media/events/event_default.jpg" alt="cover"></img>
+            {% endif %}
+        </div>
+        <div class="summary entry-summary">
+            <h1 class="entry-title">{{event.0.event_name}}</h1>
+            <div class="album-artist">{{event.0.artist_id}}</div>
+            <br>
+            <p class="price">
+                <span class="Price-amount amount"><span>$</span>{{event.0.ticket_price}}</span>
+            </p>
+            <br>
+            <div class="product_description">
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
+                    fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+                    ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+                    egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                    leo.</p>
+            </div>
+            <br> 
+            {% if user.is_staff %}
+            <a href="{% url 'JazzBluesApp:eventEdit' event_id=event.0.id %}" class="button">Edit event</a>
+            <a href="{% url 'JazzBluesApp:eventDelete' event_id=event.0.id %}" class="button">Delete event</a> 
+            {% else %}
+
+            {% if event.0.available_tickets == 0 %}
+            <a class="disabled">Sold out</a>
+            {% else %}
+
+            {% if event.0.category == 'festival' %}
+            <a href="{% url 'JazzBluesApp:addEventToCart' event_id=event.0.id %}" class="button">Add to cart</a>
+            {% else %}
+
+            <a href="" class="seat-reservation-button">Seat reservation</a>
+            {% endif %} <!-- if festival -->
+            {% endif %} <!--if sold out -->
+            {% endif %} <!-- if user.is_staff -->
+
+            <br><br>
+            <div class="product_meta">
+                <span class="posted_in">Categories: <a href="#" rel="tag">Clothing</a>, <a href="#"
+                        rel="tag">Hoodies</a></span>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <ul class="tabs">
+                <li class="active tab" data-tab-target="#tab-description">
+                    Description
+                </li>
+                {% if event.0.category == 'concert' %}
+                <li class="tab" data-tab-target="#reviews-tab">
+                    &nbsp;Seat reservation
+                </li>
+                {% endif %}
+            </ul>
+            <div class="active" id="tab-description" data-tab-content>
+                <p class="details_description">Pellentesque habitant morbi tristique senectus et netus et malesuada
+                    fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+                    ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+                    egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
+                    leo.</p>
+            </div>
+            <div id="reviews-tab" data-tab-content>
+                <div id="reviews" class="seats-body">
+                    <ul class="showcase" style="width: 40%;">
+                        <li>
+                            <img src="{{MEDIA_ROOT}}/media/seats/seat.png" alt="">
+                            <small>&nbsp;&nbsp;Available</small>
+                        </li>
+                        <li>
+                            <img src="{{MEDIA_ROOT}}/media/seats/seat_selected.png" alt="">
+                            <small>&nbsp;&nbsp;Selected</small>
+                        </li>
+                        <li>
+                            <img src="{{MEDIA_ROOT}}/media/seats/seat_taken.png" alt="">
+                            <small>&nbsp;&nbsp;Occupied</small>
+                        </li>
+                    </ul>
+                    {% if user.is_staff %}
+                    <div class="seats-container">
+                            
+                            <div class="row">
+                                {% for seat in range %} {% if forloop.counter in occupied %}
+                                <input type="checkbox" class="seat taken" name="seat_number" value="{{forloop.counter}}" disabled="disabled">{% else %}
+                                <input type="checkbox" class="seat available-staff" name="seat_number" value="{{forloop.counter}}">{% endif %}{% if forloop.counter|divisibleby:rows %}
+                            </div>
+                            <div class="row ">
+                                {% endif %} {% endfor %}
+                            </div>
+                            
+                    </div>
+                    <div class="clear"></div>
+                    {% else %}
+                    <div class="seats-container">
+                        <form action="{% url 'JazzBluesApp:seatReservation' event_id=event.0.id %}" method="POST"> {% csrf_token %}
+                            <input type="hidden" name="event_id" value="{{event_id}}">
+                            <div class="row">
+                                {% for seat in range %} {% if forloop.counter in occupied %}
+                                <input type="checkbox" class="seat taken" name="seat_number" value="{{forloop.counter}}" disabled="disabled">{% else %}
+                                <input type="checkbox" class="seat available" name="seat_number" value="{{forloop.counter}}">{% endif %}{% if forloop.counter|divisibleby:rows %}
+                            </div>
+                            <div class="row ">
+                                {% endif %} {% endfor %}
+                            </div>
+                            <div class="purchase-button">
+                                <input type="submit" value="Odaberi"></div>
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                    {% endif %}
+                </div>
+            </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    </main>
+</div>
+
+<script src="{% static 'scripts/tabs.js' %}" defer></script>
+<script>
+    $(document).ready(function(){
+        $(".seat-reservation-button").click(function(){
+            $("#tab-description").classList.value="tab";
+            $("#tab-reviews").classList.value="active tab";
+        });
+    });
+
+</script>
+
+
+{% endblock %}
+
+<!--
+<div class="container">
+
     {% if event.0.event_poster %}
     <img src="{{event.0.event_poster.url}}" width="200px" /> {% else %}
-    <img src="{{MEDIA_ROOT}}/media/event_default.jpg" width="200px" /> {% endif %}
+    <img src="" width="200px" /> {% endif %}
     </a>
     <h1 itemprop="name" class="album_title entry-title">{{event.0.event_name}}</h1>
     {{event.0.artist_id}}
     <br><span class="amount">$ {{event.0.ticket_price}}</span>
-    <br> {% if user.is_staff %}
-    <a href="{% url 'JazzBluesApp:eventEdit' event_id=event.0.id %}" class="button">Edit event</a>
-    <a href="{% url 'JazzBluesApp:eventDelete' event_id=event.0.id %}" class="button">Delete event</a> {% else %}
-    {% if event.0.available_tickets == 0 %}
-    <a class="disabled">Sold out</a>
-    {% else %}
-    <a href="{% url 'JazzBluesApp:addEventToCart' event_id=event.0.id %}" class="button">Add to cart</a> {% endif %}
-    
-     {% endif %}
+    <br> 
 
     <div class="details">
         <h2>{{event.0.event_name}} Description</h2>
@@ -48,4 +240,6 @@
     </div>
     {% endfor %}
 </div>
-{% endif %} {% endblock %}
+{% endif %}
+
+-->

@@ -6,7 +6,7 @@
 <style>
     .alert-success {
       padding: 20px;
-      background-color: #51d628cd;
+      background-color: #77a464;
       color: white;
     }
     .alert-error {
@@ -161,7 +161,7 @@
                                 <li class="comment">
                                     <div class="comment_container">
                                         <img alt="" src="{{comment.user_id.avatar.url}}" srcset=""
-                                            class="avatar avatar-60 photo" height="60" width="60" loading="lazy"> .rating
+                                            class="avatar avatar-60 photo" height="60" width="60" loading="lazy">
                                         <div class="comment-text">
                                             <div class="rating-stars">
                                                     <i class="fa fa-star{% if comment.rating < 0.5%}-o{% elif comment.rating >= 0.5 and comment.rating < 1 %}-half-o{% endif %}" aria-hidden="true"></i>
@@ -190,45 +190,45 @@
                                 {% endfor %}
                             </ol>
                         </div>
-                        {% else %} Nema komentara...
+                        {% else %} Nema komentara...<br><br>
                     {% endif %}
+                        {% if not user.is_staff %}
                         <div id="review_form_wrapper">
                             <div id="review_form">
                                 <div id="respond" class="comment-respond">
                                     {% if user.is_authenticated %}
                                     <span id="reply-title" class="comment-reply-title">Add a
                                         review</span>
-                                        <form action={% url 'JazzBluesApp:addComment' album_id=album.0.id %} method="post">
-                                            {% csrf_token %}
-                                            <div class="form-group">
-                                                <input name="subject" class="input" type="text" placeholder="Your Subject" />
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea name="comment" class="input" type="text" placeholder="Your review"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-rating">
-                                                    <strong>Your rating: </strong>
-                                                    <div class="starRating">
-                                                        <input type="radio" id="rating-5" name="rating" value="5"/><label for="rating-5">5</label>
-                                                        <input type="radio" id="rating-4" name="rating" value="4"/><label for="rating-4">4</label>
-                                                        <input type="radio" id="rating-3" name="rating" value="3"/><label for="rating-3">3</label>
-                                                        <input type="radio" id="rating-2" name="rating" value="2"/><label for="rating-2">2</label>
-                                                        <input type="radio" id="rating-1" name="rating" value="1"/><label for="rating-1">1</label>
-                                                    </div>
+                                    <form action={% url 'JazzBluesApp:addComment' album_id=album.0.id %} method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <input name="subject" class="input" type="text" placeholder="Your Subject" />
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="comment" class="input" type="text" placeholder="Your review"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-rating">
+                                                <strong>Your rating: </strong>
+                                                <div class="starRating">
+                                                    <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5</label>
+                                                    <input type="radio" id="rating-4" name="rating" value="4" /><label for="rating-4">4</label>
+                                                    <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3</label>
+                                                    <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2</label>
+                                                    <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1</label>
                                                 </div>
                                             </div>
-                                                                                       
-                                                                               
-                                            <button class="submit">Submit</button>
-                                            {% else %}
-                                            You must be logged in to post a review
-                                            <td><button><a href="{% url 'accounts:login' %}" style="text-decoration: none;">Log In</a></button></td>
-                                            {% endif %}
-                                        </form>
+                                        </div>
+                                        <button class="submit">Submit</button>
+                                        {% else %}
+                                        You must be logged in to post a review
+                                        <td><button><a href="{% url 'accounts:login' %}" style="text-decoration: none;">Log In</a></button></td>
+                                        {% endif %}
+                                    </form>
                                 </div><!-- #respond -->
                             </div>
                         </div>
+                        {% endif %}
                         <div class="clear"></div>
                     </div>
                 </div>

@@ -92,9 +92,7 @@ Events |
             {% if user.is_staff %}
                 <a href="{% url 'JazzBluesApp:eventEdit' event_id=event.id %}" class="button">Edit event</a> 
                 {% else %} 
-                    {% if event.category == "concert" %}
-                        <a href="{% url 'JazzBluesApp:seats' event_id=event.id %}" class="button">Seat reservation</a> 
-                    {% elif event.category == "festival" %} {% if event.available_tickets == 0 %}
+                    {% if event.category == "festival" %} {% if event.available_tickets == 0 %}
                         <a class="disabled">Sold out</a> 
                     {% else %}
                         <a href="{% url 'JazzBluesApp:addEventToCart' event_id=event.id %}" class="button">Add to cart</a> {% endif %} 

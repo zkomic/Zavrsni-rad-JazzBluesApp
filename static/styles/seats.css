@@ -1,4 +1,4 @@
-body {
+.seats-body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,6 +52,9 @@ body {
 }
 
 .available:before {
+    content: url('/media/seats/seat.png');
+}
+.available-staff:before {
     content: url('/media/seats/seat.png');
 }
 

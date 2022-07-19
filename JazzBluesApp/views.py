@@ -240,6 +240,25 @@ def eventDetail(request, event_id):
     context = {
         'event': event,
     }
+
+    #seats
+    this_event = Event.objects.get(id=event_id)
+    venue = Venue.objects.get(id=this_event.venue_id.id)
+    seat_range = int(venue.row_number) * int(venue.row_seat_count)
+    occupied_seats = TicketPurchase.objects.all().filter(event_id=event_id)
+    occupied_seat_numbers = []
+    for seat in occupied_seats:
+        occupied_seat_numbers.append(seat.seat_number)
+
+    context_update = {
+        'this_event': this_event,
+        'venue': venue,
+        'rows': venue.row_number,
+        'seats': venue.row_seat_count,
+        'range': range(seat_range),
+        'occupied': occupied_seat_numbers,
+    }
+    context.update(context_update)
     return render(request, 'event_detail.html', context)
 
 @login_required
