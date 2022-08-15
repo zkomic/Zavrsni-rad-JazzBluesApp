@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^albumsPrice/$', views.albumsPrice, name="albumsPrice"),
     url(r'^albumsPriceDesc/$', views.albumsPriceDesc, name="albumsPriceDesc"),
     url(r'^events/$', views.events, name="events"),
+    url(r'^eventsStaff/$', views.eventsStaff, name="eventsStaff"),
     url(r'^eventsName/$', views.eventsName, name="eventsName"),
     url(r'^eventsNameDesc/$', views.eventsNameDesc, name="eventsNameDesc"),
     url(r'^eventsPrice/$', views.eventsPrice, name="eventsPrice"),

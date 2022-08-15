@@ -27,8 +27,12 @@
                     <a href="{% url 'base' %}"><img class="logo-top" src="{% static 'images/logo.png' %}"/></a>
                     <ul class="menu-top">
                         <li><a href="{% url 'JazzBluesApp:albums' %} ">Albums</a></li>
+                        {% if user.is_staff %}
+                        <li><a href="{% url 'JazzBluesApp:eventsStaff' %} ">Events</a></li>
+                        {% else %}
                         <li><a href="{% url 'JazzBluesApp:events' %} ">Events</a></li>
-                        
+                        {% endif %}
+                                       
                         <!-- user logged in -->
                         {% if user.is_authenticated %}
                         <li><a href="#">Hi, {{user.first_name}}</a> {% if user.is_staff %}

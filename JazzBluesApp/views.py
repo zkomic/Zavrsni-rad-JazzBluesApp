@@ -340,11 +340,13 @@ def seatReservation(request, event_id):
             return redirect ('JazzBluesApp:eventDetail', event_id=event_id)
     return redirect ('JazzBluesApp:userOrders', username=username)
 
+from datetime import date
 
 def events(request): 
 
-    events = Event.objects.all()
-    print(datetime.today())
+    current_date = date.today()
+
+    events = Event.objects.filter(event_start_datetime__gt = current_date) #printa samo buduće eventove
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
@@ -355,7 +357,6 @@ def events(request):
     events_paginated = p.get_page(page)
 
     context = {
-        'now': datetime.today(),
         'events' : events,
         'events_paginated' : events_paginated,
         'eventsFilter' : eventsFilter
@@ -363,10 +364,28 @@ def events(request):
 
     return render(request, 'events.html', context)
 
-    @property
-    def is_past_due(self):
-        print(self)
-        return date.today() > self.date
+@login_required()
+@staff_member_required()
+def eventsStaff(request):
+
+    events = Event.objects.all() #printa sve eventove
+
+    eventsFilter = EventFilter(request.GET, queryset=events)
+    events = eventsFilter.qs
+
+    # set up pagination
+    p = Paginator(events, 16)
+    page = request.GET.get('page')
+    events_paginated = p.get_page(page)
+
+    context = {
+        'events' : events,
+        'events_paginated' : events_paginated,
+        'eventsFilter' : eventsFilter
+    }
+
+    return render(request, 'events.html', context)
+
 
 def eventsName(request):
 
@@ -480,6 +499,8 @@ def newFestival(request):
     newEventForm = NewEventForm()
     return render(request, 'new_festival.html', {'form': newEventForm})
 
+@login_required()
+@staff_member_required()
 def eventEdit(request, event_id):
     event = Event.objects.all().filter(id=event_id)
     instanca = event.first()
@@ -537,6 +558,7 @@ def addComment(request, album_id):
             messages.warning(request, "You didn't fill all the fields.")
     return redirect('JazzBluesApp:albumDetail', album_id=album_id) 
 
+@login_required()
 @staff_member_required
 def staffOrders(request):
     orders_list = AlbumOrder.objects.all().order_by('-id')
@@ -557,6 +579,8 @@ def staffOrders(request):
     }
     return render(request, 'staff_orders.html', context)
 
+@login_required()
+@staff_member_required()
 def staffOrderDetail(request, albumorder_id):
     albumOrder = AlbumOrder.objects.filter(id=albumorder_id)
     albumUserOrder = AlbumOrderUser.objects.filter(albumorder_id__in=albumOrder)
@@ -585,6 +609,7 @@ def staffOrderDetail(request, albumorder_id):
     }
     return render(request, 'staff_order_detail.html', context)
 
+@login_required()
 def userProfile(request, username):
     user = User.objects.get(username=username)
     current_user = Users.objects.get(user=user.id)
@@ -595,7 +620,7 @@ def userProfile(request, username):
     }
     return render(request, 'user_profile.html', context)
 
-
+@login_required()
 def userOrders(request, username):
     current_user = User.objects.get(username=username)
     tickets = TicketPurchase.objects.all().filter(user_id=current_user.id)
@@ -631,6 +656,7 @@ def userOrders(request, username):
         pass
     return render(request, 'user_orders.html', context)
 
+@login_required()
 def userOrderDetail(request, albumorder_id):
     total = 0
 
@@ -685,6 +711,7 @@ def addEventToCart(request, event_id):
         event_cart.event_id.add(event)
     return redirect('JazzBluesApp:events')
 
+@login_required()
 def cart(request, username):
     current_user = User.objects.get(username=username)
     context = {'current_user': current_user,}
@@ -724,6 +751,7 @@ def cart(request, username):
         pass
     return render(request, 'cart.html', context)
 
+@login_required()
 def orderAddressPayment(request, username):
     current_user = User.objects.get(username=username)
     user_address = Users.objects.get(user=current_user)
@@ -837,6 +865,7 @@ def cartEventDecrement(request, event_id):
         return redirect('JazzBluesApp:cart', username=current_user.username) 
     return redirect('JazzBluesApp:cart', username=current_user.username)
 
+@login_required()
 def checkout(request, username):
     current_user = User.objects.get(username=username) #mozda ne proslijedivati nista? nego requestat?
     album_cart = AlbumCart.objects.filter(user_id=current_user.id)
@@ -874,6 +903,7 @@ def checkout(request, username):
         pass
     return redirect('JazzBluesApp:userOrders', username=username)
 
+@login_required()
 def newAddress(request):
     prev_url = request.META.get('HTTP_REFERER')
     user = User.objects.get(id=request.user.id)
@@ -895,6 +925,7 @@ def newAddress(request):
     }
     return render(request, 'new_address.html', context)
 
+@login_required()
 def addressEdit(request, address_id):
     prev_url = request.META.get('HTTP_REFERER')
     address = Address.objects.all().filter(id=address_id)
