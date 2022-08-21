@@ -323,23 +323,7 @@ def newRecordLabel(request):
     }
     return render(request, 'new_record_label.html', context)
 
-#def seatReservation(request, event_id):
-#    username = User.objects.get(id=request.user.id).username
-#    if request.method == 'POST':
-#        seat_number = request.POST.getlist('seat_number')
-#        user_id = request.user.id
-#        if (seat_number):
-#            print(seat_number)
-#            event = Event.objects.get(id=event_id)
-            #for seat in seat_number:
-            #    new_ticket = TicketPurchase(event_id=event, order_date=datetime.now(), seat_number=seat)
-            #    new_ticket.save()
-            #    new_ticket.user_id.add(user_id)
-#        else:
-#            messages.warning(request, "You have to choose seat first.")
-#            return redirect ('JazzBluesApp:eventDetail', event_id=event_id)
-#    return redirect ('JazzBluesApp:userOrders', username=username)
-
+@login_required()
 def seatReservation(request, event_id):
     username = User.objects.get(id=request.user.id).username
     #seats
@@ -375,7 +359,7 @@ def seatReservation(request, event_id):
     return render(request, 'seat_reservation_purchase.html', context)
 
 import re
-
+@login_required()
 def seatReservationPurchase (request, event_id):
     username = User.objects.get(id=request.user.id).username
     event = Event.objects.get(id=event_id)

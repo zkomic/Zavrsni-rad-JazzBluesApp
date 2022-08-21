@@ -54,6 +54,11 @@
 .available:before {
     content: url('/media/seats/seat.png');
 }
+
+.available-reservation:before {
+    content: url('/media/seats/seat.png');
+}
+
 .available-staff:before {
     content: url('/media/seats/seat.png');
 }

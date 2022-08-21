@@ -1,128 +1,108 @@
 {% extends 'base.html' %} {% load static %} {% block styles %}
 <link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
-<link rel="stylesheet" href="{% static 'styles/seats.css' %}" /> {% endblock %} {% load poll_extras %} {% block title %} {{request.user.first_name}}'s Cart |{% endblock %} {% block content %}
+<link rel="stylesheet" href="{% static 'styles/seats.css' %}" /> {% endblock %} {% load poll_extras %} {% block title %}
+{{request.user.first_name}}'s Cart |{% endblock %} {% block content %}
 
 <style>
-    .alert {
-      padding: 20px;
-      background-color: #f44336;
-      color: white;
-    }
-    
-    .closebtn {
-      margin-left: 15px;
-      color: white;
-      font-weight: bold;
-      float: right;
-      font-size: 22px;
-      line-height: 20px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    
-    .closebtn:hover {
-      color: black;
-    }
+  .seats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .shipping-payment {
-      margin-top: 50px;
-    }
+  .column-payment {
+    margin-top: 60px;
+    float: left;
+    width: 50%;
+  }
 
-    .column-shipping {
-      float: left;
-      width: 50%;
-    }
+  .column-payment {
+    text-align: right;
+  }
 
-    .column-payment {
-      float: right;
-      width: 50%;
-    }
+  /* Clear floats after the columns */
+  .shipping-payment:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
 
-    .column-payment{
-      text-align: right;
-    }
-    
-    /* Clear floats after the columns */
-    .shipping-payment:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-    </style>
+  .button-submit {
+    margin-top: 147px;
+    margin-right: 160px;
+    float: right;
+  }
+</style>
 
 <div class="cart">
   <div id="main" class="main">
-      <div id="col2" class="clearfix col-mid" role="main">
-          {% if messages %}
+    <div class="col-mid">
+      {% if messages %}
       <div>
-          {% for message in messages %}
-          <br>
-          <div>
-              <div class="alert">
-                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                  {{ message|safe }}
-                </div>
+        {% for message in messages %}
+        <br>
+        <div>
+          <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ message|safe }}
           </div>
-          {% endfor %}
+        </div>
+        {% endfor %}
       </div><br>
       {% endif %}
-      <form action={% url 'JazzBluesApp:seatReservationPurchase' event_id=event_id %}  method="POST">
+      <form action={% url 'JazzBluesApp:seatReservationPurchase' event_id=event_id %} method="POST">
         {% csrf_token %}
-          <h2>Ticket Purchase</h2>
-          <div class="seats-container">
-                <input type="hidden" name="reserved" value="{{reserved}}">
-                <div class="row">
-                    {% for seat in range %}{% if forloop.counter|in_list:reserved %}
-                    <input type="checkbox" class="seat taken" name="seat_number" value="{{forloop.counter}}" disabled="disabled">{% else %}
-                    <input type="checkbox" class="seat available" name="seat_number" value="{{forloop.counter}}" disabled="disabled">{% endif %}
-                    {% if forloop.counter|divisibleby:rows %}
-                </div>
-                <div class="row ">
-                    {% endif %} {% endfor %}
-                </div>
-                <div class="purchase-button">
+        <h2>Ticket Purchase</h2>
+        <div class="seats-container">
+          <input type="hidden" name="reserved" value="{{reserved}}">
+          <div class="row">
+            {% for seat in range %}{% if forloop.counter|in_list:reserved %}
+            <input type="checkbox" class="seat taken" name="seat_number" value="{{forloop.counter}}"
+              disabled="disabled">{% else %}
+            <input type="checkbox" class="seat available-reservation" name="seat_number" value="{{forloop.counter}}"
+              disabled="disabled">{% endif %}
+            {% if forloop.counter|divisibleby:rows %}
+          </div>
+          <div class="row ">
+            {% endif %} {% endfor %}
+          </div>
         </div>
-            
-            <div class="column-payment">
-              <h2>Payment</h2>
-              <p class="card-details">
-                Name on card: <input id="name" type="text" placeholder="John Smith" required />
-                <br>Card Number:
-                <input id="cardnumber" type="tel" inputmode="numeric"  pattern="[0-9\s]+{13,16}" maxlength="19"
-                  placeholder="xxxx xxxx xxxx xxxx" required /> <!--pattern="[0-9\s]{13,19}"-->
-                <br>Exp. date: <input id="expiry" type="text" maxlength="5" placeholder="xx / xx" required />
-              </p>
-            </div>
-          </div>             
-        <div id="col2" class="clearfix col-mid" role="main">      
+
+        <div class="column-payment">
+          <h2>Payment</h2>
+          <p class="card-details">
+            Name on card: <input id="name" type="text" placeholder="John Smith" required />
+            <br>Card Number:
+            <input id="cardnumber" type="tel" inputmode="numeric" pattern="[0-9\s]+{13,16}" maxlength="19"
+              placeholder="xxxx xxxx xxxx xxxx" required />
+            <!--pattern="[0-9\s]{13,19}"-->
+            <br>Exp. date: <input id="expiry" type="text" maxlength="5" placeholder="xx / xx" required />
+          </p>
         </div>
-        <button type="submit" class="button">Place order</button>
+        <button type="submit" class="button-submit">Place order</button>
       </form>
+    </div>
   </div>
 </div>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
- <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
 
-$('#expiry').on('input',function(e){
-    if($(this).val().length == 2 && characterCount < $(this).val().length) {
-        $(this).val($(this).val()+'/');
+  $('#expiry').on('input', function (e) {
+    if ($(this).val().length == 2 && characterCount < $(this).val().length) {
+      $(this).val($(this).val() + '/');
     }
     characterCount = $(this).val().length
-});
-
-
-$('#cardnumber').on('keypress change', function () {
-  $(this).val(function (index, value) {
-	  return value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
   });
-});
- </script>
-
- {% endblock %}
 
 
+  $('#cardnumber').on('keypress change', function () {
+    $(this).val(function (index, value) {
+      return value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
+    });
+  });
+</script>
 
-
-
+{% endblock %}
