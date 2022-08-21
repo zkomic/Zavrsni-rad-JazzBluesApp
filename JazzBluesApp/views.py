@@ -323,21 +323,73 @@ def newRecordLabel(request):
     }
     return render(request, 'new_record_label.html', context)
 
+#def seatReservation(request, event_id):
+#    username = User.objects.get(id=request.user.id).username
+#    if request.method == 'POST':
+#        seat_number = request.POST.getlist('seat_number')
+#        user_id = request.user.id
+#        if (seat_number):
+#            print(seat_number)
+#            event = Event.objects.get(id=event_id)
+            #for seat in seat_number:
+            #    new_ticket = TicketPurchase(event_id=event, order_date=datetime.now(), seat_number=seat)
+            #    new_ticket.save()
+            #    new_ticket.user_id.add(user_id)
+#        else:
+#            messages.warning(request, "You have to choose seat first.")
+#            return redirect ('JazzBluesApp:eventDetail', event_id=event_id)
+#    return redirect ('JazzBluesApp:userOrders', username=username)
+
 def seatReservation(request, event_id):
     username = User.objects.get(id=request.user.id).username
+    #seats
+    this_event = Event.objects.get(id=event_id)
+    venue = Venue.objects.get(id=this_event.venue_id.id)
+    seat_range = int(venue.row_number) * int(venue.row_seat_count)
+    occupied_seats = TicketPurchase.objects.all().filter(event_id=event_id)
+
+    context = {
+        'event_id': event_id, 
+        'this_event': this_event,
+        'venue': venue,
+        'rows': venue.row_number,
+        'seats': venue.row_seat_count,
+        'range': range(seat_range),
+        'occupied_seats': occupied_seats,
+    }
+
     if request.method == 'POST':
         seat_number = request.POST.getlist('seat_number')
         user_id = request.user.id
         if (seat_number):
             print(seat_number)
             event = Event.objects.get(id=event_id)
-            for seat in seat_number:
-                new_ticket = TicketPurchase(event_id=event, order_date=datetime.now(), seat_number=seat)
-                new_ticket.save()
-                new_ticket.user_id.add(user_id)
+            context_update = {
+                'reserved': seat_number,
+                'current_user': username,
+            }
+            context.update(context_update)
         else:
             messages.warning(request, "You have to choose seat first.")
             return redirect ('JazzBluesApp:eventDetail', event_id=event_id)
+    return render(request, 'seat_reservation_purchase.html', context)
+
+import re
+
+def seatReservationPurchase (request, event_id):
+    username = User.objects.get(id=request.user.id).username
+    event = Event.objects.get(id=event_id)
+    user_id = request.user.id
+
+    if request.method == 'POST':
+        reserved_seats = request.POST.get('reserved')
+        
+        reserved = re.findall(r'\b\d{1,3}(?:,\d{3})*(?:\.\d+)?(?!\d)', reserved_seats)
+        for seat in reserved:
+            new_ticket = TicketPurchase(event_id=event, order_date=datetime.now(), seat_number=seat)
+            new_ticket.save()
+            new_ticket.user_id.add(user_id)            
+            
     return redirect ('JazzBluesApp:userOrders', username=username)
 
 from datetime import date

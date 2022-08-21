@@ -133,10 +133,11 @@
             <p class="ticket-number">
                 #{{event.id}}
             </p>
+            
         </div>
     </div>
-    <button onclick="Ticket({{forloop.counter}})">Download ticket</button>
 </div>
+<button onclick="Ticket({{forloop.counter}})">Download ticket</button>
 {% endfor %}
 
 {% for ticket in tickets %}

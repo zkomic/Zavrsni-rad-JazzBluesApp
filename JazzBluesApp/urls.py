@@ -48,6 +48,7 @@ urlpatterns = [
     url(r'^cartEventIncrement/(?P<event_id>\w+)$', views.cartEventIncrement, name="cartEventIncrement"),
     url(r'^cartEventDecrement/(?P<event_id>\w+)$', views.cartEventDecrement, name="cartEventDecrement"),
     url(r'^orderAddressPayment/(?P<username>\w+)$', views.orderAddressPayment, name="orderAddressPayment"),
+    url(r'^seatReservationPurchase/(?P<event_id>\w+)$', views.seatReservationPurchase, name="seatReservationPurchase"),
     url(r'^checkout/(?P<username>\w+)$', views.checkout, name="checkout"),
     url(r'^staffOrders/$', views.staffOrders, name="staffOrders"),
     url(r'^staffOrderDetail/(?P<albumorder_id>\w+)$', views.staffOrderDetail, name="staffOrderDetail"),

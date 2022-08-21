@@ -4,6 +4,12 @@ from datetime import datetime
 
 register = template.Library()
 
+
+@register.filter
+def in_list(value, the_list):
+    value = str(value)
+    return value in the_list
+
 @register.filter('get_albumCart_quantity')
 def get_album_quantity(user_id, albumcart_id):
     albumCart = AlbumCart.objects.filter(user_id=user_id)
