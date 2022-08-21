@@ -425,7 +425,8 @@ def eventsStaff(request):
 
 def eventsName(request):
 
-    events = Event.objects.all().order_by('event_name')
+    current_date = date.today()
+    events = Event.objects.filter(event_start_datetime__gt = current_date).order_by('event_name')
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
@@ -444,7 +445,8 @@ def eventsName(request):
 
 def eventsNameDesc(request):
 
-    events = Event.objects.all().order_by('-event_name')
+    current_date = date.today()
+    events = Event.objects.filter(event_start_datetime__gt = current_date).order_by('-event_name')
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
@@ -461,10 +463,10 @@ def eventsNameDesc(request):
 
     return render(request, 'events.html', context)
 
-
 def eventsPrice(request):
 
-    events = Event.objects.all().order_by('ticket_price')
+    current_date = date.today()
+    events = Event.objects.filter(event_start_datetime__gt = current_date).order_by('ticket_price')
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
@@ -484,7 +486,8 @@ def eventsPrice(request):
 
 def eventsPriceDesc(request):
 
-    events = Event.objects.all().order_by('-ticket_price')
+    current_date = date.today()
+    events = Event.objects.filter(event_start_datetime__gt = current_date).order_by('-ticket_price')
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs

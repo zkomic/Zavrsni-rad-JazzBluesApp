@@ -71,7 +71,7 @@
 			</select>
     </form>
     <p class="result-count">
-        Showing {{albums.count}} results</p>
+        Showing {{albums_paginated|length}} of {{albums.count}} results</p>
     {% if albums_paginated %}
     <ul class="products">
         {% for album in albums_paginated %}

@@ -12,26 +12,28 @@ Events |
 
 {% block content %}
 
+
 <div class="container">
-            <div class="bg-modal-filters">
-                <div class="modal-content">
-                    <div class="close">+</div>
-                    <fieldset class="search-fieldset">
-                        <p>Select artist: </p>
-                        <form class="search-form search-style">
-                            {{ eventsFilter.form.artist_id}}
-                        <br>
-                            <div>{{eventsFilter.form.category}}</div>
-                            <div>
-                                {{eventsFilter.form.event_name}}
-                            </div>
-                            <button type="submit">Search</button>
-                        </form>
-                    </fieldset>
-                    <a href="{% url 'JazzBluesApp:events'%}">Clear all filters</a>
-                </div>
-            </div>
-            {% if user.is_staff %}
+    <div class="bg-modal-filters">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <fieldset class="search-fieldset">
+                <p>Select artist: </p>
+                <form class="search-form search-style">
+                    {{ eventsFilter.form.artist_id}}
+                <br>
+                    <div>{{eventsFilter.form.category}}</div>
+                    <div>
+                        {{eventsFilter.form.event_name}}
+                    </div>
+                    <button type="submit">Search</button>
+                </form>
+            </fieldset>
+            <a href="{% url 'JazzBluesApp:events'%}">Clear all filters</a>
+        </div>
+    </div>
+
+    {% if user.is_staff %}
             <a href="{% url 'JazzBluesApp:newConcert'%}" class="filters">New concert</a>
             <a href="{% url 'JazzBluesApp:newFestival'%}" class="filters">New festival</a> {% endif %}
     <a href="#" id="filters-button" class="filters">Filters</a>
@@ -44,14 +46,14 @@ Events |
             <option value="{% url 'JazzBluesApp:events' %}?{{ request.GET.urlencode }}">Default sorting</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsName' %}
-            <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}" selected="selected">Sort by album name: A - Z</option>
-            {% else %}  
-            <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}">Sort by album name: A - Z</option>
+            <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}" selected="selected">Sort by event name: A - Z</option>
+            {% else %}
+            <option value="{% url 'JazzBluesApp:eventsName' %}?{{ request.GET.urlencode }}">Sort by event name: A - Z</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsNameDesc' %}
-            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}" selected="selected">Sort by album name: Z - A</option>
+            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}" selected="selected">Sort by event name: Z - A</option>
             {% else %}
-            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}">Sort by album name: Z - A</option>
+            <option value="{% url 'JazzBluesApp:eventsNameDesc' %}?{{ request.GET.urlencode }}">Sort by event name: Z - A</option>
             {% endif %}
             {% if request.resolver_match.url_name == 'eventsPrice' %}
             <option value="{% url 'JazzBluesApp:eventsPrice' %}?{{ request.GET.urlencode }}" selected="selected">Sort by price: low to high</option>
@@ -66,11 +68,12 @@ Events |
 			</select>
     </form>
 
-    <p class="result-count">
-        Showing all {{events.count}} results</p>
 
+    <p class="result-count">
+        Showing {{events_paginated|length}} of {{events.count}} results</p>
+    {% if events_paginated %}
     <ul class="products">
-        {% for event in events %}
+        {% for event in events_paginated %}
         <li class="product">
             <a href="{% url 'JazzBluesApp:eventDetail' event_id=event.id %}">
                 {% if event.event_poster %}
@@ -114,7 +117,7 @@ Events |
     Page {{ events_paginated.number }} of {{events_paginated.paginator.num_pages}}
 
     {% if events_paginated.has_next %}
-        <a href="{{request.get_full_path}}&page={{events_paginated.next_page_number}}">Next</a>
+        <a href="{{request.get_full_path}}&page={{events_paginated.next_page_number}}">Next</a> <!-- radi s filterima, bez njih treba biti ?&page -->
         <a href="{{request.get_full_path}}&page={{events_paginated.paginator.num_pages}}">Last &raquo;</a>
     {% endif %}
     {% else %}
@@ -132,16 +135,15 @@ Events |
     {% endif %}
   
 
-</div>
+    {% endif %}
 
+</div>
 
 <script src="{% static 'scripts/filters.js' %}"></script>
 <script>
-
 function redirectlink(src) {
     window.location=src;
-}
-
+};
 </script>
 <!--dropdown za multiple select artista-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -152,5 +154,6 @@ function redirectlink(src) {
     multiple:true
 });
 </script>
+
 
 {% endblock %}
