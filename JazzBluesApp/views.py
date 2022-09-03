@@ -381,13 +381,12 @@ from datetime import date
 def events(request): 
 
     current_date = date.today()
-
     events = Event.objects.filter(event_start_datetime__gt = current_date) #printa samo buduće eventove
 
     eventsFilter = EventFilter(request.GET, queryset=events)
     events = eventsFilter.qs
 
-    # set up pagination
+    #pagination
     p = Paginator(events, 16)
     page = request.GET.get('page')
     events_paginated = p.get_page(page)
@@ -720,6 +719,28 @@ def userOrderDetail(request, albumorder_id):
 
     return render(request, 'user_order_detail.html', context)
 
+def userConcertTicketDetail(request, ticketpurchase_id):
+
+    ticketPurchase = TicketPurchase.objects.filter(id=ticketpurchase_id)
+    event = Event.objects.get(id=ticketPurchase[0].event_id_id)
+
+    context = {
+        'ticketPurchase': ticketPurchase[0],
+        'event': event,
+    }
+    return render(request, 'user_ticket_detail.html', context)
+
+def userFestivalTicketDetail(request, eventorder_id):
+
+    eventOrder = EventOrder.objects.filter(id=eventorder_id)
+    eventUserOrder = EventOrderUser.objects.filter(eventorder_id__in=eventOrder)
+    event = Event.objects.get(id=eventUserOrder[0].event_id_id)
+
+    context = {
+        'eventOrder': eventOrder[0],
+        'event': event,
+    }
+    return render(request, 'user_ticket_detail.html', context)
 
 #----------------------------- CART AND CHECKOUT -----------------------------
 

@@ -33,13 +33,17 @@
                         </dl>
                     </td>
                 </tr>
+                <tr></tr>
                 {% endfor %} 
+            </table>
+            <table id="basketContent">
+                <br><h2>Festival Tickets <br><small></small></h2>
                 {% for event in eventOrders %}
                 <tr>
                     <td>
                         <dl>
                             <dt class="title">
-                            <a href="#">#{{event.id}}: {{event.event_id.all.0.artist_id}} - {{event.event_id.all.0.event_name}}</a>
+                            <a href="{% url 'JazzBluesApp:userFestivalTicketDetail' eventorder_id=event.id %}">#{{event.id}}: {{event.event_id.all.0.artist_id}} - {{event.event_id.all.0.event_name}}</a>
                           </dt>
                         </dl>
                     </td>
@@ -53,12 +57,17 @@
                     </td>
                 </tr>
                 {% endfor %}
+                <tr></tr>
+            </table>
+            <table id="basketContent">
+                <h2>Concert Tickets<br><small></small></h2>
+                <table id="basketContent">
                 {% for ticket in tickets %}
                 <tr>
                     <td>
                         <dl>
                             <dt class="title">
-                            <a href="#">#{{ticket.id}}: {{ticket.event_id.artist_id}} - {{ticket.event_id.event_name}}</a>
+                            <a href="{% url 'JazzBluesApp:userConcertTicketDetail' ticketpurchase_id=ticket.id %}">#{{ticket.id}}: {{ticket.event_id.artist_id}} - {{ticket.event_id.event_name}}</a>
                           </dt>
                         </dl>
                     </td>
@@ -80,6 +89,7 @@
 </div>
 {% endif %}
 
+<!--
 {% for event in eventOrders %}
 <div class="ticket">
     <div class="left">
@@ -139,7 +149,9 @@
 </div>
 <button onclick="Ticket({{forloop.counter}})">Download ticket</button>
 {% endfor %}
+-->
 
+<!--
 {% for ticket in tickets %}
 <div class="ticket">
     <div class="left">
@@ -200,6 +212,7 @@
     <button onclick="Ticket({{forloop.counter}})">Download ticket</button>
 </div>
 {% endfor %}
+-->
 
  <!-- div to pdf -->
 

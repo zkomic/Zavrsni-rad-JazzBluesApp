@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import  AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout
 from accounts.forms import registrationForm, addFields
 from django.contrib.auth.decorators import login_required
 from JazzBluesApp.models import Users

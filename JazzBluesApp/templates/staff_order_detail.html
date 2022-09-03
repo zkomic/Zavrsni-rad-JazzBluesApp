@@ -1,18 +1,10 @@
-{% extends 'base.html' %} {% load static %} {% load poll_extras %} 
+{% extends 'base.html' %} {% load static %} {% load poll_extras %}
 {% block styles %}
-<link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' /> 
+<link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' />
 {% endblock %}
 {% block title %}
 Order details |{% endblock %} {% block content %}
 
-
-<form method="POST" enctype="multipart/form-data">
-{% csrf_token %}
-{{updateOrderStatusForm.order_status}}
- <div style="text-align: center;">
-        <br><input type="submit" value="Spremi"><br>
-    </div>
-</form>
 
 <div class="cart">
     <div id="main" class="main">
@@ -25,18 +17,20 @@ Order details |{% endblock %} {% block content %}
                     <td>
                         <dl>
                             <dt class="image">
-                              <a href="{% url 'JazzBluesApp:albumDetail' album_id=order.id %}">
-                              {% if order.album_cover %}
-                                <img src="{{order.album_cover.url}}" width="50" loading="lazy" alt="">
-                              {% else %}
-                              <img src="{{MEDIA_ROOT}}/media/albums/album_default.png" width="50" loading="lazy" alt="">
-                              {% endif %}
-                              </a>
-                          </dt>
+                                <a href="{% url 'JazzBluesApp:albumDetail' album_id=order.id %}">
+                                    {% if order.album_cover %}
+                                    <img src="{{order.album_cover.url}}" width="50" loading="lazy" alt="">
+                                    {% else %}
+                                    <img src="{{MEDIA_ROOT}}/media/albums/album_default.png" width="50" loading="lazy"
+                                        alt="">
+                                    {% endif %}
+                                </a>
+                            </dt>
                             <dt class="title">
-                            <a href="{% url 'JazzBluesApp:albumDetail' album_id=order.id %}">{{order.artist_id.artist_name}}: {{order}}</a>
-                          </dt>
-                          <dd class="dispatch">Release Date 18 February 2022</dd>
+                                <a href="{% url 'JazzBluesApp:albumDetail' album_id=order.id %}">{{order.artist_id.artist_name}}:
+                                    {{order}}</a>
+                            </dt>
+                            <dd class="dispatch">Release Date 18 February 2022</dd>
                         </dl>
                     </td>
                     <td>{{albumOrder.id|get_albumOrder_quantity:order.id}} × £{{order.album_price}}</td>
@@ -50,6 +44,13 @@ Order details |{% endblock %} {% block content %}
                     <td colspan="4">Total <span>£{{total}}</span></td>
                 </tr>
             </table>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="text-align: center;">
+                    {{updateOrderStatusForm.order_status}}<br>
+                    <br><input type="submit" class="btn-checkout" value="Change order status"><br>
+                </div>
+            </form>
         </div>
     </div>
 </div>

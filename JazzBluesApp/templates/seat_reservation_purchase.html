@@ -12,27 +12,29 @@
     justify-content: center;
   }
 
-  .column-payment {
-    margin-top: 60px;
+  .shipping-payment {
+    margin-top: 50px;
+  }
+
+  .column-shipping {
     float: left;
     width: 50%;
   }
 
   .column-payment {
-    text-align: right;
+    float: right;
+    width: 50%;
   }
 
+  .column-payment{
+    text-align: right;
+  }
+  
   /* Clear floats after the columns */
   .shipping-payment:after {
     content: "";
     display: table;
     clear: both;
-  }
-
-  .button-submit {
-    margin-top: 147px;
-    margin-right: 160px;
-    float: right;
   }
 </style>
 
@@ -70,18 +72,26 @@
           </div>
         </div>
 
-        <div class="column-payment">
-          <h2>Payment</h2>
-          <p class="card-details">
-            Name on card: <input id="name" type="text" placeholder="John Smith" required />
-            <br>Card Number:
-            <input id="cardnumber" type="tel" inputmode="numeric" pattern="[0-9\s]+{13,16}" maxlength="19"
-              placeholder="xxxx xxxx xxxx xxxx" required />
-            <!--pattern="[0-9\s]{13,19}"-->
-            <br>Exp. date: <input id="expiry" type="text" maxlength="5" placeholder="xx / xx" required />
-          </p>
+        <div class="shipping-payment">
+          <div class="column-shipping">
+            <h2>Ticket information</h2>
+            <p>Concert: {{this_event.event_name}}</p>
+            <p>Date: {{this_event.event_start_datetime}}</p>
+            <p>Seat: {% for seat in reserved %} {{seat}}, {% endfor %}</p>
+          </div>
+          
+          <div class="column-payment">
+            <h2>Payment</h2>
+            <p class="card-details">
+              Name on card: <input id="name" type="text" placeholder="John Smith" required />
+              <br>Card Number:
+              <input id="cardnumber" type="tel" inputmode="numeric" pattern="[0-9\s]+{13,16}" maxlength="19"
+                placeholder="xxxx xxxx xxxx xxxx" required />
+              <!--pattern="[0-9\s]{13,19}"-->
+              <br>Exp. date: <input id="expiry" type="text" maxlength="5" placeholder="xx / xx" required />
+            </p>             
         </div>
-        <button type="submit" class="button-submit">Place order</button>
+        <button type="submit" class="btn-checkout" style="margin-top: 15px">Place order</button>
       </form>
     </div>
   </div>

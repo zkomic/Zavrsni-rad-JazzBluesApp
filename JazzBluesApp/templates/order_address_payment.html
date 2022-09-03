@@ -147,7 +147,7 @@
                 {{user_address.address_id.phone}}<br>
                 <a href="{% url 'JazzBluesApp:addressEdit' address_id=user_address.address_id.id %}" class="button">Edit adress</a> 
                 {% else %}
-                <a href="{% url 'JazzBluesApp:newAddress' %}" class="button">New adress</a>
+                <a href="{% url 'JazzBluesApp:newAddress' %}" class="button">New address</a>
                 {% endif %}
               </p>
             </div>
@@ -164,7 +164,7 @@
             </div>
           </div>             
         <div id="col2" class="clearfix col-mid" role="main">      
-          <button type="submit" class="button">Place order</button>
+          <button type="submit" class="btn-checkout">Place order</button>
         </div>
     </form>
   </div>

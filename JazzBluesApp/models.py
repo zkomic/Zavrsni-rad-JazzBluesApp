@@ -21,18 +21,6 @@ GENDER_CHOICES = (
     (rather_not_say, 'Rather Not Say')
 )
 
-visa = 'visa'
-amex = 'amex'
-mastercard = 'mastercard'
-maestro = 'maestro'
-
-CREDIT_CARD_CHOICES = (
-    (visa, 'Visa'),
-    (amex, 'American Express'),
-    (mastercard, 'MasterCard'),
-    (maestro, 'Maestro')
-)
-
 class Address (models.Model):
     street_name = models.CharField(max_length=50)
     street_number = models.CharField(max_length=10)
@@ -47,10 +35,6 @@ class Users (models.Model):
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES, default=rather_not_say)
     address_id = models.ForeignKey(Address, on_delete=models.DO_NOTHING, null=True, blank=True)
     avatar = models.ImageField(upload_to='users/', null=True, blank=True)
-    #credit_card_type = models.CharField(choices=CREDIT_CARD_CHOICES, default=None)
-    #credit_card_number 
-    #card_expiration_date
-
     
     def __str__ (self):
         return self.user.username

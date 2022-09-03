@@ -1,125 +1,3 @@
-/*.ticketWrap,
-.ticketLeft,
-.ticketRight {
-    all: initial;
-}
-
-.ticketWrap {
-    width: 27em;
-    margin: 3em auto;
-    color: #fff;
-}
-
-.ticket {
-    background: linear-gradient(to bottom, #e84c3d 0%, #e84c3d 26%, #ecedef 26%, #ecedef 100%);
-    height: 11em;
-    float: left;
-    position: relative;
-    padding: 1em;
-}
-
-.ticketLeft {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    width: 16em;
-}
-
-.ticketRight {
-    width: 6.5em;
-    border-left: 0.18em dashed #fff;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
-
-.ticketRight:before,
-.ticketRight:after {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 0.9em;
-    height: 0.9em;
-    background: #fff;
-    border-radius: 50%;
-    left: -0.5em;
-}
-
-h1 {
-    font-size: 1.1em;
-    margin-top: 0;
-}
-
-h1 span {
-    font-weight: normal;
-}
-
-.title,
-.name,
-.seat,
-.time {
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.title h2,
-.name h2,
-.seat h2,
-.time h2 {
-    font-size: 0.9em;
-    color: #525252;
-    margin: 0;
-}
-
-.title span,
-.name span,
-.seat span,
-.time span {
-    font-size: 0.7em;
-    color: #a2aeae;
-}
-
-.title {
-    margin: 2em 0 0 0;
-}
-
-.name,
-.seat {
-    margin: 0.7em 0 0 0;
-}
-
-.time {
-    margin: 0.7em 0 0 3em;
-}
-
-.seat,
-.time {
-    float: left;
-}
-
-.number {
-    padding-top: 10px;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.number h3 {
-    color: #e84c3d;
-    margin: 0.9em 0 0 0;
-    font-size: 2.5em;
-}
-
-.number span {
-    display: block;
-    color: #a2aeae;
-}
-
-.barcode {
-    height: 2em;
-    width: 0;
-    margin: 1.2em 0 0 0.8em;
-    box-shadow: 1px 0 0 1px #343434, 5px 0 0 1px #343434, 10px 0 0 1px #343434, 11px 0 0 1px #343434, 15px 0 0 1px #343434, 18px 0 0 1px #343434, 22px 0 0 1px #343434, 23px 0 0 1px #343434, 26px 0 0 1px #343434, 30px 0 0 1px #343434, 35px 0 0 1px #343434, 37px 0 0 1px #343434, 41px 0 0 1px #343434, 44px 0 0 1px #343434, 47px 0 0 1px #343434, 51px 0 0 1px #343434, 56px 0 0 1px #343434, 59px 0 0 1px #343434, 64px 0 0 1px #343434, 68px 0 0 1px #343434, 72px 0 0 1px #343434, 74px 0 0 1px #343434, 77px 0 0 1px #343434, 81px 0 0 1px #343434;
-}
-*/
-
 @import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
 
@@ -147,35 +25,22 @@ html{
 .ticket .left{
     display: flex;
 }
-.image{
+
+.poster{
     height: 250px;
-    width: 250px;
-    background-image: url("../images/girl.jpg");
     background-size:contain;
     opacity: 0.85;
+    position: relative;
 }
-.admit-one{
+.poster img {
+    height: 250px;
+}
+
+.left .ticket-number p{
     position: absolute;
-    color: darkgray;
-    height: 250px;
-    padding: 0 10px;
-    letter-spacing: 0.15em;
-    text-align: center;
-    justify-content: space-around;
-    writing-mode: vertical-rl;
-    transform: rotate(-180deg);
-}
-.admit-one span:nth-child(2){
-    color: white;
-    font-weight: 700;
-}
-.left .ticket-number{
-    height: 250px;
-    width: 250px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 5px;
+    bottom: 8px;
+    right: 16px;
+    color:#4a437e;
 }
 .ticket-info{
     padding: 10px 30px;
@@ -207,18 +72,24 @@ html{
     font-size: 20px;
 }
 .show-name{
-    font-size: 32px;
+    font-size: 18px;
     font-family: "Nanum Pen script",cursive;
 }
-.show-name h1{
-    font-size: 48px;
+
+.left .show-name h1{
+    font-size: 30px;
     font-weight: 700;
     letter-spacing: 0.1em;
     color: #4a437e;
 }
-.show-name h2 {
 
+.show-name h1{
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #4a437e;
 }
+
 .time{
     padding: 10px 0;
     color: #4a437e;
@@ -250,12 +121,8 @@ html{
     width: 180px;
     border-left: 1px dashed #404040;
 }
-.right .admit-one{
-    color: darkgray;
-}
-.right .admit-one span:nth-child(2){
-    color: gray;
-}
+
+
 .right .right-info-container{
     height: 250px;
     padding: 10px 10px 10px 35px;

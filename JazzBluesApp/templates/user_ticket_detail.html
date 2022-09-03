@@ -1,0 +1,162 @@
+{% extends 'base.html' %} {% load static %} {% load poll_extras %} 
+{% block styles %}
+<link rel='stylesheet' href="{% static 'styles/cart_style.css' %}" type='text/css' media='all' />
+<link rel="stylesheet" href="{% static 'styles/tickets.css' %}" /> 
+{% endblock %}
+{% block title %} Order details |{% endblock %} 
+{% block content %}
+<br>
+<div class="cart">
+    <div id="main" class="main">
+        <div id="col2" class="clearfix col-mid" role="main">
+            <a name="main-content"></a>
+            {% if eventOrder %}
+            <div class="ticket">
+                <div class="left">
+                    <div class="poster">
+                        {% if event.event_poster %}
+                            <img src="{{event.event_poster.url}}" />
+                        {% else %}
+                        <img class="cover" src="{{MEDIA_ROOT}}/media/events/event_default.jpg" />
+                        {% endif %}
+                        <div class="ticket-number">
+                            <p>
+                                #{{eventOrder.id}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ticket-info">
+                        <p class="date">
+                            <span>FESTIVAL</span>
+                            <span class="day">{{event.event_start_datetime|date:"M d"}}</span>
+                            <span>TICKET</span>
+                        </p>
+                        <div class="show-name">
+                            <h1>{{event.event_name}}</h1><br>
+                            <h2>{{event.artist_id}}</h2>
+                        </div>
+                        <div class="time">
+                            <p>{{event.event_start_datetime|date:"M d"}}<span> TO </span>{{event.event_end_datetime|date:"M d"}}</p>
+                        </div>
+                        <p class="location">
+                            <span>{{event.venue_id.venue_name}}</span>
+                            <span>{{event.venue_id.location}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="right-info-container">
+                        <div class="show-name">
+                            <h1>{{event.event_name}}</h1>
+                        </div>
+                        <div class="time">
+                            <p>{{event.event_start_datetime|date:"M d"}}<span>&nbsp;TO&nbsp;</span>{{event.event_end_datetime|date:"M d"}}</p>
+                        </div>
+                        <div class="barcode">
+                            <img src="{% static "images/qr.png" %}" alt="">
+                        </div>
+                        <p class="ticket-number">
+                            #{{eventOrder.id}}
+                        </p>
+                        
+                    </div>
+                </div>
+            </div><br><br>
+            <button class="btn-checkout" onclick="Ticket()">Download ticket</button>
+            {% elif ticketPurchase %}
+            <div class="ticket">
+                <div class="left">
+                    <div class="poster">
+                        {% if event.event_poster %}
+                            <img src="{{event.event_poster.url}}" alt="cover">
+                        {% else %}
+                            <img src="{{MEDIA_ROOT}}/media/events/event_default.jpg" alt="cover">
+                        {% endif %}
+                        <div class="ticket-number">
+                            <p>
+                                #{{ticketPurchase.id}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ticket-info">
+                        <p class="date">
+                            <span>FESTIVAL</span>
+                            <span class="day">{{event.event_start_datetime|date:"M d"}}</span>
+                            <span>TICKET</span>
+                        </p>
+                        <div class="show-name">
+                            <h1>{{event.event_name}}</h1><br>
+                            <h2>{{event.artist_id}}</h2>
+                        </div>
+                        <div class="time">
+                            <p>{{event.event_start_datetime|date:"M d"}}<span> TO </span>{{event.event_end_datetime|date:"M d"}}</p>
+                        </div>
+                        <p class="location">
+                            <span>{{event.venue_id.venue_name}}</span>
+                            <span>{{event.venue_id.location}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="right-info-container">
+                        <div class="show-name">
+                            <h1>{{event.event_name}}</h1>
+                        </div>
+                        <div class="time">
+                            <p>{{event.event_start_datetime|date:"M d"}}<span>&nbsp;TO&nbsp;</span>{{event.event_end_datetime|date:"M d"}}</p>
+                        </div>
+                        <div class="barcode">
+                            <img src="{% static "images/qr.png" %}" alt="">
+                        </div>
+                        <p class="ticket-number">
+                            #{{ticketPurchase.id}}
+                        </p>
+                        
+                    </div>
+                </div>
+            </div><br><br>
+            <button class="btn-checkout" onclick="Ticket()">Download ticket</button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script>
+function Ticket(){
+
+		var HTML_Width = $(".ticket").width();
+		var HTML_Height = $(".ticket").height();
+		var top_left_margin = 15;
+		var PDF_Width = HTML_Width+(top_left_margin*2);
+		var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
+		var canvas_image_width = HTML_Width;
+		var canvas_image_height = HTML_Height;
+		
+		var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
+		
+
+		html2canvas($(".ticket")[0],{allowTaint:true}).then(function(canvas) {
+			canvas.getContext('2d');
+			
+			console.log(canvas.height+"  "+canvas.width);
+			
+			
+			var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
+		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+			
+			
+			for (var i = 1; i <= totalPDFPages; i++) { 
+				pdf.addPage(PDF_Width, PDF_Height);
+				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+			}
+			
+		    pdf.save("ticket.pdf");
+        });
+	};
+</script>
+
+{% endblock %}
