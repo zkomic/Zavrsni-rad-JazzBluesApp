@@ -122,7 +122,6 @@ html{
     border-left: 1px dashed #404040;
 }
 
-
 .right .right-info-container{
     height: 250px;
     padding: 10px 10px 10px 35px;
@@ -133,6 +132,7 @@ html{
 }
 .right .show-name h1{
     font-size: 18px;
+    text-align: center;
 }
 .barcode{
     height: 100px;

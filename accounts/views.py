@@ -24,9 +24,6 @@ def register(request):
     return render(request, 'register.html', {'u_form':u_form, 'p_form':p_form})
 
 
-def success(request):
-    return render(request, 'home.html')
-
 def login_fun(request): 
     prev_url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
@@ -53,4 +50,4 @@ def login_fun(request):
 @login_required
 def logout_fun(request):
     logout(request)
-    return redirect('base')
+    return redirect('home')

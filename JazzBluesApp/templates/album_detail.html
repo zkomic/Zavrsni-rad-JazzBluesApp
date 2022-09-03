@@ -97,7 +97,7 @@
             <div class="album-artist">{{album.0.artist_id}}</div>
             {% if average_rating > 0 %}
             <div class="product-rating"><br>
-                <a class="average-rating-link" href="#reviews-tab">
+                <p class="average-rating-link" href="#reviews-tab">
                     <i class="fa fa-star{% if average_rating < 0.5%}-o{% elif average_rating >= 0.5 and average_rating < 1 %}-half-o{% endif %}" aria-hidden="true"></i>
                     <i class="fa fa-star{% if average_rating < 1.5%}-o{% elif average_rating >= 1.5 and average_rating < 2 %}-half-o{% endif %}" aria-hidden="true"></i>
                     <i class="fa fa-star{% if average_rating < 2.5%}-o{% elif average_rating >= 2.5 and average_rating < 3 %}-half-o{% endif %}" aria-hidden="true"></i>
@@ -105,7 +105,7 @@
                     <i class="fa fa-star{% if average_rating < 4.5%}-o{% elif average_rating >= 4.5 and average_rating < 5 %}-half-o{% endif %}" aria-hidden="true"></i>
                                                 
                     &nbsp;&nbsp;(<span class="count">{{comments.count}}</span>
-                    customer reviews)</a>
+                    customer reviews)</p>
             </div>
             {% endif %}
             <br>
@@ -263,21 +263,5 @@
 
 <script src="{% static 'scripts/tabs.js' %}" defer></script>
 
-<script>
-    var logID = 'log',
-        log = $('<div id="' + logID + '"></div>');
-    $('body').append(log);
-    $('[type*="radio"]').change(function () {
-        var me = $(this);
-        log.html(me.attr('value'));
-    });
-
-    var target = document.querySelectorAll('.average-rating-link');
-
-    target.click(function () {
-        $('#tab-description').classList.remove('active');
-        $('#tab-reviews').classList.add('active');
-    });  
-</script>
 
 {% endblock %}

@@ -55,6 +55,7 @@ urlpatterns = [
     url(r'^userOrderDetail/(?P<albumorder_id>\w+)$', views.userOrderDetail, name="userOrderDetail"),
     url(r'^userConcertTicketDetail/(?P<ticketpurchase_id>\w+)$', views.userConcertTicketDetail, name="userConcertTicketDetail"),
     url(r'^userFestivalTicketDetail/(?P<eventorder_id>\w+)$', views.userFestivalTicketDetail, name="userFestivalTicketDetail"),
+    url(r'^/$', views.albums, name="albums"),
 ]
 
 if settings.DEBUG:

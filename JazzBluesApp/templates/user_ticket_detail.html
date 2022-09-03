@@ -80,8 +80,7 @@
                     </div>
                     <div class="ticket-info">
                         <p class="date">
-                            <span>FESTIVAL</span>
-                            <span class="day">{{event.event_start_datetime|date:"M d"}}</span>
+                            <span>CONCERT</span>
                             <span>TICKET</span>
                         </p>
                         <div class="show-name">
@@ -89,7 +88,7 @@
                             <h2>{{event.artist_id}}</h2>
                         </div>
                         <div class="time">
-                            <p>{{event.event_start_datetime|date:"M d"}}<span> TO </span>{{event.event_end_datetime|date:"M d"}}</p>
+                            <p>{{event.event_start_datetime|date:"d F Y H:i"}}<span></p>
                         </div>
                         <p class="location">
                             <span>{{event.venue_id.venue_name}}</span>
@@ -103,7 +102,7 @@
                             <h1>{{event.event_name}}</h1>
                         </div>
                         <div class="time">
-                            <p>{{event.event_start_datetime|date:"M d"}}<span>&nbsp;TO&nbsp;</span>{{event.event_end_datetime|date:"M d"}}</p>
+                            <p>{{event.event_start_datetime|date:"d M Y"}}</p>
                         </div>
                         <div class="barcode">
                             <img src="{% static "images/qr.png" %}" alt="">
@@ -136,23 +135,13 @@ function Ticket(){
 		var canvas_image_height = HTML_Height;
 		
 		var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
-		
 
 		html2canvas($(".ticket")[0],{allowTaint:true}).then(function(canvas) {
 			canvas.getContext('2d');
-			
-			console.log(canvas.height+"  "+canvas.width);
-			
-			
+						
 			var imgData = canvas.toDataURL("image/jpeg", 1.0);
 			var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
 		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
-			
-			
-			for (var i = 1; i <= totalPDFPages; i++) { 
-				pdf.addPage(PDF_Width, PDF_Height);
-				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
-			}
 			
 		    pdf.save("ticket.pdf");
         });
