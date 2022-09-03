@@ -151,7 +151,6 @@
                 {% endif %}
               </p>
             </div>
-            
             <div class="column-payment">
               <h2>Payment</h2>
               <p class="card-details">
@@ -163,8 +162,12 @@
               </p>
             </div>
           </div>             
-        <div id="col2" class="clearfix col-mid" role="main">      
+        <div id="col2" class="clearfix col-mid" role="main">
+          {% if not user_address.address_id %}
+          <button type="submit" class="btn-checkout" disabled>Place order</button>
+          {% else %}      
           <button type="submit" class="btn-checkout">Place order</button>
+          {% endif %}
         </div>
     </form>
   </div>
