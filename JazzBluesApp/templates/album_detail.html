@@ -36,31 +36,10 @@
 
 {% block content %}
 
-<!--
-<div class="container">
-    
-    <div class="product">   
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada
-                    fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-                    ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-                    egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                    leo.</p>
-            </div>
-            <form class="cart" action="#" method="post" enctype="multipart/form-data">
-
-                <button type="submit" name="add-to-cart" value="507" class="button">Add to cart</button>
-            </form>
-        </div>
-   
-        </div>        
-    </div>
-</div>
-
--->
 
 <div class="container">
     <nav class="breadcrumb">
-        <a href="{% url 'base' %}">Home</a>&nbsp;/&nbsp;<a
+        <a href="{% url 'home' %}">Home</a>&nbsp;/&nbsp;<a
             href="{% url 'JazzBluesApp:albums' %}">Albums</a>&nbsp;/&nbsp;{{album.0.album_name}}
     </nav>
     
@@ -127,8 +106,8 @@
             <a href="{% url 'JazzBluesApp:addAlbumToCart' album_id=album.0.id %}" class="button">Add to cart</a> {% endif %} {% endif %}
             <br><br>
             <div class="product_meta">
-                <span class="posted_in">Categories: <a href="#" rel="tag">Clothing</a>, <a href="#"
-                        rel="tag">Hoodies</a></span>
+                <span class="posted_in">Categories: <a href="#" rel="tag">#{{album.0.genre_id}}</a>, <a href="#"
+                        rel="tag">#{{album.0.album_format}}</a></span>
             </div>
         </div>
 
@@ -142,11 +121,16 @@
                 </li>
             </ul>
             <div class="active" id="tab-description" data-tab-content>
-                <p class="details_description">Pellentesque habitant morbi tristique senectus et netus et malesuada
-                    fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
-                    ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
-                    egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                    leo.</p>
+                <p class="details_description">
+                    Album name: <i>{{album.0.album_name}}</i><br>
+                    Artist name: <i>{{album.0.artist_id}}</i><br>
+                    Genre: <i>{{album.0.genre_id}}</i><br>
+                    Date released: <i>{{album.0.date_released}}</i><br>
+                    Album format: <i>{{album.0.album_format}}</i><br>
+                    Number of tracks: <i>{{album.0.number_of_tracks}}</i><br>
+                    Number of discs: <i>{{album.0.number_of_discs}}</i><br>
+                    Record label: <i>{{album.0.recordLabel_id}}</i>
+                </p>
             </div>
             <div id="reviews-tab" data-tab-content>
                 <div id="reviews">

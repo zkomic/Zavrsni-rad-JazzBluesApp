@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse
-from JazzBluesApp.models import Album, Article, Artist, Address, Comment, Event, TicketPurchase, Users, Venue, AlbumCart, AlbumCartUser, EventCart, EventCartUser, AlbumOrder, AlbumOrderUser, EventOrder, EventOrderUser
+from JazzBluesApp.models import Album, Artist, Address, Comment, Event, TicketPurchase, Users, Venue, AlbumCart, AlbumCartUser, EventCart, EventCartUser, AlbumOrder, AlbumOrderUser, EventOrder, EventOrderUser
 from django.shortcuts import render, redirect
-from .forms import NewAlbumForm, NewArtistForm, NewAddressForm, NewComment, NewRecordLabel, NewEventForm, updateOrderStatus, NewVenueForm, NewArticleForm
+from .forms import NewAlbumForm, NewArtistForm, NewAddressForm, NewComment, NewRecordLabel, NewEventForm, updateOrderStatus, NewVenueForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .filters import AlbumFilter, EventFilter, OrderFilter
@@ -120,7 +120,7 @@ def albumsPriceDesc(request):
 @staff_member_required
 def newAlbum(request):
     if request.method == 'POST':
-        albumForm = NewAlbumForm(request.POST)
+        albumForm = NewAlbumForm(request.POST, request.FILES)
         if albumForm.is_valid():
             albumForm.save()
             return redirect('JazzBluesApp:albums')      
@@ -130,53 +130,6 @@ def newAlbum(request):
     }
     return render(request, 'new_album.html', context)
 
-@login_required
-@staff_member_required
-def newArticle(request):
-    if request.method == 'POST':
-        articleForm = NewArticleForm(request.POST, request.FILES)
-        if articleForm.is_valid():
-            articleForm.save()
-            return redirect ('base')
-    articleForm = NewArticleForm()
-    context = {
-        'form':articleForm
-    }
-    return render(request, 'new_article.html', context)
-
-@login_required
-@staff_member_required
-def editArticle(request, article_id):
-    article = Article.objects.all().filter(id=article_id)
-    instanca = article.first()
-    data = {
-        "subject": article[0].subject,
-        "publish_date": article[0].publish_date,
-        "text": article[0].text,
-        "image": article[0].image,
-    }
-    if request.method == 'POST':
-        articleForm = NewArticleForm(request.POST, instance=instanca)
-        if articleForm.is_valid():
-            articleForm.save()
-            return redirect('base')     
-    else:
-        articleForm = NewArticleForm(initial=data)
-    context = {
-        'article': article,
-        'articleForm': articleForm,
-    }
-    return render(request, 'article_edit.html', context)
-
-@login_required
-@staff_member_required
-def articleDelete(request, article_id):
-    try:
-        article = Article.objects.get(id=article_id)
-        article.delete()
-        return redirect('base')
-    except: 
-        return redirect('JazzBluesApp:articleEdit', article_id=article_id)
 
 @login_required
 @staff_member_required
@@ -198,7 +151,7 @@ def albumEdit(request, album_id):
         "album_cover": album[0].album_cover,
     }
     if request.method == 'POST':
-        albumForm = NewAlbumForm(request.POST, instance=instanca)
+        albumForm = NewAlbumForm(request.POST, request.FILES, instance=instanca)
         if albumForm.is_valid():
             next_url = request.POST.get('next_url')
             albumForm.save()
@@ -511,7 +464,7 @@ festival = 'festival'
 @staff_member_required
 def newConcert(request):
     if request.method == 'POST':
-        newEventForm = NewEventForm(request.POST)
+        newEventForm = NewEventForm(request.POST, request.FILES)
         if newEventForm.is_valid():
             newEventForm.save()
             last_event = Event.objects.all().last()
@@ -526,7 +479,7 @@ def newConcert(request):
 @staff_member_required
 def newFestival(request):
     if request.method == 'POST':
-        newEventForm = NewEventForm(request.POST)
+        newEventForm = NewEventForm(request.POST, request.FILES)
         if newEventForm.is_valid():
             newEventForm.save()
             last_event = Event.objects.all().last()
@@ -555,7 +508,7 @@ def eventEdit(request, event_id):
         "ticket_price": event[0].ticket_price,
     }
     if request.method == 'POST':
-        eventForm = NewEventForm(request.POST, instance=instanca)
+        eventForm = NewEventForm(request.POST, request.FILES, instance=instanca)
         print(eventForm.errors)
         if eventForm.is_valid():
             eventForm.save()
@@ -676,20 +629,20 @@ def userOrders(request, username):
                 'albumOrders': albumOrders,
                 'total': total,
             }
-        context.update(album_dict)
-        if EventOrder.objects.all().filter(user_id=current_user.id).exists():
-            userEventOrder = EventOrder.objects.all().filter(user_id=current_user).order_by('-id')
-            total = 0
-            eventOrders = []
-            for eventOrder in userEventOrder:
-                eventOrders.append(eventOrder)
-                event_dict = {
-                    'eventOrders': eventOrders,
-                    'total': total,
-                }
-            context.update(event_dict)
+            context.update(album_dict)
         else:
-            pass
+            pass 
+    if EventOrder.objects.all().filter(user_id=current_user.id).exists():
+        userEventOrder = EventOrder.objects.all().filter(user_id=current_user).order_by('-id')
+        total = 0
+        eventOrders = []
+        for eventOrder in userEventOrder:
+            eventOrders.append(eventOrder)
+            event_dict = {
+                'eventOrders': eventOrders,
+                'total': total,
+            }
+        context.update(event_dict)  
     else:
         pass
     return render(request, 'user_orders.html', context)

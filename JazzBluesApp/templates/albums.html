@@ -102,31 +102,33 @@
         {% endfor %}
     </ul>
 
+    <div style="text-align:center">
     {% if 'album_name=' in request.get_full_path %}
     {% if albums_paginated.has_previous %}
-        <a href="{{request.get_full_path}}&page=1">&laquo; First</a>
+        <a href="{{request.get_full_path}}&page=1">&laquo; First</a>&nbsp;|&nbsp;
         <a href="{{request.get_full_path}}&page={{albums_paginated.previous_page_number}}">&laquo; Previous</a>
     {% endif %}
 
-    Page {{ albums_paginated.number }} of {{albums_paginated.paginator.num_pages}}
+    Page {{ albums_paginated.number }} of {{albums_paginated.paginator.num_pages}} &nbsp;|&nbsp;
 
     {% if albums_paginated.has_next %}
-        <a href="{{request.get_full_path}}&page={{albums_paginated.next_page_number}}">Next</a> <!-- radi s filterima, bez njih treba biti ?&page -->
+        <a href="{{request.get_full_path}}&page={{albums_paginated.next_page_number}}">Next</a>&nbsp;|&nbsp; <!-- radi s filterima, bez njih treba biti ?&page -->
         <a href="{{request.get_full_path}}&page={{albums_paginated.paginator.num_pages}}">Last &raquo;</a>
     {% endif %}
     {% else %}
     {% if albums_paginated.has_previous %}
-        <a href="{{request.get_full_path}}?&page=1">&laquo; First</a>
-        <a href="{{request.get_full_path}}?&page={{albums_paginated.previous_page_number}}">&laquo; Previous</a>
+        <a href="{{request.get_full_path}}?&page=1">&laquo; First</a> &nbsp;|&nbsp;
+        <a href="{{request.get_full_path}}?&page={{albums_paginated.previous_page_number}}">&laquo; Previous</a>&nbsp;|&nbsp;
     {% endif %}
 
-    Page {{ albums_paginated.number }} of {{albums_paginated.paginator.num_pages}}
+    Page {{ albums_paginated.number }} of {{albums_paginated.paginator.num_pages}} &nbsp;|&nbsp;
 
     {% if albums_paginated.has_next %}
-        <a href="{{request.get_full_path}}?&page={{albums_paginated.next_page_number}}">Next</a>
+        <a href="{{request.get_full_path}}?&page={{albums_paginated.next_page_number}}">Next</a>&nbsp;|&nbsp;
         <a href="{{request.get_full_path}}?&page={{albums_paginated.paginator.num_pages}}">Last &raquo;</a>
     {% endif %}
     {% endif %}
+    </div>
   
 
     {% endif %}

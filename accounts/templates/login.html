@@ -76,24 +76,35 @@
                 {% endif %} 
 
                 <input type="hidden" name="next_url" id="next_url" value="{{prev_url}}">
-
                 <button type="submit">Login</button>
-                <a href="#" class="forgot">
+                
+                <a href="#" class="forgot" onclick="myFunction()">
 					Forgot your password?
 				</a>
-
+                
             </form>
-            <!--<form class="toggle resend" action="" method="post">
-                    <h2>Forgot your password?</h2>
-                    Please enter your email address.
-                    <input type="email" name="passwordForgotten.email" placeholder="Email Address">
-                    <button type="submit" name="passwordForgotten.submit">Send</button>
-                </form>-->
+            <br>
+            <form class="forgot-form" id="forgot-form" action="" method="post">
+                {% csrf_token %}
+                    <h2>Forgotten your password?</h2>
+                    Please enter your email address below, and we'll email instructions for setting new one. 
+                    <input type="email"  placeholder="e-mail address">
+                    <button type="submit">Send</button>
+                </form>
         </div>
     </div>
 </div>
 <div style="clear:left;"></div>
 <!-- dodala zbog odvajanja inline-block elemenata -->
 
-
+<script>
+    function myFunction() {
+      var x = document.getElementById("forgot-form");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+    </script>
 {% endblock %}

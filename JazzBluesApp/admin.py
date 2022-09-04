@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Comment, EventOrder, EventOrderUser, RecordLabel, Artist, Genre, Album, Users, Venue, Event, AlbumOrder, TicketPurchase, Article, Users, Address, AlbumCart, EventCart, AlbumCartUser, EventCartUser, AlbumOrderUser
+from .models import Comment, EventOrder, EventOrderUser, RecordLabel, Artist, Genre, Album, Users, Venue, Event, AlbumOrder, TicketPurchase, Users, Address, AlbumCart, EventCart, AlbumCartUser, EventCartUser, AlbumOrderUser
 
 # Register your models here.
 
@@ -12,7 +12,7 @@ admin.site.register(Album)
 admin.site.register(Venue)
 admin.site.register(Event)
 admin.site.register(TicketPurchase)
-admin.site.register(Article)
+#admin.site.register(Article)
 admin.site.register(Address)
 admin.site.register(Comment)
 admin.site.register(AlbumCart)

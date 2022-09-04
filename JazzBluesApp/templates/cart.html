@@ -27,7 +27,10 @@
 
 <div class="cart">
     {% if not userAlbumCart and not userEventCart %}
-    <p>Nemate ništa u košarici...</p>
+    <div style="text-align: center"><br><br><br><br>
+      <h1><b>Your cart is empty.</b></h1><br>
+      <p>Looks like you have not added anything to your cart.</p>
+    </div>
     {% else %}
     <div id="main" class="main">
         <div id="col2" class="clearfix col-mid" role="main">

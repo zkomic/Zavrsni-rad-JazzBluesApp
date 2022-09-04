@@ -199,14 +199,6 @@ class TicketPurchase(models.Model):
     seat_number = models.IntegerField(null=True)
 
 
-# ------------------ NEWS -------------------
-
-class Article(models.Model):
-    subject = models.CharField(max_length=500)
-    publish_date = models.DateField(default=date.today)
-    text = models.TextField(max_length=5000)
-    image = models.ImageField(upload_to="articles/", blank=True, null=True)
-
 
 # ------- COMMENTS AND RATING -------
 

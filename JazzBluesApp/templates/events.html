@@ -108,31 +108,33 @@ Events |
         {% endfor %}
     </ul>
 
+    <div style="text-align:center">
     {% if 'event_name=' in request.get_full_path %}
     {% if events_paginated.has_previous %}
-        <a href="{{request.get_full_path}}&page=1">&laquo; First</a>
-        <a href="{{request.get_full_path}}&page={{events_paginated.previous_page_number}}">&laquo; Previous</a>
+        <a href="{{request.get_full_path}}&page=1">&laquo; First</a>&nbsp;|&nbsp;
+        <a href="{{request.get_full_path}}&page={{events_paginated.previous_page_number}}">&laquo; Previous</a>&nbsp;|&nbsp;
     {% endif %}
 
-    Page {{ events_paginated.number }} of {{events_paginated.paginator.num_pages}}
+    Page {{ events_paginated.number }} of {{events_paginated.paginator.num_pages}}&nbsp;|&nbsp;
 
     {% if events_paginated.has_next %}
-        <a href="{{request.get_full_path}}&page={{events_paginated.next_page_number}}">Next</a> <!-- radi s filterima, bez njih treba biti ?&page -->
-        <a href="{{request.get_full_path}}&page={{events_paginated.paginator.num_pages}}">Last &raquo;</a>
+        <a href="{{request.get_full_path}}&page={{events_paginated.next_page_number}}">Next</a>&nbsp;|&nbsp; <!-- radi s filterima, bez njih treba biti ?&page -->
+        <a href="{{request.get_full_path}}&page={{events_paginated.paginator.num_pages}}">Last &raquo;</a>&nbsp;|&nbsp;
     {% endif %}
     {% else %}
     {% if events_paginated.has_previous %}
-        <a href="{{request.get_full_path}}?&page=1">&laquo; First</a>
-        <a href="{{request.get_full_path}}?&page={{events_paginated.previous_page_number}}">&laquo; Previous</a>
+        <a href="{{request.get_full_path}}?&page=1">&laquo; First</a>&nbsp;|&nbsp;
+        <a href="{{request.get_full_path}}?&page={{events_paginated.previous_page_number}}">&laquo; Previous</a>&nbsp;|&nbsp;
     {% endif %}
 
-    Page {{ events_paginated.number }} of {{events_paginated.paginator.num_pages}}
+    Page {{ events_paginated.number }} of {{events_paginated.paginator.num_pages}}&nbsp;|&nbsp;
 
     {% if events_paginated.has_next %}
-        <a href="{{request.get_full_path}}?&page={{events_paginated.next_page_number}}">Next</a>
-        <a href="{{request.get_full_path}}?&page={{events_paginated.paginator.num_pages}}">Last &raquo;</a>
+        <a href="{{request.get_full_path}}?&page={{events_paginated.next_page_number}}">Next</a>&nbsp;|&nbsp;
+        <a href="{{request.get_full_path}}?&page={{events_paginated.paginator.num_pages}}">Last &raquo;</a>&nbsp;|&nbsp;
     {% endif %}
     {% endif %}
+    </div>
   
 
     {% endif %}

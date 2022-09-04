@@ -20,10 +20,7 @@ urlpatterns = [
     url(r'^eventsPrice/$', views.eventsPrice, name="eventsPrice"),
     url(r'^eventsPriceDesc/$', views.eventsPriceDesc, name="eventsPriceDesc"),
     url(r'^newAlbum/$', views.newAlbum, name="newAlbum"),
-    url(r'^newArticle/$', views.newArticle, name="newArticle"),
     url(r'^newAddress/$', views.newAddress, name="newAddress"),
-    url(r'^editArticle/(?P<article_id>\w+)$', views.editArticle, name="editArticle"),
-    url(r'^articleDelete/(?P<article_id>\w+)$', views.articleDelete, name="articleDelete"),
     url(r'^newArtist/$', views.newArtist, name="newArtist"),
     url(r'^newRecordLabel/$', views.newRecordLabel, name="newRecordLabel"),
     url(r'^albumEdit/(?P<album_id>\w+)$', views.albumEdit, name="albumEdit"),
@@ -55,7 +52,7 @@ urlpatterns = [
     url(r'^userOrderDetail/(?P<albumorder_id>\w+)$', views.userOrderDetail, name="userOrderDetail"),
     url(r'^userConcertTicketDetail/(?P<ticketpurchase_id>\w+)$', views.userConcertTicketDetail, name="userConcertTicketDetail"),
     url(r'^userFestivalTicketDetail/(?P<eventorder_id>\w+)$', views.userFestivalTicketDetail, name="userFestivalTicketDetail"),
-    url(r'^/$', views.albums, name="albums"),
+    url(r'^$', views.albums, name="albums"),
 ]
 
 if settings.DEBUG:

@@ -2,7 +2,7 @@ from django import forms
 from django.db.models import fields
 from django.forms import widgets
 from django.forms.fields import SplitDateTimeField
-from .models import Address, Album, AlbumOrder, Artist, ALBUM_FORMAT_CHOICES, Comment, GENRE_CHOICES, EVENT_CATEGORY_CHOICES, Article, RecordLabel, Event, Venue, Genre
+from .models import Address, Album, AlbumOrder, Artist, ALBUM_FORMAT_CHOICES, Comment, GENRE_CHOICES, EVENT_CATEGORY_CHOICES, RecordLabel, Event, Venue, Genre
 from django.contrib.auth.models import User
 from django.contrib.admin.widgets import AdminDateWidget, AdminTimeWidget, AdminSplitDateTime
 
@@ -75,12 +75,6 @@ class NewAddressForm(forms.ModelForm):
     class Meta:
         model = Address 
         fields = '__all__'
-
-class NewArticleForm(forms.ModelForm):
-    class Meta:
-        model = Article
-        fields = '__all__'
-        exclude = ['publish_date']
 
 class NewComment(forms.ModelForm):  
     class Meta:

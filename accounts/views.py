@@ -10,8 +10,6 @@ def register(request):
     if request.method == "POST":
         u_form = registrationForm(request.POST)
         p_form = addFields(request.POST, request.FILES)
-        print('osnovna', u_form.errors)
-        print('gender i slika', p_form.errors)
         if u_form.is_valid() and p_form.is_valid():
             user = u_form.save()#dohvacanje podataka iz UserCreationForm-a
             details = p_form.save(commit=False)#dohvacanje podataka iz forme sa gender i slikom
